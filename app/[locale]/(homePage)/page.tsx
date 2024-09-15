@@ -1,6 +1,7 @@
-import React from "react";
+import { useTranslations } from "next-intl";
 
 export default function HomePage() {
+  const t = useTranslations();
   return (
     <div className="h-screen bg-minimal-gradient">
       <div className="fixed top-0 left-0 transform rotate-[80deg]">
@@ -11,7 +12,7 @@ export default function HomePage() {
       </div>
       <div className="flex justify-center items-center pt-40 px-11">
         <div className="flex flex-col justify-center items-center space-y-4">
-          <h1 className="text-6xl text-white">Welcome to Donezo</h1>
+          <h1 className="text-6xl text-white">{t("welcome")}</h1>
           <h2 className="text-4xl p-2 bg-white bg-opacity-40 rounded-lg">
             Every Goal is a Donezo
           </h2>
