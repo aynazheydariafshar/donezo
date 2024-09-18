@@ -12,15 +12,12 @@ export default function HomePage() {
       </div>
       <div className="flex justify-center items-center pt-40 px-11">
         <div className="flex flex-col justify-center items-center space-y-4">
-          <h1 className="text-6xl text-white">{t("welcome")}</h1>
-          <h2 className="text-4xl p-2 bg-white bg-opacity-40 rounded-lg">
-            Every Goal is a Donezo
+          <h1 className="text-6xl text-white">{t("welcome-to-donezo")}</h1>
+          <h2 className="text-2xl p-2 bg-white bg-opacity-40 rounded-lg">
+            {t("donezo-Slogan")}
           </h2>
           <p className="text-white text-xl text-center max-w-[65vw]">
-            At Donezo, every task, project, or goal is just a step away from
-            being accomplished. Whether you are aiming to complete a small task
-            or achieve a major milestone, Donezo helps you start, stay on track,
-            and finish strong.
+            {t("donezo-content-home-page")}
           </p>
           <button>test</button>
         </div>
