@@ -128,6 +128,8 @@ const config = {
       },
       backgroundImage: {
         "minimal-gradient":
+          "linear-gradient(to right top, #ffffff, #ede9fd, #ddd2fa, #cebcf5, #c1a5f0, #b69aec, #aa8fe8, #9e85e4, #9084e1, #8283de, #7382da, #6480d6);",
+        "minimal-gradient-dark":
           "linear-gradient(101deg, rgba(5,38,43,1) 29%, rgba(117,96,212,1) 84%, rgba(170,86,253,1) 97%)",
       },
       keyframes: {

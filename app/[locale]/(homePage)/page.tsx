@@ -10,12 +10,12 @@ export default function HomePage() {
   const locale = useLocale();
 
   return (
-    <div className="h-screen text-black dark:text-white bg-minimal-gradient">
+    <div className="h-screen text-black dark:text-white bg-minimal-gradient dark:bg-minimal-gradient-dark">
       <div className="fixed top-0 left-0 transform rotate-[80deg]">
-        <div className="absolute opacity-5 w-wave h-wave ml-wave-left mt-wave-top rounded-wave animate-rotate bg-white"></div>
+        <div className="absolute opacity-5 w-wave h-wave ml-wave-left mt-wave-top rounded-wave animate-rotate bg-gray-800 dark:bg-white"></div>
       </div>
       <div className="fixed top-0 left-0 transform rotate-[80deg]">
-        <div className="absolute opacity-10 w-wave h-wave ml-wave-left mt-wave-top rounded-wave animate-rotate-fast bg-white"></div>
+        <div className="absolute opacity-10 w-wave h-wave ml-wave-left mt-wave-top rounded-wave animate-rotate-fast bg-gray-800 dark:bg-white"></div>
       </div>
       <div className="flex justify-center items-center pt-40 px-11 z-10 relative">
         <div className="flex flex-col justify-center items-center space-y-4">
@@ -28,7 +28,7 @@ export default function HomePage() {
           </p>
           <Button
             size="lg"
-            className="bg-primary-300 text-xl border border-black text-black transition [box-shadow:rgb(171,_196,245)-8px_8px] hover:[box-shadow:rgb(171,_196,_245)0px_0px] hover:bg-pink-400"
+            className="bg-pink-300 text-xl border border-black text-black transition [box-shadow:rgb(171,_196,245)-8px_8px] hover:[box-shadow:rgb(171,_196,_245)0px_0px] hover:bg-pink-400"
           >
             <Link href={`/${locale}/sign-up`}>{t("get-started")}</Link>
           </Button>
