@@ -1,3 +1,4 @@
+import SwitchTheme from "@/components/ui/switch-theme";
 import React from "react";
 
 export default function HomePageLayout({
@@ -8,9 +9,8 @@ export default function HomePageLayout({
   return (
     <div className="h-full">
       {/* Navbar */}
-      <main className="">
-        {children}
-      </main>
+      <SwitchTheme />
+      <main className="">{children}</main>
       {/* Footer */}
     </div>
   );
