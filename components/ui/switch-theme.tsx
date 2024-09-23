@@ -7,10 +7,13 @@ import { Button } from "./button";
 
 export default function SwitchTheme() {
   const { theme, setTheme } = useTheme();
-
+  
   return (
     <div className="flex justify-center">
-      <Button onClick={() => setTheme(theme === "dark" ? "light" : "dark")}>
+      <Button
+        variant="ghost"
+        onClick={() => setTheme(theme === "dark" ? "light" : "dark")}
+      >
         {theme === "dark" ? <Moon /> : <Sun />}
       </Button>
     </div>
