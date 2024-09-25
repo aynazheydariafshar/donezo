@@ -4,7 +4,7 @@
 
 @font-face {
   font-family: "Roboto";
-  src: url("/fonts/Roboto-Black.ttf") format("woff2");
+  src: url("/fonts/roboto/Roboto-Black.ttf") format("woff2");
   font-weight: normal;
   font-style: normal;
 }

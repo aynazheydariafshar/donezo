@@ -11,7 +11,7 @@ import {
   SelectItem,
   SelectTrigger,
   SelectValue,
-} from "./select";
+} from "./ui/select";
 
 const SwitchLanguage = () => {
   const currentLocale = useLocale();

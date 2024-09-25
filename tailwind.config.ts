@@ -124,7 +124,7 @@ const config = {
         lg: "var(--radius)",
         md: "calc(var(--radius) - 2px)",
         sm: "calc(var(--radius) - 4px)",
-        wave: "43%",
+        wave: "83%",
       },
       backgroundImage: {
         "minimal-gradient":
