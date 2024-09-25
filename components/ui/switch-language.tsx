@@ -2,7 +2,8 @@
 
 import { useLocale } from "next-intl";
 import { usePathname, useRouter } from "next/navigation";
-import { ChangeEvent } from "react";
+
+// component-ui
 import {
   Select,
   SelectContent,
@@ -12,19 +13,19 @@ import {
   SelectValue,
 } from "./select";
 
-export default function SwitchLanguage() {
+const SwitchLanguage = () => {
   const currentLocale = useLocale();
   const router = useRouter();
   const pathname = usePathname();
   const cleanPathname = pathname.replace(/^\/(en|fa)(\/|$)/, "/");
 
-  function handleChangeLang(value: ChangeEvent<HTMLSelectElement>) {
+  const handleChangeLang = (value: string) => {
     if (pathname.startsWith("/fa") || pathname.startsWith("/en")) {
       router.replace(`/${value}${cleanPathname}`);
     } else {
       router.replace(`${value}`);
     }
-  }
+  };
 
   return (
     <Select
@@ -42,4 +43,6 @@ export default function SwitchLanguage() {
       </SelectContent>
     </Select>
   );
-}
+};
+
+export default SwitchLanguage;

@@ -1,11 +1,10 @@
 import Link from "next/link";
-// import { useRouter } from "next/navigation";
 import { useLocale, useTranslations } from "next-intl";
 
+// component-ui
 import { Button } from "@/components/ui/button";
-// import { useTheme } from "next-themes";
 
-export default function HomePage() {
+const HomePage = () => {
   const t = useTranslations();
   const locale = useLocale();
 
@@ -36,4 +35,6 @@ export default function HomePage() {
       </div>
     </div>
   );
-}
+};
+
+export default HomePage;

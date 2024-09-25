@@ -1,6 +1,6 @@
+// component ui
 import SwitchLanguage from "@/components/ui/switch-language";
 import SwitchTheme from "@/components/ui/switch-theme";
-import React from "react";
 
 export default function NavbarHomePage() {
   return (

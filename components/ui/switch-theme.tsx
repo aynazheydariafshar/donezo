@@ -1,13 +1,16 @@
 "use client";
 
-import * as React from "react";
-import { Moon, Sun } from "lucide-react";
 import { useTheme } from "next-themes";
+
+//icons
+import { Moon, Sun } from "lucide-react";
+
+//component-ui
 import { Button } from "./button";
 
-export default function SwitchTheme() {
+const SwitchTheme = () => {
   const { theme, setTheme } = useTheme();
-  
+
   return (
     <div className="flex justify-center">
       <Button
@@ -18,4 +21,6 @@ export default function SwitchTheme() {
       </Button>
     </div>
   );
-}
+};
+
+export default SwitchTheme;
