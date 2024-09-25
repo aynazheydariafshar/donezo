@@ -12,7 +12,7 @@ const Logo = () => {
 
   return (
     <Link
-      className="flex items-center hover:opacity-75 transition"
+      className="sm:flex items-center hover:opacity-75 transition hidden"
       href={`/${locale}`}
     >
       <Image
@@ -22,7 +22,10 @@ const Logo = () => {
         height={10}
       />
       <p
-        className={cn("text-lg text-black dark:text-white", logoFont.className)}
+        className={cn(
+          "text-lg text-black dark:text-white md:block hidden",
+          logoFont.className
+        )}
       >
         Donezo
       </p>
