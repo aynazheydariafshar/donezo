@@ -13,7 +13,7 @@ import {
   SelectValue,
 } from "./ui/select";
 
-const SwitchLanguage = () => {
+function SwitchLanguage() {
   const currentLocale = useLocale();
   const router = useRouter();
   const pathname = usePathname();
@@ -43,6 +43,6 @@ const SwitchLanguage = () => {
       </SelectContent>
     </Select>
   );
-};
+}
 
-export default SwitchLanguage;
+export { SwitchLanguage };

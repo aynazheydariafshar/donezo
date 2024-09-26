@@ -1,7 +1,7 @@
-import FooterHomePage from "./_components/footer";
-import NavbarHomePage from "./_components/navbar";
+import { FooterHomePage } from "./_components/footer";
+import { NavbarHomePage } from "./_components/navbar";
 
-const HomePageLayout = ({ children }: { children: React.ReactNode }) => {
+function HomePageLayout({ children }: { children: React.ReactNode }) {
   return (
     <div className="h-full">
       <NavbarHomePage />
@@ -9,6 +9,6 @@ const HomePageLayout = ({ children }: { children: React.ReactNode }) => {
       <FooterHomePage />
     </div>
   );
-};
+}
 
 export default HomePageLayout;

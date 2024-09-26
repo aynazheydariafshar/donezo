@@ -1,12 +1,12 @@
 // component ui
-import Logo from "@/components/logo";
-import SwitchLanguage from "@/components/switch-language";
-import SwitchTheme from "@/components/switch-theme";
+import { Logo } from "@/components/logo";
+import { SwitchLanguage } from "@/components/switch-language";
+import { SwitchTheme } from "@/components/switch-theme";
 import { Button } from "@/components/ui/button";
 import { useLocale, useTranslations } from "next-intl";
 import Link from "next/link";
 
-export default function NavbarHomePage() {
+function NavbarHomePage() {
   const t = useTranslations();
   const local = useLocale();
   return (
@@ -27,3 +27,5 @@ export default function NavbarHomePage() {
     </div>
   );
 }
+
+export { NavbarHomePage };

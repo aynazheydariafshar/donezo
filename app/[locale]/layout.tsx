@@ -40,10 +40,10 @@ interface RootLayoutProps {
   };
 }
 
-const RootLayout = async ({
+async function RootLayout({
   children,
   params: { locale },
-}: Readonly<RootLayoutProps>) => {
+}: Readonly<RootLayoutProps>) {
   const messages = await getMessages();
   return (
     <NextIntlClientProvider messages={messages}>
@@ -65,6 +65,6 @@ const RootLayout = async ({
       </html>
     </NextIntlClientProvider>
   );
-};
+}
 
 export default RootLayout;

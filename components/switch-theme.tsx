@@ -9,7 +9,7 @@ import { Moon, Sun } from "lucide-react";
 //component-ui
 import { Button } from "./ui/button";
 
-const SwitchTheme = () => {
+function SwitchTheme() {
   const { theme, setTheme } = useTheme();
   const [mounted, setMounted] = useState(false);
 
@@ -31,6 +31,6 @@ const SwitchTheme = () => {
       </Button>
     </div>
   );
-};
+}
 
-export default SwitchTheme;
+export { SwitchTheme };

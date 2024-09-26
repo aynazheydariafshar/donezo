@@ -36,4 +36,4 @@ const Logo = ({ showTextLogo = false }) => {
   );
 };
 
-export default Logo;
+export { Logo };

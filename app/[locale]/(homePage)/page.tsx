@@ -4,7 +4,7 @@ import { useLocale, useTranslations } from "next-intl";
 // component-ui
 import { Button } from "@/components/ui/button";
 
-const HomePage = () => {
+function HomePage() {
   const t = useTranslations();
   const locale = useLocale();
 
@@ -35,6 +35,6 @@ const HomePage = () => {
       </div>
     </div>
   );
-};
+}
 
 export default HomePage;
