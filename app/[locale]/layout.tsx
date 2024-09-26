@@ -1,9 +1,26 @@
 import type { Metadata } from "next";
-import "../globals.css";
 import { getMessages } from "next-intl/server";
 import { NextIntlClientProvider } from "next-intl";
 import { ThemeProvider } from "next-themes";
+
+// style
+import "../globals.css";
+
+// config
 import { siteConfig } from "@/config/site";
+
+// fonts
+import { Fredoka, Vazirmatn } from "next/font/google";
+
+const fredoka = Fredoka({
+  weight: "500",
+  subsets: ["latin"],
+});
+
+const vazirmatn = Vazirmatn({
+  weight: "500",
+  subsets: ["arabic"],
+});
 
 export const metadata: Metadata = {
   title: siteConfig.name,
@@ -31,7 +48,11 @@ const RootLayout = async ({
   return (
     <NextIntlClientProvider messages={messages}>
       <html lang={locale}>
-        <body>
+        <body
+          className={`${
+            locale === "en" ? fredoka.className : vazirmatn.className
+          } antialiased`}
+        >
           <ThemeProvider
             attribute="class"
             defaultTheme="dark"

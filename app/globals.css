@@ -2,17 +2,6 @@
 @tailwind components;
 @tailwind utilities;
 
-@font-face {
-  font-family: "Roboto";
-  src: url("/fonts/roboto/Roboto-Black.ttf") format("woff2");
-  font-weight: normal;
-  font-style: normal;
-}
-
-body {
-  font-family: "Roboto", sans-serif;
-}
-
 @layer base {
   :root {
     /* primary */

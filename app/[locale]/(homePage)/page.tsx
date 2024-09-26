@@ -19,17 +19,17 @@ const HomePage = () => {
       <div className="flex justify-center items-center pt-40 px-11 z-10 relative">
         <div className="flex flex-col justify-center items-center space-y-4">
           <h1 className="text-6xl">{t("welcome-to-donezo")}</h1>
-          <h2 className="text-2xl p-2 bg-white dark:bg-black bg-opacity-40 rounded-lg">
-            {t("donezo-Slogan")}
-          </h2>
+          <h2 className="text-2xl p-2  rounded-lg">{t("donezo-Slogan")}</h2>
           <p className="text-xl text-center max-w-[65vw]">
             {t("donezo-content-home-page")}
           </p>
           <Button
             size="lg"
-            className="bg-pink-300 text-xl border border-black text-black transition [box-shadow:rgb(171,_196,245)-8px_8px] hover:[box-shadow:rgb(171,_196,_245)0px_0px] hover:bg-pink-400"
+            className="bg-orange-400 dark:bg-orange-500 text-xl border border-black text-black transition [box-shadow:rgb(171,_196,245)-8px_8px] hover:[box-shadow:rgb(171,_196,_245)0px_0px] hover:bg-pink-400"
           >
-            <Link href={`/${locale}/sign-up`}>{t("get-started")}</Link>
+            <Link className="font-bold" href={`/${locale}/sign-up`}>
+              {t("get-started")}
+            </Link>
           </Button>
         </div>
       </div>
