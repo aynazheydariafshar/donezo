@@ -1,0 +1,50 @@
+{
+  "common": {
+    "backButton": "بازگشت",
+    "continueButton": "ادامه",
+    "errorText": "خطا",
+    "emailLabel": "ایمیل",
+    "passwordLabel": "رمز عبور",
+    "confirmPasswordLabel": "تأیید رمز عبور",
+    "firstNameLabel": "نام",
+    "lastNameLabel": "نام خانوادگی",
+    "submitButton": "ارسال",
+    "loadingText": "در حال بارگذاری...",
+    "formFieldRequired": "این فیلد الزامی است"
+  },
+  "signIn": {
+    "start": {
+      "title": "ورود به سیستم دانزو",
+      "subtitle": "حساب کاربری خود را وارد کنید",
+      "actionText": "ورود"
+    },
+    "form": {
+      "submitButton": "ورود",
+      "forgotPasswordLink": "رمز عبور خود را فراموش کرده‌اید؟"
+    },
+    "error": {
+      "invalidCredentials": "نام کاربری یا رمز عبور نادرست است.",
+      "verificationNeeded": "شما باید حساب خود را تأیید کنید."
+    }
+  },
+  "signUp": {
+    "start": {
+      "title": "ثبت نام",
+      "subtitle": "حساب کاربری جدید ایجاد کنید",
+      "actionText": "ثبت نام"
+    },
+    "form": {
+      "submitButton": "ثبت نام",
+      "loginLink": "قبلاً حساب دارید؟ وارد شوید"
+    },
+    "error": {
+      "emailTaken": "این ایمیل قبلاً ثبت شده است.",
+      "weakPassword": "رمز عبور شما باید حداقل 8 کاراکتر باشد."
+    }
+  },
+  "verification": {
+    "title": "تأیید حساب",
+    "subtitle": "لطفاً ایمیل خود را برای تأیید حساب بررسی کنید.",
+    "resentVerificationLink": "لینک تأیید دوباره ارسال شد."
+  }
+}

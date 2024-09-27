@@ -33,7 +33,7 @@ export const metadata: Metadata = {
   ],
 };
 
-interface RootLayoutProps {
+export interface RootLayoutProps {
   children: React.ReactNode;
   params: {
     locale: string;
@@ -46,7 +46,7 @@ async function RootLayout({
 }: Readonly<RootLayoutProps>) {
   const messages = await getMessages();
   return (
-    <NextIntlClientProvider messages={messages}>
+    <NextIntlClientProvider locale={locale} messages={messages}>
       <html lang={locale}>
         <body
           className={`${
