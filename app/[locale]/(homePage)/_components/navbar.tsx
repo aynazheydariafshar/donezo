@@ -6,7 +6,7 @@ import { Button } from "@/components/ui/button";
 import { useLocale, useTranslations } from "next-intl";
 import Link from "next/link";
 
-function NavbarHomePage() {
+function NavbarHomePage({ showBtn = false }) {
   const t = useTranslations();
   const local = useLocale();
   return (
@@ -15,12 +15,16 @@ function NavbarHomePage() {
         <Logo showTextLogo />
       </div>
       <div className="flex items-center space-x-3">
-        <Button size="sm" asChild>
-          <Link href={`/${local}/sign-in`}>{t("login")}</Link>
-        </Button>
-        <Button variant="secondary" size="sm" asChild>
-          <Link href="/">{t("go-to-your-boards")}</Link>
-        </Button>
+        {showBtn && (
+          <>
+            <Button size="sm" asChild>
+              <Link href={`/${local}/sign-in`}>{t("login")}</Link>
+            </Button>
+            <Button variant="secondary" size="sm" asChild>
+              <Link href="/">{t("go-to-your-boards")}</Link>
+            </Button>
+          </>
+        )}
         <SwitchTheme />
         <SwitchLanguage />
       </div>

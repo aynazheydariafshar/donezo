@@ -4,7 +4,7 @@ import { NavbarHomePage } from "./_components/navbar";
 function HomePageLayout({ children }: { children: React.ReactNode }) {
   return (
     <div className="h-full">
-      <NavbarHomePage />
+      <NavbarHomePage showBtn />
       <main className="">{children}</main>
       <FooterHomePage />
     </div>
