@@ -9,7 +9,7 @@ export default function ClerkLayout({
   return (
     <div className="h-screen flex items-center justify-center pt-14 px-11 bg-minimal-gradient dark:bg-minimal-gradient-dark">
       <NavbarHomePage />
-      <div className="flex items-end justify-center w-full space-x-3">
+      <div className="flex items-center justify-center w-full space-x-3">
         <div>{children}</div>
         <div className="hidden md:block">
           <Image
