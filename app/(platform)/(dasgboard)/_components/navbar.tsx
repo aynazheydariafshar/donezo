@@ -21,11 +21,6 @@ export default function NavbarDashboard() {
         afterLeaveOrganizationUrl="/select-org"
         afterSelectOrganizationUrl="/organization/:id"
         afterCreateOrganizationUrl="/organization/:id"
-        appearance={{
-          elements: {
-            rootBox: "text-2xl", // Root element styles
-          },
-        }}
       />
       <UserButton />
     </Navbar>

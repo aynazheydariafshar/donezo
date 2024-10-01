@@ -8,7 +8,7 @@ function Navbar({ children }: { children: React.ReactNode }) {
       <div>
         <Logo showTextLogo />
       </div>
-      <div className="flex items-center space-x-3">
+      <div className="flex items-center space-x-4">
         {children}
         <SwitchTheme />
         <SwitchLanguage />
