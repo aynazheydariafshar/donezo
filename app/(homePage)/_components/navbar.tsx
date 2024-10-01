@@ -15,13 +15,10 @@ function NavbarHomePage({ showBtn = false }) {
             <Link href={`/sign-in`}>{t("login")}</Link>
           </Button>
           <Button variant="secondary" size="sm" asChild>
-            <Link href="/">{t("go-to-your-boards")}</Link>
+            <Link href="/select-org">{t("go-to-your-boards")}</Link>
           </Button>
         </>
       )}
-      <Button variant="secondary" size="sm" asChild>
-        <Link href={`/select-org`}>sss</Link>
-      </Button>
     </Navbar>
   );
 }
