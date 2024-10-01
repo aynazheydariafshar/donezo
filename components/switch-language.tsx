@@ -1,7 +1,6 @@
 "use client";
 
-import { useLocale } from "next-intl";
-import { usePathname, useRouter } from "next/navigation";
+import { useEffect, useState } from "react";
 
 // component-ui
 import {
@@ -13,24 +12,32 @@ import {
   SelectValue,
 } from "./ui/select";
 
-function SwitchLanguage() {
-  const currentLocale = useLocale();
-  const router = useRouter();
-  const pathname = usePathname();
-  const cleanPathname = pathname.replace(/^\/(en|fa)(\/|$)/, "/");
+import setLanguageValue from "@/lib/set-language-action";
 
-  const handleChangeLang = (value: string) => {
-    if (pathname.startsWith("/fa") || pathname.startsWith("/en")) {
-      router.replace(`/${value}${cleanPathname}`);
-    } else {
-      router.replace(`${value}`);
-    }
-  };
+function SwitchLanguage() {
+  const [locale, setLocale] = useState<string>("en");
+
+  // get language from cookie to set value on language select
+  useEffect(() => {
+    const getCookie = (name: string): string | null => {
+      const value = `; ${document.cookie}`;
+      const parts = value.split(`; ${name}=`);
+      if (parts.length === 2) {
+        return parts.pop()?.split(";")[0] || null;
+      }
+      return null;
+    };
+    const cookieLocale = getCookie("language");
+    if (cookieLocale) setLocale(cookieLocale);
+  }, []);
 
   return (
     <Select
-      onValueChange={(value) => handleChangeLang(value)}
-      defaultValue={currentLocale}
+      onValueChange={(value) => {
+        setLanguageValue(value);
+        setLocale(value);
+      }}
+      value={locale}
     >
       <SelectTrigger className="bg-transparent w-20 border-none ring-0 focus:ring-0">
         <SelectValue placeholder="Select a timezone" />

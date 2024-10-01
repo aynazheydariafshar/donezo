@@ -12,21 +12,28 @@
     "loadingText": "در حال بارگذاری...",
     "formFieldRequired": "این فیلد الزامی است"
   },
+  "formFieldErrorText": "s",
   "signIn": {
     "start": {
       "title": "ورود به سیستم دانزو",
       "subtitle": "حساب کاربری خود را وارد کنید",
-      "actionText": "ورود"
+      "actionText": "حساب کاربری ندارید؟",
+      "actionLink": "ثبت نام کنید"
     },
     "form": {
       "submitButton": "ورود",
       "forgotPasswordLink": "رمز عبور خود را فراموش کرده‌اید؟"
     },
     "error": {
-      "invalidCredentials": "نام کاربری یا رمز عبور نادرست است.",
-      "verificationNeeded": "شما باید حساب خود را تأیید کنید."
+      "invalidCredentials": "نام کاربری یا رمز عبور نادرست است",
+      "verificationNeeded": "شما باید حساب خود را تأیید کنید"
     }
   },
+  "socialButtonsBlockButton": "با گوگل ادامه دهید",
+  "formFieldLabel__emailAddress": "آدرس ایمیل",
+  "formFieldLabel__password": "رمز",
+  "formButtonPrimary": "ادامه",
+  "dividerText": "یا",
   "signUp": {
     "start": {
       "title": "ثبت نام",
@@ -38,13 +45,17 @@
       "loginLink": "قبلاً حساب دارید؟ وارد شوید"
     },
     "error": {
-      "emailTaken": "این ایمیل قبلاً ثبت شده است.",
-      "weakPassword": "رمز عبور شما باید حداقل 8 کاراکتر باشد."
+      "emailTaken": "این ایمیل قبلاً ثبت شده است",
+      "weakPassword": "رمز عبور شما باید حداقل 8 کاراکتر باشد"
     }
   },
   "verification": {
     "title": "تأیید حساب",
-    "subtitle": "لطفاً ایمیل خود را برای تأیید حساب بررسی کنید.",
+    "subtitle": "لطفاً ایمیل خود را برای تأیید حساب بررسی کنید",
     "resentVerificationLink": "لینک تأیید دوباره ارسال شد."
+  },
+  "organizationList": {
+    "titleWithoutPersonal": "لطفاً یک سازمان را انتخاب کنید",
+    "subtitle": "برای ادامه به دانزو"
   }
 }

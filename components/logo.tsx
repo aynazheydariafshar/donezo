@@ -1,6 +1,6 @@
 import { cn } from "@/lib/utils";
 import { CheckCheck } from "lucide-react";
-import { useLocale, useTranslations } from "next-intl";
+import { useTranslations } from "next-intl";
 import localFont from "next/font/local";
 import Image from "next/image";
 import Link from "next/link";
@@ -9,7 +9,6 @@ const logoFont = localFont({
   src: ".././public/fonts/permanent-marker/Moul-Regular.ttf",
 });
 const Logo = ({ showTextLogo = false }) => {
-  const locale = useLocale();
   const t = useTranslations();
   return (
     <Link
@@ -17,7 +16,7 @@ const Logo = ({ showTextLogo = false }) => {
         "sm:flex items-center hover:opacity-75 transition hidden",
         logoFont.className
       )}
-      href={`/${locale}`}
+      href={`/`}
     >
       {showTextLogo && (
         <Image

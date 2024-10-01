@@ -1,10 +1,10 @@
 import type { Metadata } from "next";
-import { getMessages } from "next-intl/server";
+import { getLocale, getMessages } from "next-intl/server";
 import { NextIntlClientProvider } from "next-intl";
 import { ThemeProvider } from "next-themes";
 
 // style
-import "../globals.css";
+import "./globals.css";
 
 // config
 import { siteConfig } from "@/config/site";
@@ -33,26 +33,17 @@ export const metadata: Metadata = {
   ],
 };
 
-export interface RootLayoutProps {
-  children: React.ReactNode;
-  params: {
-    locale: string;
-  };
-}
-
-async function RootLayout({
-  children,
-  params: { locale },
-}: Readonly<RootLayoutProps>) {
+async function RootLayout({ children }: { children: React.ReactNode }) {
+  const locale = await getLocale();
   const messages = await getMessages();
   return (
-    <NextIntlClientProvider locale={locale} messages={messages}>
-      <html lang={locale}>
-        <body
-          className={`${
-            locale === "en" ? fredoka.className : vazirmatn.className
-          } antialiased`}
-        >
+    <html lang={locale}>
+      <body
+        className={`${
+          locale === "en" ? fredoka.className : vazirmatn.className
+        } antialiased`}
+      >
+        <NextIntlClientProvider messages={messages}>
           <ThemeProvider
             attribute="class"
             defaultTheme="dark"
@@ -61,9 +52,9 @@ async function RootLayout({
           >
             {children}
           </ThemeProvider>
-        </body>
-      </html>
-    </NextIntlClientProvider>
+        </NextIntlClientProvider>
+      </body>
+    </html>
   );
 }
 

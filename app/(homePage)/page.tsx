@@ -1,12 +1,11 @@
 import Link from "next/link";
-import { useLocale, useTranslations } from "next-intl";
+import { useTranslations } from "next-intl";
 
 // component-ui
 import { Button } from "@/components/ui/button";
 
 function HomePage() {
   const t = useTranslations();
-  const locale = useLocale();
 
   return (
     <div className="h-screen text-black dark:text-white bg-minimal-gradient dark:bg-minimal-gradient-dark">
@@ -31,7 +30,7 @@ function HomePage() {
             size="lg"
             className="bg-orange-500 text-xl border border-black text-black transition [box-shadow:rgb(171,_196,245)-8px_8px] hover:[box-shadow:rgb(171,_196,_245)0px_0px] hover:bg-orange-600"
           >
-            <Link className="font-bold" href={`/${locale}/sign-up`}>
+            <Link className="font-bold" href={`/sign-up`}>
               {t("get-started")}
             </Link>
           </Button>
