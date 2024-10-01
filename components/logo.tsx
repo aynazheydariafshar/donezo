@@ -8,7 +8,7 @@ import Link from "next/link";
 const logoFont = localFont({
   src: ".././public/fonts/permanent-marker/Moul-Regular.ttf",
 });
-const Logo = ({ showTextLogo = false }) => {
+const Logo = () => {
   const t = useTranslations();
   return (
     <Link
@@ -18,19 +18,17 @@ const Logo = ({ showTextLogo = false }) => {
       )}
       href={`/`}
     >
-      {showTextLogo && (
-        <Image
-          alt="donezo-logo"
-          src="/images/donezoLogo.png"
-          width={80}
-          height={10}
-        />
-      )}
-      <p className={"text-lg text-black dark:text-white md:block hidden"}>
-        Donezo
-      </p>
-      <p className="mx-1"> = {t("its-done")}</p>
-      <CheckCheck />
+      <Image
+        alt="donezo-logo"
+        src="/images/donezoLogo.png"
+        width={80}
+        height={10}
+      />
+      <div className="md:flex hidden items-center justify-center space-x-1">
+        <p className={"text-lg text-black dark:text-white"}>Donezo</p>
+        <p className="mx-1"> = {t("its-done")}</p>
+        <CheckCheck />
+      </div>
     </Link>
   );
 };

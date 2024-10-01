@@ -130,6 +130,14 @@
     --chart-5: 340 75% 55%;
   }
 }
+.cl-organizationSwitcherTrigger {
+  color: white !important;
+}
+
+.cl-avatarBox {
+  width: 35px;
+  height: 35px;
+}
 
 @layer base {
   * {

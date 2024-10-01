@@ -460,6 +460,9 @@
     },
     "title": "ایجاد سازمان"
   },
+  "membershipRole__admin": "ادمین",
+  "membershipRole__basicMember": "اعضا",
+  "formFieldLabel__role": "نقش",
   "organizationProfile": {
     "profilePage": {
       "dangerSection": {
