@@ -10,14 +10,14 @@ function NavbarHomePage({ showBtn = false }) {
   return (
     <Navbar>
       {showBtn && (
-        <>
+        <div>
           <Button size="sm" asChild>
             <Link href={`/sign-in`}>{t("login")}</Link>
           </Button>
-          <Button variant="secondary" size="sm" asChild>
+          <Button className="mx-2" variant="secondary" size="sm" asChild>
             <Link href="/select-org">{t("go-to-your-boards")}</Link>
           </Button>
-        </>
+        </div>
       )}
     </Navbar>
   );

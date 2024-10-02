@@ -37,7 +37,7 @@ async function RootLayout({ children }: { children: React.ReactNode }) {
   const locale = await getLocale();
   const messages = await getMessages();
   return (
-    <html lang={locale}>
+    <html dir={locale === "en" ? "ltr" : "rtl"} lang={locale}>
       <body
         className={`${
           locale === "en" ? fredoka.className : vazirmatn.className

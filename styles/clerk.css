@@ -1,0 +1,14 @@
+.cl-organizationSwitcherTrigger {
+  color: white !important;
+}
+
+.cl-avatarBox {
+  width: 35px;
+  height: 35px;
+}
+
+.cl-organizationSwitcherPopoverFooter,
+.cl-footer,
+.cl-userButtonPopoverFooter {
+  display: none;
+}

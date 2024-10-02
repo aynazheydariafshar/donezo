@@ -76,6 +76,18 @@
     --info-800: #075785;
     --info-900: #10C496E;
 
+    /* secondary */
+    --secondary-50: #f9b5a0;
+    --secondary-100: #e89379;
+    --secondary-200: #f56f46;
+    --secondary-300: #eb7551;
+    --secondary-400: #ff784e;
+    --secondary-500: #c3380d;
+    --secondary-600: #8f2e10;
+    --secondary-700: #852407;
+    --secondary-800: #9d2a07;
+    --secondary-900: #441101;
+
     --background: 0 0% 100%;
     --foreground: 222.2 84% 4.9%;
     --card: 0 0% 100%;
@@ -129,14 +141,6 @@
     --chart-4: 280 65% 60%;
     --chart-5: 340 75% 55%;
   }
-}
-.cl-organizationSwitcherTrigger {
-  color: white !important;
-}
-
-.cl-avatarBox {
-  width: 35px;
-  height: 35px;
 }
 
 @layer base {

@@ -12,6 +12,7 @@ const Logo = () => {
   const t = useTranslations();
   return (
     <Link
+      style={{ direction: "ltr" }}
       className={cn(
         "sm:flex items-center hover:opacity-75 transition hidden",
         logoFont.className
@@ -22,9 +23,10 @@ const Logo = () => {
         alt="donezo-logo"
         src="/images/donezoLogo.png"
         width={80}
+        className="rtl"
         height={10}
       />
-      <div className="md:flex hidden items-center justify-center space-x-1">
+      <div className="md:flex hidden items-center justify-center space-x-1 ltr">
         <p className={"text-lg text-black dark:text-white"}>Donezo</p>
         <p className="mx-1"> = {t("its-done")}</p>
         <CheckCheck />

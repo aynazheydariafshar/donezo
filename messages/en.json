@@ -9,5 +9,8 @@
   "terms-of-services": "Terms of Services",
   "its-done": "It's Done",
   "create": "Create",
-  "workspaces": "Workspaces"
+  "workspaces": "Workspaces",
+  "boards": "Boards",
+  "activity": "Activity",
+  "settings": "Settings"
 }

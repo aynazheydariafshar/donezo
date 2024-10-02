@@ -5,6 +5,7 @@ import { enUS } from "@clerk/localizations";
 import faLocalization from "../../messages/clerk-fa.json"; // Import custom localization file
 import React from "react";
 import { getLocale } from "next-intl/server";
+import "../../styles/clerk.css";
 
 export default async function PlatformLayout({
   children,

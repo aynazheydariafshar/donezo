@@ -20,7 +20,7 @@ function HomePage() {
           <h1 className="text-3xl md:text-6xl text-center">
             {t("welcome-to-donezo")}
           </h1>
-          <h2 className="text-lg md:text-2xl py-1 px-3 text-center rounded-lg bg-orange-500 border border-black text-black transition [box-shadow:rgb(171,_196,245)-8px_8px] hover:[box-shadow:rgb(171,_196,_245)0px_0px]">
+          <h2 className="text-lg md:text-2xl py-1 px-3 text-center rounded-lg bg-secondary-400 border border-black text-black transition [box-shadow:rgb(171,_196,245)-8px_8px] hover:[box-shadow:rgb(171,_196,_245)0px_0px]">
             {t("donezo-Slogan")}
           </h2>
           <p className="text-lg md:text-2xl text-center max-w-[65vw]">
@@ -28,7 +28,7 @@ function HomePage() {
           </p>
           <Button
             size="lg"
-            className="bg-orange-500 text-xl border border-black text-black transition [box-shadow:rgb(171,_196,245)-8px_8px] hover:[box-shadow:rgb(171,_196,_245)0px_0px] hover:bg-orange-600"
+            className="bg-secondary-400 text-xl border border-black text-black transition [box-shadow:rgb(171,_196,245)-8px_8px] hover:[box-shadow:rgb(171,_196,_245)0px_0px] hover:bg-secondary-500"
           >
             <Link className="font-bold" href={`/sign-up`}>
               {t("get-started")}
