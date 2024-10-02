@@ -12,3 +12,7 @@
 .cl-userButtonPopoverFooter {
   display: none;
 }
+
+.cl-organizationSwitcherPopoverActionButton {
+  margin: 0 10px;
+}
