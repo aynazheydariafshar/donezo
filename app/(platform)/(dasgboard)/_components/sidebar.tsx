@@ -9,7 +9,7 @@ import Link from "next/link";
 import NavItem from "./nav-item";
 import { organizationType } from "@/types/organization";
 import { Accordion } from "@/components/ui/accordion";
-import useLocalStorage from "@/hooks/useLocalStorage";
+import useLocalStorage from "@/hooks/use-local-storage";
 
 interface SidebarProps {
   storageKey?: string;
