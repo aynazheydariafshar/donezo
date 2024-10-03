@@ -56,7 +56,7 @@ export default function SidebarDashboard({
   }
   return (
     <div className="font-medium text-xs flex flex-col mb-1">
-      <div className="flex items-center">
+      <div className="flex items-center my-1">
         <span>{t("workspaces")}</span>
         <Button
           asChild
