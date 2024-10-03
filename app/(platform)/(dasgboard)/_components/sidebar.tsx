@@ -50,25 +50,37 @@ export function SidebarDashboard({
   if (!isLoadedOrg || !isLoadedOrgList || userMemberships.isLoading) {
     return (
       <>
-        <Skeleton />
+        <div className="items-center justify-between flex mb-2">
+          <Skeleton className="h-10 w-[50%]" />
+          <Skeleton className="h-10 w-10" />
+        </div>
+        <div className="space-y-2">
+          <NavItem.Skeleton />
+          <NavItem.Skeleton />
+          <NavItem.Skeleton />
+        </div>
       </>
     );
   }
   return (
     <div className="font-medium text-xs flex flex-col mb-1">
-      <div className="flex items-center my-1">
-        <span>{t("workspaces")}</span>
-        <Button
-          asChild
-          size="icon"
-          variant="ghost"
-          className="ml-auto"
-          type="button"
-        >
-          <Link href="/select-org">
-            <Plus />
-          </Link>
-        </Button>
+      <div className="flex items-center justify-between my-1">
+        <div>
+          <p>{t("workspaces")}</p>
+        </div>
+        <div>
+          <Button
+            asChild
+            size="icon"
+            variant="ghost"
+            className="ml-auto"
+            type="button"
+          >
+            <Link href="/select-org">
+              <Plus />
+            </Link>
+          </Button>
+        </div>
       </div>
       <Accordion
         className="w-full space-y-2"

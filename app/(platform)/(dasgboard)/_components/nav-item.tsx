@@ -1,19 +1,20 @@
 import Image from "next/image";
 import { cn } from "@/lib/utils";
+import { useTranslations } from "next-intl";
+import { usePathname, useRouter } from "next/navigation";
 // component-ui
 import {
   AccordionContent,
   AccordionItem,
   AccordionTrigger,
 } from "@/components/ui/accordion";
+import { Button } from "@/components/ui/button";
+import { Skeleton } from "@/components/ui/skeleton";
 // types
 import { NavItemPropsType } from "@/types/nav-item-props";
 // icons
-import { Layout, Settings, SquareActivity, SquareKanban } from "lucide-react";
+import { Settings, SquareActivity, SquareKanban } from "lucide-react";
 
-import { useTranslations } from "next-intl";
-import { usePathname, useRouter } from "next/navigation";
-import { Button } from "@/components/ui/button";
 
 export default function NavItem({
   onExpand,
@@ -77,3 +78,14 @@ export default function NavItem({
     </AccordionItem>
   );
 }
+
+NavItem.Skeleton = function SkeletonNavItem() {
+  return (
+    <div className="items-center flex mb-2 gap-x-2">
+      <div className="w-10 h-10 relative shrink-0">
+        <Skeleton className="h-full w-full" />
+      </div>
+      <Skeleton className="h-10 w-full" />
+    </div>
+  );
+};
