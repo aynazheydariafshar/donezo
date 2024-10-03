@@ -6,10 +6,10 @@ import { useOrganization, useOrganizationList } from "@clerk/nextjs";
 import { Plus } from "lucide-react";
 import { useTranslations } from "next-intl";
 import Link from "next/link";
-import { useLocalStorage } from "usehooks-ts";
 import NavItem from "./nav-item";
 import { organizationType } from "@/types/organization";
 import { Accordion } from "@/components/ui/accordion";
+import useLocalStorage from "@/hooks/useLocalStorage";
 
 interface SidebarProps {
   storageKey?: string;

@@ -48,8 +48,8 @@ export default function NavItem({
     <AccordionItem className="border-none" value={organization.id}>
       <AccordionTrigger
         className={cn(
-          "flex items-center p-1.5 gap-x-2 text-black dark:text-white rounded-md hover:bg-secondary-400 transition text-start no-underline hover:no-underline",
-          isActive && !isExpanded && "bg-secondary-400"
+          "flex items-center p-1.5 gap-x-2 text-black dark:text-white hover:bg-white dark:hover:bg-slate-600 rounded-md transition text-start no-underline hover:no-underline",
+          isActive && !isExpanded && "bg-white dark:bg-slate-600"
         )}
         onClick={() => onExpand(organization.id)}
       >
@@ -64,7 +64,7 @@ export default function NavItem({
         {OPTION_ACCORDION.map((item) => (
           <Button
             size="sm"
-            className="w-full"
+            className="w-full flex justify-between items-center"
             onClick={() => router.push(item.href)}
             key={item.href}
             variant="ghost"
