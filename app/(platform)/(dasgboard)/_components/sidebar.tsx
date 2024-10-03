@@ -15,7 +15,7 @@ interface SidebarProps {
   storageKey?: string;
 }
 
-export default function SidebarDashboard({
+export function SidebarDashboard({
   storageKey = "t-sidebar-state",
 }: SidebarProps) {
   const t = useTranslations();

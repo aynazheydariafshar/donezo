@@ -1,4 +1,4 @@
-import SidebarDashboard from "../_components/sidebar";
+import { SidebarDashboard } from "../_components/sidebar";
 
 export default function OrganizationLayout({
   children,
