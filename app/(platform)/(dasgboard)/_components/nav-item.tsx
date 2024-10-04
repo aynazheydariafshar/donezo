@@ -15,7 +15,6 @@ import { NavItemPropsType } from "@/types/nav-item-props";
 // icons
 import { Settings, SquareActivity, SquareKanban } from "lucide-react";
 
-
 export default function NavItem({
   onExpand,
   organization,
@@ -31,7 +30,7 @@ export default function NavItem({
     {
       label: "boards",
       icon: <SquareKanban className="h-4 w-4 mr-2" />,
-      href: `/organization/${organization.id}/boards`,
+      href: `/organization/${organization.id}`,
     },
     {
       label: "activity",
@@ -65,7 +64,10 @@ export default function NavItem({
         {OPTION_ACCORDION.map((item) => (
           <Button
             size="sm"
-            className="w-full flex justify-between items-center"
+            className={cn(
+              "w-full flex justify-between items-center",
+              pathName === item.href && "bg-white dark:bg-slate-600"
+            )}
             onClick={() => router.push(item.href)}
             key={item.href}
             variant="ghost"

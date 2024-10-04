@@ -8,6 +8,7 @@ import { Moon, Sun } from "lucide-react";
 
 //component-ui
 import { Button } from "./ui/button";
+import setCookie from "@/lib/set-cookie";
 
 function SwitchTheme() {
   const { theme, setTheme } = useTheme();
@@ -25,7 +26,11 @@ function SwitchTheme() {
     <div className="flex justify-center">
       <Button
         variant="ghost"
-        onClick={() => setTheme(theme === "dark" ? "light" : "dark")}
+        onClick={() => {
+          const themeValue = theme === "dark" ? "light" : "dark";
+          setCookie(themeValue, "theme");
+          setTheme(themeValue);
+        }}
       >
         {theme === "dark" ? <Moon /> : <Sun />}
       </Button>

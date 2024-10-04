@@ -12,7 +12,7 @@ import {
   SelectValue,
 } from "./ui/select";
 
-import setLanguageValue from "@/lib/set-language-action";
+import setCookie from "@/lib/set-cookie";
 
 function SwitchLanguage() {
   const [locale, setLocale] = useState<string>("en");
@@ -34,7 +34,7 @@ function SwitchLanguage() {
   return (
     <Select
       onValueChange={(value) => {
-        setLanguageValue(value);
+        setCookie(value, "language");
         setLocale(value);
       }}
       value={locale}
