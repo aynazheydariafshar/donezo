@@ -7,9 +7,9 @@ export default function DashboardLayout({
   children: React.ReactNode;
 }) {
   return (
-    <div className="h-screen text-black dark:text-white bg-minimal-gradient dark:bg-minimal-gradient-dark">
+    <div className="h-screen text-black dark:text-white bg-minimal-gradient dark:bg-minimal-gradient-dark overflow-hidden">
       <NavbarDashboard />
-      <main className="">{children}</main>
+      <main className="overflow-auto scroll-smooth h-full">{children}</main>
     </div>
   );
 }

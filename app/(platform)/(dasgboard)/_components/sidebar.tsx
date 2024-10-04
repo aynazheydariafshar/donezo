@@ -49,7 +49,7 @@ export function SidebarDashboard({
 
   if (!isLoadedOrg || !isLoadedOrgList || userMemberships.isLoading) {
     return (
-      <>
+      <div className="fixed left-10 top-30 w-60">
         <div className="items-center justify-between flex mb-2">
           <Skeleton className="h-10 w-[50%]" />
           <Skeleton className="h-10 w-10" />
@@ -59,11 +59,11 @@ export function SidebarDashboard({
           <NavItem.Skeleton />
           <NavItem.Skeleton />
         </div>
-      </>
+      </div>
     );
   }
   return (
-    <div className="font-medium text-xs flex flex-col mb-1">
+    <div className="font-medium w-full text-xs xl:w-60 flex flex-col mb-1 left-10 top-30">
       <div className="flex items-center justify-between my-1">
         <div>
           <p>{t("workspaces")}</p>

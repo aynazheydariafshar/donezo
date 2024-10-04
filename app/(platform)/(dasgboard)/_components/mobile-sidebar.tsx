@@ -30,14 +30,14 @@ export function MobileSidebar() {
     <>
       <Button
         variant="ghost"
-        className="block md:hidden"
+        className="block xl:hidden"
         size="sm"
         onClick={onOpen}
       >
         <Menu className="w-4 h-4" />
       </Button>
       <Sheet open={isOpen} onOpenChange={onClose}>
-        <SheetContent className="p-2 pt-10" side="left">
+        <SheetContent className="overflow-auto" side="left">
           <SidebarDashboard storageKey="t-sidebar-mobile-state" />
         </SheetContent>
       </Sheet>
