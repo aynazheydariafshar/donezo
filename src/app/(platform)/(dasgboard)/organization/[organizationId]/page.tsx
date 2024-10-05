@@ -1,19 +1,20 @@
 "use client";
 
-import { createBoard, getBoards } from "@/actions/create-board";
+import { postBoards, getBoards } from "@/actions/board";
 import { Button } from "@/components/ui/button";
 import { dataBoardType } from "@/types/data-board";
 import { useQuery } from "@tanstack/react-query";
+import { Board } from "./board";
 
 export default function OrganizationId() {
   const { data, isLoading } = useQuery<any>({
     queryKey: ["boards"],
     queryFn: getBoards,
   });
-  
+
   return (
     <div>
-      <form action={createBoard}>
+      <form action={postBoards}>
         <input
           className="border-black"
           id="title"
@@ -25,7 +26,7 @@ export default function OrganizationId() {
 
       <Button type="submit">test</Button>
       {data?.map((item: dataBoardType) => (
-        <div key={item.id}>{item.title}</div>
+        <Board key={item.id} title={item.title} id={item.id} />
       ))}
     </div>
   );

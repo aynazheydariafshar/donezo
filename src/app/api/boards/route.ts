@@ -32,4 +32,22 @@ const POST = async (request: Request) => {
   return NextResponse.json(newBoard);
 };
 
-export { GET, POST };
+const DELETE = async (request: Request) => {
+  const { id } = await request.json();
+  if (!id)
+    return NextResponse.json({ error: "ID is required" }, { status: 400 });
+
+  const boards = await parseJsonFile<IdWrapper<dataBoardType>[]>(
+    BOARDS_DIRECTORY
+  );
+  const filteredBoards = boards.filter((board) => board.id !== id);
+
+  if (filteredBoards.length === boards.length) {
+    return NextResponse.json({ error: "Board not found" }, { status: 404 });
+  }
+
+  await fs.writeFileSync(BOARDS_DIRECTORY, JSON.stringify(filteredBoards));
+  return NextResponse.json({ message: "Board deleted successfully", id });
+};
+
+export { GET, POST, DELETE };
