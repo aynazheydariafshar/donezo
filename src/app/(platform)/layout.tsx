@@ -8,6 +8,7 @@ import React from "react";
 import { getLocale } from "next-intl/server";
 import "../../../styles/clerk.css";
 import { cookies } from "next/headers";
+import ReactQueryProvider from "@/provider/react-query-provider";
 
 export default async function PlatformLayout({
   children,
@@ -26,7 +27,7 @@ export default async function PlatformLayout({
       }}
       localization={localization}
     >
-      {children}
+      <ReactQueryProvider>{children}</ReactQueryProvider>
     </ClerkProvider>
   );
 }
