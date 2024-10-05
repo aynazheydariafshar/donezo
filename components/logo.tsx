@@ -1,4 +1,4 @@
-import { cn } from "@/lib/utils";
+import { cn } from "@/utils/utils";
 import { CheckCheck } from "lucide-react";
 import { useTranslations } from "next-intl";
 import localFont from "next/font/local";

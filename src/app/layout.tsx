@@ -4,7 +4,7 @@ import { NextIntlClientProvider } from "next-intl";
 import { ThemeProvider } from "next-themes";
 
 // style
-import "../styles/globals.css";
+import "../../styles/globals.css";
 
 // config
 import { siteConfig } from "@/config/site";

@@ -3,10 +3,10 @@ import { enUS } from "@clerk/localizations";
 import { dark, experimental__simple } from "@clerk/themes";
 
 // json
-import faLocalization from "../../messages/clerk-fa.json"; // Import custom localization file
+import faLocalization from "../../../messages/clerk-fa.json"; // Import custom localization file
 import React from "react";
 import { getLocale } from "next-intl/server";
-import "../../styles/clerk.css";
+import "../../../styles/clerk.css";
 import { cookies } from "next/headers";
 
 export default async function PlatformLayout({

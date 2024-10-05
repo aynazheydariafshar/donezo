@@ -1,4 +1,4 @@
-import { MobileSidebar } from "@/app/(platform)/(dasgboard)/_components/mobile-sidebar";
+import { MobileSidebar } from "@/src/app/(platform)/(dasgboard)/_components/mobile-sidebar";
 import { Logo } from "./logo";
 import { SwitchLanguage } from "./switch-language";
 import { SwitchTheme } from "./switch-theme";

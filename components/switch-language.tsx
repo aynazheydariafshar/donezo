@@ -12,7 +12,7 @@ import {
   SelectValue,
 } from "./ui/select";
 
-import setCookie from "@/lib/set-cookie";
+import { setCookie } from "@/utils/set-cookie";
 
 function SwitchLanguage() {
   const [locale, setLocale] = useState<string>("en");

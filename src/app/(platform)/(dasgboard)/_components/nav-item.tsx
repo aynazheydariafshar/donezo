@@ -1,5 +1,5 @@
 import Image from "next/image";
-import { cn } from "@/lib/utils";
+import { cn } from "@/utils/utils";
 import { useTranslations } from "next-intl";
 import { usePathname, useRouter } from "next/navigation";
 // component-ui

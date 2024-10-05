@@ -8,7 +8,7 @@ import { Moon, Sun } from "lucide-react";
 
 //component-ui
 import { Button } from "./ui/button";
-import setCookie from "@/lib/set-cookie";
+import { setCookie } from "@/utils/set-cookie";
 
 function SwitchTheme() {
   const { theme, setTheme } = useTheme();
