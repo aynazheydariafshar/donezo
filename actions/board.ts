@@ -7,9 +7,7 @@ export const CreateBoard = z.object({
   }),
 });
 
-export const postBoards = async (
-  newPost: FormData
-): Promise<dataBoardType> => {
+export const postBoards = async (newPost: FormData): Promise<dataBoardType> => {
   const title = newPost.get("title");
   const response = await fetch(
     `${process.env.NEXT_PUBLIC_BASE_URL}/api/boards`,
@@ -45,4 +43,5 @@ export async function deleteBoards(id: string) {
       body: JSON.stringify({ id }),
     }
   );
+  return response.json();
 }
