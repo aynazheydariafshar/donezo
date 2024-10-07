@@ -1,33 +1,48 @@
-import { revalidatePath } from "next/cache";
+import { dataBoardType } from "@/types/data-board";
 import { z } from "zod";
 
-const CreateBoard = z.object({
-  title: z.string(),
+export const CreateBoard = z.object({
+  title: z.string().min(3, {
+    message: "minimum-length-3-letters",
+  }),
 });
 
-export async function postBoards(formData: FormData) {
-  const { title } = CreateBoard.parse({
-    title: formData.get("title"),
-  });
-  const response = await fetch("http://localhost:3000/api/boards", {
-    method: "POST",
-    body: JSON.stringify({ title }),
-  });
-  // revalidatePath()
+export const postBoards = async (
+  newPost: FormData
+): Promise<dataBoardType> => {
+  const title = newPost.get("title");
+  const response = await fetch(
+    `${process.env.NEXT_PUBLIC_BASE_URL}/api/boards`,
+    {
+      method: "POST",
+      body: JSON.stringify({ title }),
+      headers: {
+        "Content-type": "application/json; charset=UTF-8",
+      },
+    }
+  );
+
+  if (!response.ok) {
+    throw new Error("Failed to create a new board");
+  }
+
   return response.json();
-}
+};
 
 export async function getBoards() {
-  const response = await fetch("http://localhost:3000/api/boards");
+  const response = await fetch(
+    `${process.env.NEXT_PUBLIC_BASE_URL}/api/boards`
+  );
   const posts = await response.json();
   return posts;
 }
 
 export async function deleteBoards(id: string) {
-  const response = await fetch("http://localhost:3000/api/boards", {
-    method: "DELETE",
-    body: JSON.stringify({ id }),
-  });
-  // revalidatePath()
-  return response.json();
+  const response = await fetch(
+    `${process.env.NEXT_PUBLIC_BASE_URL}/api/boards`,
+    {
+      method: "DELETE",
+      body: JSON.stringify({ id }),
+    }
+  );
 }

@@ -12,5 +12,10 @@
   "workspaces": "Workspaces",
   "boards": "Boards",
   "activity": "Activity",
-  "settings": "Settings"
+  "settings": "Settings",
+  "minimum-length-3-letters": "Minimum length of 3 letters is required",
+  "missing-fields": "Please fill in the required fields",
+  "database-error": "Database Error",
+  "submit": "Submit",
+  "delete" : "Delete"
 }

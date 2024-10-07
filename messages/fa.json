@@ -12,5 +12,10 @@
   "workspaces": "فضاهای کاری",
   "boards": "بردها",
   "activity": "فعالیت",
-  "settings": "تنظیمات"
+  "settings": "تنظیمات",
+  "minimum-length-3-letters": "حداقل ۳ حرف الزامی است",
+  "missing-fields": "لطفا فیلدهای مورد نیاز را پر کنید",
+  "database-error": "خطای پایگاه داده",
+  "submit": "ارسال",
+  "delete": "حذف"
 }
