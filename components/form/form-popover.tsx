@@ -24,6 +24,7 @@ import {
   PopoverTrigger,
 } from "@/components/ui/popover";
 import { Button } from "@/components/ui/button";
+import FormPicker from "./form-picker";
 
 export default function FormPopover({
   children,
@@ -95,10 +96,11 @@ export default function FormPopover({
         </PopoverClose>
         <form onSubmit={handleSubmit} ref={ref} className="space-y-2">
           <div className="space-y-2">
+            <FormPicker id="image" errors={formErrors.errors} />
             <FormInput
               errors={formErrors.errors}
               id="title"
-              label="board-title"
+              label={t("board-title")}
               type="text"
             />
             <FormSubmit className="w-full">{t("create")}</FormSubmit>

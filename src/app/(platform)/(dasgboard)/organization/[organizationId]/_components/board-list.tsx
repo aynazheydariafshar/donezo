@@ -1,10 +1,13 @@
-import { getBoards } from "@/actions/board";
-import { dataBoardType } from "@/types/data-board";
 import { useQuery } from "@tanstack/react-query";
-import { Board } from "../board";
-import { HelpCircle, UserRound } from "lucide-react";
 import { useTranslations } from "next-intl";
-import { Mention } from "@/components/mention";
+
+//icon
+import { UserRound } from "lucide-react";
+
+// actions api
+import { getBoards } from "@/actions/board";
+
+// components ui
 import FormPopover from "@/components/form/form-popover";
 
 export function BoardList() {

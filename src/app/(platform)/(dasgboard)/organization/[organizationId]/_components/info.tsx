@@ -9,7 +9,7 @@ export default function Info() {
   const { organization, isLoaded } = useOrganization();
   if (!isLoaded) return <Info.Skeleton />;
   return (
-    <div className="flex items-center gap-x-4 p-11">
+    <div className="flex items-center gap-x-4 p-4 mb-4">
       <div className="w-[60px] h-[60px] relative">
         <Image
           fill
@@ -31,7 +31,7 @@ export default function Info() {
 
 Info.Skeleton = function SkeletonInfo() {
   return (
-    <div className="flex items-center gap-x-4 mb-4">
+    <div className="flex items-center gap-x-4 mb-4 p-4">
       <div className="w-[60px] h-[60px] relative">
         <Skeleton className="w-full h-full absolute" />
       </div>

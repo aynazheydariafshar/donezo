@@ -11,7 +11,6 @@ import { Label } from "@/components/ui/label";
 
 // types
 import { FormInputPropsType } from "@/types/form-input-props";
-import { useTranslations } from "next-intl";
 
 export const FormInput = forwardRef<HTMLInputElement, FormInputPropsType>(
   (
@@ -30,7 +29,6 @@ export const FormInput = forwardRef<HTMLInputElement, FormInputPropsType>(
     ref
   ) => {
     const { pending } = useFormStatus();
-    const t = useTranslations();
     return (
       <div className="space-y-2">
         <div className="space-y-1">
@@ -39,7 +37,7 @@ export const FormInput = forwardRef<HTMLInputElement, FormInputPropsType>(
               className="text-sm font-medium text-black dark:text-white"
               htmlFor={id}
             >
-              {t(label)}
+              {label}
             </Label>
           ) : null}
           <Input
@@ -47,7 +45,7 @@ export const FormInput = forwardRef<HTMLInputElement, FormInputPropsType>(
             name={id}
             defaultValue={defaultValue}
             id={id}
-            placeholder={t(placeholder)}
+            placeholder={placeholder}
             disabled={pending || disabled}
             required={required}
             type={type}
