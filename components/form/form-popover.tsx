@@ -1,11 +1,29 @@
 "use client";
 
-import { FormPopoverType } from "@/types/form-popover-props";
-import { Popover, PopoverClose, PopoverTrigger } from "@radix-ui/react-popover";
-import { PopoverContent } from "../ui/popover";
 import { useTranslations } from "next-intl";
-import { Button } from "../ui/button";
+import { useRef, useState } from "react";
+import { useMutation, useQueryClient } from "@tanstack/react-query";
+
+// icons
 import { X } from "lucide-react";
+
+//types
+import { FormPopoverType } from "@/types/form-popover-props";
+import { StateBoardType } from "@/types/state-board";
+
+// actions api
+import { CreateBoard, postBoards } from "@/actions/board";
+
+// components ui
+import { FormInput } from "@/components/form/form-input";
+import { FormSubmit } from "@/components/form/form-submit";
+import {
+  Popover,
+  PopoverClose,
+  PopoverContent,
+  PopoverTrigger,
+} from "@/components/ui/popover";
+import { Button } from "@/components/ui/button";
 
 export default function FormPopover({
   children,
@@ -14,6 +32,46 @@ export default function FormPopover({
   sideOffset = 0,
 }: FormPopoverType) {
   const t = useTranslations();
+  const initialState = { message: null, errors: { title: [] } };
+  const queryClient = useQueryClient();
+  const [formErrors, setFormErrors] = useState<StateBoardType>(initialState);
+  const ref = useRef<HTMLFormElement>(null);
+  const mutation = useMutation({
+    mutationFn: postBoards,
+    onSuccess: () => {
+      queryClient.invalidateQueries({
+        queryKey: ["boards"],
+      });
+    },
+  });
+
+  const handleSubmit = (e: React.FormEvent) => {
+    e.preventDefault();
+    const form = e.target as HTMLFormElement;
+    const formData = new FormData(form);
+    const validateField = CreateBoard.safeParse({
+      title: formData.get("title"),
+    });
+
+    if (!validateField.success) {
+      setFormErrors({
+        errors: validateField.error.flatten().fieldErrors,
+        message: "missing-fields",
+      });
+      return;
+    }
+    try {
+      mutation.mutate(formData);
+      ref.current?.reset();
+      setFormErrors(initialState);
+    } catch (error) {
+      setFormErrors({
+        message: "database-error",
+      });
+      return;
+    }
+  };
+
   return (
     <Popover>
       <PopoverTrigger asChild>{children}</PopoverTrigger>
@@ -27,10 +85,25 @@ export default function FormPopover({
           {t("create-board")}
         </div>
         <PopoverClose asChild>
-          <Button variant="ghost" className="top-1 absolute">
+          <Button
+            variant="outline"
+            size="icon"
+            className="top-3 h-auto w-auto absolute border-none"
+          >
             <X className="w-4 h-4" />
           </Button>
         </PopoverClose>
+        <form onSubmit={handleSubmit} ref={ref} className="space-y-2">
+          <div className="space-y-2">
+            <FormInput
+              errors={formErrors.errors}
+              id="title"
+              label="board-title"
+              type="text"
+            />
+            <FormSubmit className="w-full">{t("create")}</FormSubmit>
+          </div>
+        </form>
       </PopoverContent>
     </Popover>
   );
