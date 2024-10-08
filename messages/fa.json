@@ -17,5 +17,6 @@
   "missing-fields": "لطفا فیلدهای مورد نیاز را پر کنید",
   "database-error": "خطای پایگاه داده",
   "submit": "ارسال",
-  "delete": "حذف"
+  "delete": "حذف",
+  "board-title": "عنوان برد"
 }

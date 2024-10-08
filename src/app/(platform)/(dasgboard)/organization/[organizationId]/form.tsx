@@ -5,7 +5,7 @@ import { useRef, useState } from "react";
 import { useMutation, useQueryClient } from "@tanstack/react-query";
 import { CreateBoard, postBoards } from "@/actions/board";
 import { StateBoardType } from "@/types/state-board";
-import { FormInput } from "./form-input";
+import { FormInput } from "@/components/form/form-input";
 
 export default function Form() {
   const initialState = { message: null, errors: { title: [] } };
@@ -52,7 +52,7 @@ export default function Form() {
   return (
     <form onSubmit={handleSubmit} ref={ref}>
       <div className="flex flex-col space-y-1">
-        <FormInput errors={formErrors.errors} />
+        <FormInput label="board-title" id="title" errors={formErrors.errors} />
         <FormButton />
       </div>
     </form>

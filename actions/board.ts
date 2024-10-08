@@ -7,6 +7,7 @@ export const CreateBoard = z.object({
   }),
 });
 
+// METHOD POST
 export const postBoards = async (newPost: FormData): Promise<dataBoardType> => {
   const title = newPost.get("title");
   const response = await fetch(
@@ -27,6 +28,7 @@ export const postBoards = async (newPost: FormData): Promise<dataBoardType> => {
   return response.json();
 };
 
+// METHOD GET
 export async function getBoards() {
   const response = await fetch(
     `${process.env.NEXT_PUBLIC_BASE_URL}/api/boards`
@@ -35,6 +37,7 @@ export async function getBoards() {
   return posts;
 }
 
+// METHOD DELETE
 export async function deleteBoards(id: string) {
   const response = await fetch(
     `${process.env.NEXT_PUBLIC_BASE_URL}/api/boards`,

@@ -17,5 +17,6 @@
   "missing-fields": "Please fill in the required fields",
   "database-error": "Database Error",
   "submit": "Submit",
-  "delete" : "Delete"
+  "delete": "Delete",
+  "board-title": "Board Title"
 }
