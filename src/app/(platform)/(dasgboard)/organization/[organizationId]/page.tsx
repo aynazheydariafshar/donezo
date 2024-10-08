@@ -1,26 +1,17 @@
 "use client";
 
-import { useQuery } from "@tanstack/react-query";
-// components
-import { Board } from "./board";
-import Form from "./form";
-// types
-import { dataBoardType } from "@/types/data-board";
-// actions api
-import { getBoards } from "@/actions/board";
+import { Separator } from "@/components/ui/separator";
+import Info from "./_components/info";
+import { BoardList } from "./_components/board-list";
 
 export default function OrganizationId() {
-  const { data, isLoading } = useQuery<any>({
-    queryKey: ["boards"],
-    queryFn: getBoards,
-  });
-
   return (
-    <div>
-      <Form />
-      {data?.map((item: dataBoardType) => (
-        <Board key={item.id} title={item.title} id={item.id} />
-      ))}
+    <div className="w-full mb-20">
+      <Info />
+      <Separator className="bg-black dark:bg-white my-2" />
+      <div className="px-2 md:px-4">
+        <BoardList />
+      </div>
     </div>
   );
 }

@@ -18,5 +18,9 @@
   "database-error": "خطای پایگاه داده",
   "submit": "ارسال",
   "delete": "حذف",
-  "board-title": "عنوان برد"
+  "board-title": "عنوان برد",
+  "free": "رایگان",
+  "your-boards": "بردهای شما",
+  "create-new-board": "ساخت برد جدید",
+  "create-board" : "ساخت برد"
 }

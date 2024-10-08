@@ -18,5 +18,9 @@
   "database-error": "Database Error",
   "submit": "Submit",
   "delete": "Delete",
-  "board-title": "Board Title"
+  "board-title": "Board Title",
+  "free": "Free",
+  "your-boards": "Your Boards",
+  "create-new-board": "Create New Board",
+  "create-board": "Create Board"
 }
