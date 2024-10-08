@@ -9,6 +9,7 @@ import { getBoards } from "@/actions/board";
 
 // components ui
 import FormPopover from "@/components/form/form-popover";
+import { getCookie } from "@/utils/get-cookies";
 
 export function BoardList() {
   const t = useTranslations();
@@ -16,7 +17,7 @@ export function BoardList() {
     queryKey: ["boards"],
     queryFn: getBoards,
   });
-
+  const locale = getCookie("language") || "en";
   return (
     <div className="space-y-4">
       <div className="flex items-center text-lg text-black dark:text-white">
@@ -24,7 +25,7 @@ export function BoardList() {
         <p className="mx-2">{t("your-boards")}</p>
       </div>
       <div className="grid grid-cols-2 sm:grid-cols-3 lg:grid-cols-4 gap-4">
-        <FormPopover side="right" sideOffset={10}>
+        <FormPopover side={locale === "en" ? "right" : "left"} sideOffset={10}>
           <div
             role="button"
             className="aspect-video relative h-full w-full bg-muted rounded-sm flex flex-col gap-y-1 items-center justify-center hover:opacity-75 transition"

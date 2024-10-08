@@ -11,6 +11,7 @@ import { organizationType } from "@/types/organization";
 import { Accordion } from "@/components/ui/accordion";
 import { useLocalStorage } from "@/hooks/use-local-storage";
 import { cn } from "@/utils/utils";
+import { getCookie } from "@/utils/get-cookies";
 
 interface SidebarProps {
   storageKey?: string;
@@ -20,6 +21,7 @@ export function SidebarDashboard({
   storageKey = "t-sidebar-state",
 }: SidebarProps) {
   const t = useTranslations();
+  const cookieLocale = getCookie("language") || "en";
   const [expanded, setExpanded] = useLocalStorage<Record<string, any>>(
     storageKey,
     {}
@@ -50,7 +52,12 @@ export function SidebarDashboard({
 
   if (!isLoadedOrg || !isLoadedOrgList || userMemberships.isLoading) {
     return (
-      <div className="w-60">
+      <div
+        className={cn(
+          "w-60 fixed top-30",
+          cookieLocale === "en" ? "left-30" : "right-30"
+        )}
+      >
         <div className="items-center justify-between flex mb-2">
           <Skeleton className="h-10 w-[50%]" />
           <Skeleton className="h-10 w-10" />
@@ -64,7 +71,12 @@ export function SidebarDashboard({
     );
   }
   return (
-    <div className="font-medium w-full text-xs xl:w-60 flex flex-col mb-1">
+    <div
+      className={cn(
+        "font-medium w-full text-xs xl:w-60 flex flex-col mb-1 fixed top-30",
+        cookieLocale === "en" ? "left-30" : "right-30"
+      )}
+    >
       <div className="flex items-center justify-between my-1">
         <div>
           <p>{t("workspaces")}</p>

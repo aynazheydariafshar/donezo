@@ -1,7 +1,5 @@
 "use client";
 
-import { useEffect, useState } from "react";
-
 // component-ui
 import {
   Select,
@@ -13,31 +11,17 @@ import {
 } from "./ui/select";
 
 import { setCookie } from "@/utils/set-cookie";
+import { getCookie } from "@/utils/get-cookies";
 
 function SwitchLanguage() {
-  const [locale, setLocale] = useState<string>("en");
-
-  // get language from cookie to set value on language select
-  useEffect(() => {
-    const getCookie = (name: string): string | null => {
-      const value = `; ${document.cookie}`;
-      const parts = value.split(`; ${name}=`);
-      if (parts.length === 2) {
-        return parts.pop()?.split(";")[0] || null;
-      }
-      return null;
-    };
-    const cookieLocale = getCookie("language");
-    if (cookieLocale) setLocale(cookieLocale);
-  }, []);
+  const cookieLocale = getCookie("language") || "en";
 
   return (
     <Select
       onValueChange={(value) => {
         setCookie(value, "language");
-        setLocale(value);
       }}
-      value={locale}
+      value={cookieLocale}
     >
       <SelectTrigger className="bg-transparent w-20 border-none ring-0 focus:ring-0">
         <SelectValue placeholder="Select a timezone" />
