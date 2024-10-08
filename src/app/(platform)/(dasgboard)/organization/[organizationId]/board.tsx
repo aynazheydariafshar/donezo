@@ -1,11 +1,17 @@
-import { deleteBoards } from "@/actions/board";
-import { Button } from "@/components/ui/button";
-import { dataBoardType } from "@/types/data-board";
-import FormDelete from "./form-delete";
 import { useMutation, useQueryClient } from "@tanstack/react-query";
+import { useTranslations } from "next-intl";
+
+//actions api
+import { deleteBoards } from "@/actions/board";
+
+// components ui
+import { FormSubmit } from "@/components/form/form-submit";
+//types
+import { dataBoardType } from "@/types/data-board";
 
 export function Board({ title, id }: dataBoardType) {
   const queryClient = useQueryClient();
+  const t = useTranslations();
 
   const mutation = useMutation({
     mutationFn: deleteBoards,
@@ -22,7 +28,7 @@ export function Board({ title, id }: dataBoardType) {
   return (
     <form onSubmit={handleSubmit} className="flex items-center gap-x-2 my-2">
       <p>Board title : {title}</p>
-      <FormDelete />
+      <FormSubmit variant="destructive">{t("delete")}</FormSubmit>
     </form>
   );
 }

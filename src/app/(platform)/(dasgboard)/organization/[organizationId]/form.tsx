@@ -1,18 +1,25 @@
 "use client";
 
-import { FormButton } from "./form-button";
 import { useRef, useState } from "react";
 import { useMutation, useQueryClient } from "@tanstack/react-query";
-import { CreateBoard, postBoards } from "@/actions/board";
+import { useTranslations } from "next-intl";
+
+//types
 import { StateBoardType } from "@/types/state-board";
+
+//actions api
+import { CreateBoard, postBoards } from "@/actions/board";
+
+// components ui
 import { FormInput } from "@/components/form/form-input";
+import { FormSubmit } from "@/components/form/form-submit";
 
 export default function Form() {
   const initialState = { message: null, errors: { title: [] } };
   const queryClient = useQueryClient();
   const [formErrors, setFormErrors] = useState<StateBoardType>(initialState);
   const ref = useRef<HTMLFormElement>(null);
-
+  const t = useTranslations();
   const mutation = useMutation({
     mutationFn: postBoards,
     onSuccess: () => {
@@ -53,7 +60,7 @@ export default function Form() {
     <form onSubmit={handleSubmit} ref={ref}>
       <div className="flex flex-col space-y-1">
         <FormInput label="board-title" id="title" errors={formErrors.errors} />
-        <FormButton />
+        <FormSubmit>{t("submit")}</FormSubmit>
       </div>
     </form>
   );
