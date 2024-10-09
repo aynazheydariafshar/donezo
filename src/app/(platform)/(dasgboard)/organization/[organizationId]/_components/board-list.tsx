@@ -2,7 +2,9 @@
 
 import { useQuery } from "@tanstack/react-query";
 import { useTranslations } from "next-intl";
-import { redirect } from "next/navigation";
+import { getCookie } from "@/utils/get-cookies";
+import { useAuth, useOrganization } from "@clerk/nextjs";
+import Link from "next/link";
 
 //icon
 import { UserRound } from "lucide-react";
@@ -12,21 +14,24 @@ import { getBoards } from "@/actions/board";
 
 // components ui
 import FormPopover from "@/components/form/form-popover";
-import { getCookie } from "@/utils/get-cookies";
-import { useAuth } from "@clerk/nextjs";
-import Link from "next/link";
 import { Skeleton } from "@/components/ui/skeleton";
 
 export function BoardList() {
   const t = useTranslations();
   const { userId } = useAuth();
-  const { data, isLoading } = useQuery<any>({
-    queryKey: ["boards"],
-    queryFn: getBoards,
+  const { organization } = useOrganization();
+  const query = useQuery({
+    queryKey: ["boards", organization?.id],
+    queryFn: () => getBoards(organization?.id || ""),
+    enabled: !!organization?.id,
   });
+
+  const { data, error, isLoading } = query;
+  console.log(data);
+
   const locale = getCookie("language") || "en";
   if (!userId) {
-    return null; // Return null to avoid rendering
+    return null;
   }
 
   if (isLoading) return <BoardList.Skeleton />;
@@ -67,7 +72,7 @@ export function BoardList() {
   );
 }
 
-BoardList.Skeleton = function SkeletonBoardLiat() {
+BoardList.Skeleton = function SkeletonBoardList() {
   return (
     <div className="grid grid-cols-2 sm:grid-cols-3 lg:grid-cols-4 gap-4 py-4">
       <Skeleton className="aspect-video w-full h-full p-2" />

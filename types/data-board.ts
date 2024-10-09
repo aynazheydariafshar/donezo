@@ -7,6 +7,4 @@ export type dataBoardType = {
   imageFullUrl: string;
   imageUserName: string;
   imageLinkHtml: string;
-  createdAt: Date;
-  updatedAt: Date;
 };

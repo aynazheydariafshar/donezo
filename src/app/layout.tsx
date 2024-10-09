@@ -6,9 +6,6 @@ import { ThemeProvider } from "next-themes";
 // style
 import "../../styles/globals.css";
 
-// config
-import { siteConfig } from "@/config/site";
-
 // fonts
 import { Fredoka, Vazirmatn } from "next/font/google";
 import { Toaster } from "@/components/ui/toaster";
@@ -24,8 +21,9 @@ const vazirmatn = Vazirmatn({
 });
 
 export const metadata: Metadata = {
-  title: siteConfig.name,
-  description: siteConfig.description,
+  title: "Donezo",
+  description:
+    "Donezo gives you everything you need to stay organized and achieve your goals.",
   icons: [
     {
       url: "/images/favicon.ico",

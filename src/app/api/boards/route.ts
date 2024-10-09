@@ -24,7 +24,8 @@ const POST = async (request: Request) => {
     !body.imageId ||
     !body.imageThumbUrl ||
     !body.imageFullUrl ||
-    !body.imageLinkHtml
+    !body.imageLinkHtml ||
+    !body.orgId
   )
     return NextResponse.json({ error: "bad request" }, { status: 403 });
   const boards = await parseJsonFile<IdWrapper<dataBoardType>[]>(
@@ -39,6 +40,7 @@ const POST = async (request: Request) => {
     imageThumbUrl: body.imageThumbUrl,
     imageFullUrl: body.imageFullUrl,
     imageLinkHtml: body.imageLinkHtml,
+    orgId: body.orgId,
   };
   const modifiedBoards = [...boards, newBoard];
   await fs.writeFileSync(BOARDS_DIRECTORY, JSON.stringify(modifiedBoards));

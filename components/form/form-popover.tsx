@@ -25,7 +25,7 @@ import {
 } from "@/components/ui/popover";
 import { Button } from "@/components/ui/button";
 import FormPicker from "./form-picker";
-import { useUser } from "@clerk/nextjs";
+import { useOrganization, useUser } from "@clerk/nextjs";
 import { useToast } from "@/components/hooks/use-toast";
 import { useRouter } from "next/navigation";
 
@@ -43,6 +43,7 @@ export default function FormPopover({
   const queryClient = useQueryClient();
   const [formErrors, setFormErrors] = useState<StateBoardType>(initialState);
   const refClose = useRef<ElementRef<"button">>(null);
+  const { organization } = useOrganization();
 
   const mutation = useMutation({
     mutationFn: postBoards,
@@ -102,15 +103,17 @@ export default function FormPopover({
       });
       return;
     }
+    if (organization?.id) {
+      formData.append("imageId", imageId);
+      formData.append("imageThumbUrl", imageThumbUrl);
+      formData.append("imageFullUrl", imageFullUrl);
+      formData.append("imageLinkHtml", imageLinkHtml);
+      formData.append("imageUserName", imageUserName);
+      formData.append("orgId", organization.id);
+      formData.delete("image");
 
-    formData.append("imageId", imageId);
-    formData.append("imageThumbUrl", imageThumbUrl);
-    formData.append("imageFullUrl", imageFullUrl);
-    formData.append("imageLinkHtml", imageLinkHtml);
-    formData.append("imageUserName", imageUserName);
-    formData.delete("image");
-
-    mutation.mutate(formData);
+      mutation.mutate(formData);
+    }
   };
 
   return (

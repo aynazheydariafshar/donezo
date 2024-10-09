@@ -24,6 +24,7 @@ export const postBoards = async (newPost: FormData): Promise<dataBoardType> => {
   const imageThumbUrl = newPost.get("imageThumbUrl");
   const imageFullUrl = newPost.get("imageFullUrl");
   const imageLinkHtml = newPost.get("imageLinkHtml");
+  const orgId = newPost.get("orgId");
 
   const response = await fetch(
     `${process.env.NEXT_PUBLIC_BASE_URL}/api/boards`,
@@ -31,6 +32,7 @@ export const postBoards = async (newPost: FormData): Promise<dataBoardType> => {
       method: "POST",
       body: JSON.stringify({
         title,
+        orgId,
         imageUserName,
         imageId,
         imageThumbUrl,
@@ -51,12 +53,15 @@ export const postBoards = async (newPost: FormData): Promise<dataBoardType> => {
 };
 
 // METHOD GET
-export async function getBoards() {
-  const response = await fetch(
-    `${process.env.NEXT_PUBLIC_BASE_URL}/api/boards`
-  );
-  const posts = await response.json();
-  return posts;
+export async function getBoards(orgId: string) {
+  if (orgId) {
+    const response = await fetch(
+      `${process.env.NEXT_PUBLIC_BASE_URL}/api/boards/${orgId}/`
+    );
+    const posts = await response.json();
+    return posts;
+  }
+  return null;
 }
 
 // METHOD DELETE
