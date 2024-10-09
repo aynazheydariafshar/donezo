@@ -9,6 +9,7 @@ import { useFormStatus } from "react-dom";
 import { cn } from "@/utils/utils";
 import { defaultImages } from "@/constant/images";
 import Link from "next/link";
+import { FormError } from "./form-error";
 
 export default function FormPicker({ id, errors }: FormPickerPropsType) {
   const { pending } = useFormStatus();
@@ -41,8 +42,6 @@ export default function FormPicker({ id, errors }: FormPickerPropsType) {
   //     fetchImages();
   //   }, []);
 
-  console.log(pending);
-
   if (isLoading) {
     return (
       <div className="flex items-center p-6 justify-center">
@@ -66,6 +65,15 @@ export default function FormPicker({ id, errors }: FormPickerPropsType) {
               setSelectedImageId(image.id);
             }}
           >
+            <input
+              type="radio"
+              id={id}
+              name={id}
+              className="hidden"
+              checked={selectedImageId === image.id}
+              disabled={pending}
+              value={`${image.id}|${image.urls.thumb}|${image.urls.full}|${image.links.html}|${image.user.name}`}
+            />
             <Image
               fill
               className="object-cover rounded-sm"
@@ -88,6 +96,7 @@ export default function FormPicker({ id, errors }: FormPickerPropsType) {
           </div>
         ))}
       </div>
+      <FormError id="image" errors={errors} />
     </div>
   );
 }

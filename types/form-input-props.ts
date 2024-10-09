@@ -5,7 +5,7 @@ export interface FormInputPropsType {
   disabled?: boolean;
   required?: boolean;
   type?: string;
-  errors?: Record<string, string[] | undefined>;
+  errors?: string[];
   className?: string;
   defaultValue?: string;
   onBlur?: () => void;

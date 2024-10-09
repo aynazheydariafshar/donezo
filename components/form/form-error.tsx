@@ -13,7 +13,7 @@ export function FormError({ id, errors }: FormErrorPropsType) {
       aria-live="polite"
       className="text-xs mt-2 text-red-500"
     >
-      {errors?.title?.map((error) => (
+      {errors?.map((error: string) => (
         <div
           key={error}
           className="flex items-center font-medium p-2 border border-red-500 bg-rose-500/10 rounded-sm"

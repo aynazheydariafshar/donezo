@@ -22,5 +22,9 @@
   "free": "رایگان",
   "your-boards": "بردهای شما",
   "create-new-board": "ساخت برد جدید",
-  "create-board" : "ساخت برد"
+  "create-board": "ساخت برد",
+  "title-is-required": "فیلد عنوان الزامی است",
+  "title-is-invalid-type": "نوع عنوان معتبر نیست",
+  "image-is-required": "انتخاب عکس الزامی است",
+  "unauthorized": "غیر مجاز"
 }

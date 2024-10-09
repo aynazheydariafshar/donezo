@@ -2,19 +2,30 @@ import { dataBoardType } from "@/types/data-board";
 import { z } from "zod";
 
 export const CreateBoard = z.object({
-  title: z.string().min(3, {
-    message: "minimum-length-3-letters",
+  title: z
+    .string({
+      required_error: "title-is-required",
+      invalid_type_error: "title-is-invalid-type",
+    })
+    .min(3, {
+      message: "minimum-length-3-letters",
+    }),
+  image: z.string({
+    required_error: "image-is-required",
+    invalid_type_error: "image-is-required",
   }),
 });
 
 // METHOD POST
 export const postBoards = async (newPost: FormData): Promise<dataBoardType> => {
   const title = newPost.get("title");
+  const image = newPost.get("image");
+
   const response = await fetch(
     `${process.env.NEXT_PUBLIC_BASE_URL}/api/boards`,
     {
       method: "POST",
-      body: JSON.stringify({ title }),
+      body: JSON.stringify({ title, image }),
       headers: {
         "Content-type": "application/json; charset=UTF-8",
       },

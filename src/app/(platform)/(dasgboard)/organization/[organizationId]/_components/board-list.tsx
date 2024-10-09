@@ -38,9 +38,6 @@ export function BoardList() {
           </div>
         </FormPopover>
       </div>
-      {/* {data?.map((item: dataBoardType) => (
-        <Board key={item.id} title={item.title} id={item.id} />
-      ))} */}
     </div>
   );
 }

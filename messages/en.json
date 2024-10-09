@@ -22,5 +22,9 @@
   "free": "Free",
   "your-boards": "Your Boards",
   "create-new-board": "Create New Board",
-  "create-board": "Create Board"
+  "create-board": "Create Board",
+  "title-is-required": "Title is Required",
+  "title-is-invalid-type": "Title is Invalid Type",
+  "image-is-required": "Image is Required",
+  "unauthorized": "Unauthorized"
 }

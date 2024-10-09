@@ -3,9 +3,11 @@ import { useTranslations } from "next-intl";
 
 // component-ui
 import { Button } from "@/components/ui/button";
+import { auth } from "@clerk/nextjs/server";
 
 function HomePage() {
   const t = useTranslations();
+  const { userId } = auth();
 
   return (
     <div className="h-screen text-black dark:text-white bg-minimal-gradient dark:bg-minimal-gradient-dark">
@@ -30,7 +32,10 @@ function HomePage() {
             size="lg"
             className="bg-secondary-400 text-xl border border-black text-black transition [box-shadow:rgb(171,_196,245)-8px_8px] hover:[box-shadow:rgb(171,_196,_245)0px_0px] hover:bg-secondary-500"
           >
-            <Link className="font-bold" href={`/sign-up`}>
+            <Link
+              className="font-bold"
+              href={userId ? "/select-org" : "/sign-in"}
+            >
               {t("get-started")}
             </Link>
           </Button>

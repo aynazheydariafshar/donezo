@@ -25,6 +25,7 @@ import {
 } from "@/components/ui/popover";
 import { Button } from "@/components/ui/button";
 import FormPicker from "./form-picker";
+import { useUser } from "@clerk/nextjs";
 
 export default function FormPopover({
   children,
@@ -33,7 +34,8 @@ export default function FormPopover({
   sideOffset = 0,
 }: FormPopoverType) {
   const t = useTranslations();
-  const initialState = { message: null, errors: { title: [] } };
+  const { isSignedIn } = useUser();
+  const initialState = { message: null, errors: { title: [], image: [] } };
   const queryClient = useQueryClient();
   const [formErrors, setFormErrors] = useState<StateBoardType>(initialState);
   const ref = useRef<HTMLFormElement>(null);
@@ -52,7 +54,15 @@ export default function FormPopover({
     const formData = new FormData(form);
     const validateField = CreateBoard.safeParse({
       title: formData.get("title"),
+      image: formData.get("image"),
     });
+
+    if (!isSignedIn) {
+      setFormErrors({
+        message: "unauthorized",
+      });
+      return;
+    }
 
     if (!validateField.success) {
       setFormErrors({
@@ -96,9 +106,9 @@ export default function FormPopover({
         </PopoverClose>
         <form onSubmit={handleSubmit} ref={ref} className="space-y-2">
           <div className="space-y-2">
-            <FormPicker id="image" errors={formErrors.errors} />
+            <FormPicker id="image" errors={formErrors?.errors?.image} />
             <FormInput
-              errors={formErrors.errors}
+              errors={formErrors?.errors?.title}
               id="title"
               label={t("board-title")}
               type="text"
