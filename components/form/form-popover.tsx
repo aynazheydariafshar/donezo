@@ -27,6 +27,7 @@ import { Button } from "@/components/ui/button";
 import FormPicker from "./form-picker";
 import { useUser } from "@clerk/nextjs";
 import { useToast } from "@/components/hooks/use-toast";
+import { useRouter } from "next/navigation";
 
 export default function FormPopover({
   children,
@@ -35,17 +36,30 @@ export default function FormPopover({
   sideOffset = 0,
 }: FormPopoverType) {
   const t = useTranslations();
+  const router = useRouter();
   const { toast } = useToast();
   const { isSignedIn } = useUser();
   const initialState = { message: null, errors: { title: [], image: [] } };
   const queryClient = useQueryClient();
   const [formErrors, setFormErrors] = useState<StateBoardType>(initialState);
   const refClose = useRef<ElementRef<"button">>(null);
+
   const mutation = useMutation({
     mutationFn: postBoards,
-    onSuccess: () => {
+    onSuccess: (res) => {
       queryClient.invalidateQueries({
         queryKey: ["boards"],
+      });
+      toast({
+        title: t("a-new-board-has-been-created-successfully"),
+      });
+      refClose.current?.click();
+      router.push(`/board/${res.id}`);
+    },
+    onError: () => {
+      toast({
+        title: t("database-error"),
+        variant: "destructive",
       });
     },
   });
@@ -88,27 +102,15 @@ export default function FormPopover({
       });
       return;
     }
-    try {
-      formData.append("imageId", imageId);
-      formData.append("imageThumbUrl", imageThumbUrl);
-      formData.append("imageFullUrl", imageFullUrl);
-      formData.append("imageLinkHtml", imageLinkHtml);
-      formData.append("imageUserName", imageUserName);
-      formData.delete("image");
 
-      mutation.mutate(formData);
-      toast({
-        title: t("a-new-board-has-been-created-successfully"),
-      });
-      refClose.current?.click();
-      setFormErrors(initialState);
-    } catch (error) {
-      toast({
-        title: t("database-error"),
-        variant: "destructive",
-      });
-      return;
-    }
+    formData.append("imageId", imageId);
+    formData.append("imageThumbUrl", imageThumbUrl);
+    formData.append("imageFullUrl", imageFullUrl);
+    formData.append("imageLinkHtml", imageLinkHtml);
+    formData.append("imageUserName", imageUserName);
+    formData.delete("image");
+
+    mutation.mutate(formData);
   };
 
   return (
