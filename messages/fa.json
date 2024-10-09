@@ -26,5 +26,6 @@
   "title-is-required": "فیلد عنوان الزامی است",
   "title-is-invalid-type": "نوع عنوان معتبر نیست",
   "image-is-required": "انتخاب عکس الزامی است",
-  "unauthorized": "غیر مجاز"
+  "unauthorized": "غیر مجاز",
+  "missing-fields-failed-to-create-board": "ساخت برد با شکست مواجه شد: فیلدهای ضروری پر نشده‌اند."
 }

@@ -55,8 +55,20 @@ export default function FormPopover({
       title: formData.get("title") as string,
       image: formData.get("image") as string,
     });
-    // const [] = image?.split("|");
-    console.log(formData.get("image"));
+    const image = formData.get("image") as string;
+    const [imageId, imageThumbUrl, imageFullUrl, imageLinkHtml, imageUserName] =
+      image.split("|");
+    if (
+      !imageId ||
+      !imageThumbUrl ||
+      !imageFullUrl ||
+      !imageLinkHtml ||
+      !imageUserName
+    ) {
+      return setFormErrors({
+        message: "missing-fields-failed-to-create-board",
+      });
+    }
     if (!isSignedIn) {
       setFormErrors({
         message: "unauthorized",
@@ -72,6 +84,13 @@ export default function FormPopover({
       return;
     }
     try {
+      formData.append("imageId", imageId);
+      formData.append("imageThumbUrl", imageThumbUrl);
+      formData.append("imageFullUrl", imageFullUrl);
+      formData.append("imageLinkHtml", imageLinkHtml);
+      formData.append("imageUserName", imageUserName);
+      formData.delete("image");
+      
       mutation.mutate(formData);
       ref.current?.reset();
       setFormErrors(initialState);

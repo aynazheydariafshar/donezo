@@ -26,5 +26,6 @@
   "title-is-required": "Title is Required",
   "title-is-invalid-type": "Title is Invalid Type",
   "image-is-required": "Image is Required",
-  "unauthorized": "Unauthorized"
+  "unauthorized": "Unauthorized",
+  "missing-fields-failed-to-create-board": "Missing Fields . Failed to Create Board"
 }

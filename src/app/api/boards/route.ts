@@ -17,7 +17,15 @@ const GET = async () => {
 
 const POST = async (request: Request) => {
   const body: dataBoardType = await request.json();
-  if (!body.title || !body.image)
+
+  if (
+    !body.title ||
+    !body.imageUserName ||
+    !body.imageId ||
+    !body.imageThumbUrl ||
+    !body.imageFullUrl ||
+    !body.imageLinkHtml
+  )
     return NextResponse.json({ error: "bad request" }, { status: 403 });
   const boards = await parseJsonFile<IdWrapper<dataBoardType>[]>(
     BOARDS_DIRECTORY
@@ -26,7 +34,11 @@ const POST = async (request: Request) => {
     ...body,
     id: uuid4(),
     title: body.title,
-    image: body.image,
+    imageUserName: body.imageUserName,
+    imageId: body.imageId,
+    imageThumbUrl: body.imageThumbUrl,
+    imageFullUrl: body.imageFullUrl,
+    imageLinkHtml: body.imageLinkHtml,
   };
   const modifiedBoards = [...boards, newBoard];
   await fs.writeFileSync(BOARDS_DIRECTORY, JSON.stringify(modifiedBoards));

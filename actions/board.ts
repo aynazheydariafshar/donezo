@@ -19,13 +19,24 @@ export const CreateBoard = z.object({
 // METHOD POST
 export const postBoards = async (newPost: FormData): Promise<dataBoardType> => {
   const title = newPost.get("title");
-  const image = newPost.get("image");
+  const imageUserName = newPost.get("imageUserName");
+  const imageId = newPost.get("imageId");
+  const imageThumbUrl = newPost.get("imageThumbUrl");
+  const imageFullUrl = newPost.get("imageFullUrl");
+  const imageLinkHtml = newPost.get("imageLinkHtml");
 
   const response = await fetch(
     `${process.env.NEXT_PUBLIC_BASE_URL}/api/boards`,
     {
       method: "POST",
-      body: JSON.stringify({ title, image }),
+      body: JSON.stringify({
+        title,
+        imageUserName,
+        imageId,
+        imageThumbUrl,
+        imageFullUrl,
+        imageLinkHtml,
+      }),
       headers: {
         "Content-type": "application/json; charset=UTF-8",
       },
