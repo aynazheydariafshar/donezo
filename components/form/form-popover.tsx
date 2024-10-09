@@ -50,13 +50,13 @@ export default function FormPopover({
 
   const handleSubmit = (e: React.FormEvent) => {
     e.preventDefault();
-    const form = e.target as HTMLFormElement;
-    const formData = new FormData(form);
+    const formData = new FormData(e.target as HTMLFormElement);
     const validateField = CreateBoard.safeParse({
-      title: formData.get("title"),
-      image: formData.get("image"),
+      title: formData.get("title") as string,
+      image: formData.get("image") as string,
     });
-
+    // const [] = image?.split("|");
+    console.log(formData.get("image"));
     if (!isSignedIn) {
       setFormErrors({
         message: "unauthorized",

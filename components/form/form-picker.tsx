@@ -18,6 +18,10 @@ export default function FormPicker({ id, errors }: FormPickerPropsType) {
   const [isLoading, setIsLoading] = useState(false);
   const [selectedImageId, setSelectedImageId] = useState<string | null>(null);
 
+  const handleChange = (event: React.ChangeEvent<HTMLInputElement>) => {
+    setSelectedImageId(event.target.value);
+  };
+
   //   useEffect(() => {
   //     const fetchImages = async () => {
   //       setIsLoading(true);
@@ -67,11 +71,12 @@ export default function FormPicker({ id, errors }: FormPickerPropsType) {
           >
             <input
               type="radio"
-              id={id}
+              id={image.id}
               name={id}
               className="hidden"
               checked={selectedImageId === image.id}
               disabled={pending}
+              onChange={handleChange}
               value={`${image.id}|${image.urls.thumb}|${image.urls.full}|${image.links.html}|${image.user.name}`}
             />
             <Image
