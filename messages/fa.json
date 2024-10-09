@@ -27,5 +27,6 @@
   "title-is-invalid-type": "نوع عنوان معتبر نیست",
   "image-is-required": "انتخاب عکس الزامی است",
   "unauthorized": "غیر مجاز",
-  "missing-fields-failed-to-create-board": "ساخت برد با شکست مواجه شد: فیلدهای ضروری پر نشده‌اند."
+  "missing-fields-failed-to-create-board": "ساخت برد با شکست مواجه شد: فیلدهای ضروری پر نشده‌اند.",
+  "a-new-board-has-been-created-successfully": "برد جدید با موفقیت ساخته شد"
 }

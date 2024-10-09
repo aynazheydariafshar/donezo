@@ -11,6 +11,7 @@ import { siteConfig } from "@/config/site";
 
 // fonts
 import { Fredoka, Vazirmatn } from "next/font/google";
+import { Toaster } from "@/components/ui/toaster";
 
 const fredoka = Fredoka({
   weight: "500",
@@ -53,6 +54,7 @@ async function RootLayout({ children }: { children: React.ReactNode }) {
             {children}
           </ThemeProvider>
         </NextIntlClientProvider>
+        <Toaster />
       </body>
     </html>
   );

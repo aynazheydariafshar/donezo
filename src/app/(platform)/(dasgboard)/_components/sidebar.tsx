@@ -12,6 +12,7 @@ import { Accordion } from "@/components/ui/accordion";
 import { useLocalStorage } from "@/hooks/use-local-storage";
 import { cn } from "@/utils/utils";
 import { getCookie } from "@/utils/get-cookies";
+import { useEffect } from "react";
 
 interface SidebarProps {
   storageKey?: string;
@@ -21,7 +22,7 @@ export function SidebarDashboard({
   storageKey = "t-sidebar-state",
 }: SidebarProps) {
   const t = useTranslations();
-  const cookieLocale = getCookie("language") || "en";
+  let cookieLocale = "";
   const [expanded, setExpanded] = useLocalStorage<Record<string, any>>(
     storageKey,
     {}
@@ -49,6 +50,10 @@ export function SidebarDashboard({
       [id]: !expanded[id],
     }));
   };
+
+  useEffect(() => {
+    cookieLocale = getCookie("language") || "en";
+  }, []);
 
   if (!isLoadedOrg || !isLoadedOrgList || userMemberships.isLoading) {
     return (

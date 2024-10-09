@@ -27,5 +27,6 @@
   "title-is-invalid-type": "Title is Invalid Type",
   "image-is-required": "Image is Required",
   "unauthorized": "Unauthorized",
-  "missing-fields-failed-to-create-board": "Missing Fields . Failed to Create Board"
+  "missing-fields-failed-to-create-board": "Missing Fields . Failed to Create Board",
+  "a-new-board-has-been-created-successfully": "A new board has been created successfully"
 }
