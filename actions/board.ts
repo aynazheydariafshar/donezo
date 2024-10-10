@@ -64,6 +64,17 @@ export async function getBoards(orgId: string) {
   return null;
 }
 
+export async function getBoardId(id: string) {
+  if (id) {
+    const response = await fetch(
+      `${process.env.NEXT_PUBLIC_BASE_URL}/api/boards/detail/${id}/`
+    );
+    const posts = await response.json();
+    return posts;
+  }
+  return null;
+}
+
 // METHOD DELETE
 export async function deleteBoards(id: string) {
   const response = await fetch(

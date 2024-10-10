@@ -10,7 +10,9 @@
 .cl-organizationSwitcherPopoverFooter,
 .cl-footer,
 .cl-userButtonPopoverFooter,
-.cl-internal-df7v37 {
+.cl-internal-df7v37,
+.cl-userButtonPopoverActionButton__manageAccount,
+.cl-internal-1vnyqkf {
   display: none;
 }
 

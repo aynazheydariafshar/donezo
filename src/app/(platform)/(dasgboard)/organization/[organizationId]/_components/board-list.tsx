@@ -15,6 +15,7 @@ import { getBoards } from "@/actions/board";
 // components ui
 import FormPopover from "@/components/form/form-popover";
 import { Skeleton } from "@/components/ui/skeleton";
+import { toast } from "@/components/hooks/use-toast";
 
 export function BoardList() {
   const t = useTranslations();
@@ -27,11 +28,13 @@ export function BoardList() {
   });
 
   const { data, error, isLoading } = query;
-  console.log(data);
 
   const locale = getCookie("language") || "en";
   if (!userId) {
-    return null;
+    toast({
+      title: t("unauthorized"),
+    });
+    return
   }
 
   if (isLoading) return <BoardList.Skeleton />;
