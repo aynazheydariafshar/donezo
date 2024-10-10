@@ -30,7 +30,7 @@ export function MobileSidebar() {
     <>
       <Button
         variant="ghost"
-        className="block xl:hidden"
+        className="block text-black dark:text-white xl:hidden"
         size="sm"
         onClick={onOpen}
       >

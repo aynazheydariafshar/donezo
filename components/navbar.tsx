@@ -11,7 +11,7 @@ function Navbar({
   sideBarIcon?: boolean;
 }) {
   return (
-    <nav className="fixed top-0 w-full flex items-center justify-between px-11 h-16 shadow-sm bg-black black:bg-white bg-opacity-35 z-40">
+    <nav className="fixed top-0 w-full flex items-center justify-between px-11 h-16 shadow-sm bg-white dark:bg-black dark:bg-opacity-50 bg-opacity-30 backdrop-blur-xl z-40">
       <div className="flex items-center">
         {sideBarIcon && <MobileSidebar />}
         <div>
