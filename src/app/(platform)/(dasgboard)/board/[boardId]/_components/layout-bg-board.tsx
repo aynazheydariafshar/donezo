@@ -45,7 +45,7 @@ export default function LayoutBgBoard({
       className="bg-no-repeat h-full relative bg-cover bg-center"
       style={{ backgroundImage: `url(${data?.imageFullUrl})` }}
     >
-      <BoardNavbar data={data} id={boardIdParams} />
+      <BoardNavbar data={data} />
       <div className="absolute inset-0 bg-black/10"></div>
       <main className="relative pt-28 h-full">{children}</main>
     </div>

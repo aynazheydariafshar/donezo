@@ -25,12 +25,14 @@ export const postBoards = async (newPost: FormData): Promise<dataBoardType> => {
   const imageFullUrl = newPost.get("imageFullUrl");
   const imageLinkHtml = newPost.get("imageLinkHtml");
   const orgId = newPost.get("orgId");
+  const id = newPost.get("id");
 
   const response = await fetch(
-    `${process.env.NEXT_PUBLIC_BASE_URL}/api/boards`,
+    `${process.env.NEXT_PUBLIC_BASE_URL}/api/boards/`,
     {
       method: "POST",
       body: JSON.stringify({
+        id,
         title,
         orgId,
         imageUserName,
@@ -56,7 +58,7 @@ export const postBoards = async (newPost: FormData): Promise<dataBoardType> => {
 export async function getBoards(orgId: string) {
   if (orgId) {
     const response = await fetch(
-      `${process.env.NEXT_PUBLIC_BASE_URL}/api/boards/${orgId}/`
+      `${process.env.NEXT_PUBLIC_BASE_URL}/api/boards/${orgId}`
     );
     const posts = await response.json();
     return posts;
@@ -64,21 +66,45 @@ export async function getBoards(orgId: string) {
   return null;
 }
 
+// Method Detail Get
 export async function getBoardId(id: string) {
   if (id) {
     const response = await fetch(
-      `${process.env.NEXT_PUBLIC_BASE_URL}/api/boards/detail/${id}/`
+      `${process.env.NEXT_PUBLIC_BASE_URL}/api/boards/detail/${id}`
     );
     const posts = await response.json();
     return posts;
   }
   return null;
+}
+
+// Method PATCH
+export async function updateBoard(
+  boardId: string,
+  newPost: Partial<dataBoardType>
+) {
+  const response = await fetch(
+    `${process.env.NEXT_PUBLIC_BASE_URL}/api/boards/detail/${boardId}`,
+    {
+      method: "PATCH",
+      headers: {
+        "Content-Type": "application/json",
+      },
+      body: JSON.stringify(newPost),
+    }
+  );
+  if (!response.ok) {
+    throw new Error("Failed to update board");
+  }
+
+  const data = await response.json();
+  return data;
 }
 
 // METHOD DELETE
 export async function deleteBoards(id: string) {
   const response = await fetch(
-    `${process.env.NEXT_PUBLIC_BASE_URL}/api/boards`,
+    `${process.env.NEXT_PUBLIC_BASE_URL}/api/boards/`,
     {
       method: "DELETE",
       body: JSON.stringify({ id }),
