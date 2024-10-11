@@ -29,5 +29,6 @@
   "unauthorized": "غیر مجاز",
   "missing-fields-failed-to-create-board": "ساخت برد با شکست مواجه شد: فیلدهای ضروری پر نشده‌اند.",
   "a-new-board-has-been-created-successfully": "برد جدید با موفقیت ساخته شد",
-  "edit": "ویرایش"
+  "edit": "ویرایش",
+  "your-board-has-been-edited-successfully": "برد شما با موفقیت ویرایش شد"
 }

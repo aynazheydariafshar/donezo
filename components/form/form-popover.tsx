@@ -52,14 +52,14 @@ export default function FormPopover({
         queryKey: ["boards"],
       });
       toast({
-        title: t("a-new-board-has-been-created-successfully"),
+        description: t("a-new-board-has-been-created-successfully"),
       });
       refClose.current?.click();
       router.push(`/board/${res.id}`);
     },
     onError: () => {
       toast({
-        title: t("database-error"),
+        description: t("database-error"),
         variant: "destructive",
       });
     },
@@ -83,14 +83,14 @@ export default function FormPopover({
       !imageUserName
     ) {
       toast({
-        title: t("missing-fields-failed-to-create-board"),
+        description: t("missing-fields-failed-to-create-board"),
         variant: "destructive",
       });
       return;
     }
     if (!isSignedIn) {
       toast({
-        title: t("unauthorized"),
+        description: t("unauthorized"),
         variant: "destructive",
       });
       return;

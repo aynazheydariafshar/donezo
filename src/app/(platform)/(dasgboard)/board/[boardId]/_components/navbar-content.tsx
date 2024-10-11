@@ -22,13 +22,13 @@ export default function NavbarContent({ data }: BoardNavbarPropsType) {
         queryKey: ["boards"],
       });
       setIsEditing(false);
-      //   toast({
-      //     title: t("a-new-board-has-been-created-successfully"),
-      //   });
+      toast({
+        description: t("your-board-has-been-edited-successfully"),
+      });
     },
     onError: () => {
       toast({
-        title: t("database-error"),
+        description: t("database-error"),
         variant: "destructive",
       });
     },
@@ -44,7 +44,7 @@ export default function NavbarContent({ data }: BoardNavbarPropsType) {
     });
     if (!validateField.success) {
       toast({
-        title: t(validateField.error?.flatten().fieldErrors?.title?.[0]),
+        description: t(validateField.error?.flatten().fieldErrors?.title?.[0]),
         variant: "destructive",
       });
       return;

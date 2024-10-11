@@ -28,6 +28,7 @@
   "image-is-required": "Image is Required",
   "unauthorized": "Unauthorized",
   "missing-fields-failed-to-create-board": "Missing Fields . Failed to Create Board",
-  "a-new-board-has-been-created-successfully": "A new board has been created successfully",
-  "edit": "Edit"
+  "a-new-board-has-been-created-successfully": "A New Board has been Created Successfully",
+  "edit": "Edit",
+  "your-board-has-been-edited-successfully": "Your Board has been Edited Successfully"
 }

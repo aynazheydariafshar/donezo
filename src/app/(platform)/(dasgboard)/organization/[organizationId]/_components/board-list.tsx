@@ -32,9 +32,9 @@ export function BoardList() {
   const locale = getCookie("language") || "en";
   if (!userId) {
     toast({
-      title: t("unauthorized"),
+      description: t("unauthorized"),
     });
-    return
+    return;
   }
 
   if (isLoading) return <BoardList.Skeleton />;

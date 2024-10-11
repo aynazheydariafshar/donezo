@@ -27,7 +27,7 @@ export default function LayoutBgBoard({
 
   if (!userId) {
     toast({
-      title: t("unauthorized"),
+        description: t("unauthorized"),
     });
     return;
   }
