@@ -26,9 +26,14 @@
   "title-is-required": "فیلد عنوان الزامی است",
   "title-is-invalid-type": "نوع عنوان معتبر نیست",
   "image-is-required": "انتخاب عکس الزامی است",
-  "unauthorized": "غیر مجاز",
+  "unauthorized": "شما از حساب کاربری خود خارج شدید",
   "missing-fields-failed-to-create-board": "ساخت برد با شکست مواجه شد: فیلدهای ضروری پر نشده‌اند.",
   "a-new-board-has-been-created-successfully": "برد جدید با موفقیت ساخته شد",
   "edit": "ویرایش",
-  "your-board-has-been-edited-successfully": "برد شما با موفقیت ویرایش شد"
+  "your-board-has-been-edited-successfully": "برد شما با موفقیت ویرایش شد",
+  "are-you-sure-you-want-delete-this-board-action-cannot-be-undone": "آیا از حذف این برد مطمئن هستید؟ این عمل غیرقابل برگشت است",
+  "delete-board": "حذف برد",
+  "close": "انصراف",
+  "confirm-delete": "تایید حذف",
+  "your-board-has-been-deleted-successfully" : "برد شما با موفقیت حذف شد"
 }

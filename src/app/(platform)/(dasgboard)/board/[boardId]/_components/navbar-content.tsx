@@ -8,7 +8,7 @@ import { useMutation, useQueryClient } from "@tanstack/react-query";
 import { useTranslations } from "next-intl";
 import { ElementRef, useRef, useState } from "react";
 
-export default function NavbarContent({ data }: BoardNavbarPropsType) {
+export function NavbarContent({ data }: BoardNavbarPropsType) {
   const [isEdit, setIsEditing] = useState(false);
   const formRef = useRef<ElementRef<"form">>(null);
   const inputRef = useRef<ElementRef<"input">>(null);

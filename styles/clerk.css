@@ -7,8 +7,12 @@
 .cl-footer,
 .cl-userButtonPopoverFooter,
 .cl-internal-df7v37,
-.cl-userButtonPopoverActionButton__manageAccount,
-.cl-internal-1vnyqkf {
+.cl-userButtonPopoverActionButton__manageAccount {
+  display: none;
+}
+
+.cl-organizationSwitcherPopoverActions
+  .cl-organizationSwitcherPopoverActionButton {
   display: none;
 }
 

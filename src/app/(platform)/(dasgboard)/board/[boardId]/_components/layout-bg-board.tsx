@@ -6,9 +6,9 @@ import { useAuth } from "@clerk/nextjs";
 import { useQuery } from "@tanstack/react-query";
 import { Loader } from "lucide-react";
 import { useTranslations } from "next-intl";
-import BoardNavbar from "./board-navbar";
+import { BoardNavbar } from "./board-navbar";
 
-export default function LayoutBgBoard({
+export function LayoutBgBoard({
   children,
   boardIdParams,
 }: {
@@ -27,7 +27,7 @@ export default function LayoutBgBoard({
 
   if (!userId) {
     toast({
-        description: t("unauthorized"),
+      description: t("unauthorized"),
     });
     return;
   }

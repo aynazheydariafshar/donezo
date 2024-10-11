@@ -26,9 +26,14 @@
   "title-is-required": "Title is Required",
   "title-is-invalid-type": "Title is Invalid Type",
   "image-is-required": "Image is Required",
-  "unauthorized": "Unauthorized",
+  "unauthorized": "You have Logged out of Your Account",
   "missing-fields-failed-to-create-board": "Missing Fields . Failed to Create Board",
   "a-new-board-has-been-created-successfully": "A New Board has been Created Successfully",
   "edit": "Edit",
-  "your-board-has-been-edited-successfully": "Your Board has been Edited Successfully"
+  "your-board-has-been-edited-successfully": "Your Board has been Edited Successfully",
+  "are-you-sure-you-want-delete-this-board-action-cannot-be-undone": "Are you sure you want to delete this board? This action cannot be undone.",
+  "delete-board": "Delete Board",
+  "close": "Close",
+  "confirm-delete": "Confirm Delete",
+  "your-board-has-been-deleted-successfully": "Your Board has been Deleted Successfully"
 }

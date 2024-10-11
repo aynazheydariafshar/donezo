@@ -1,4 +1,4 @@
-import LayoutBgBoard from "./_components/layout-bg-board";
+import { LayoutBgBoard } from "./_components/layout-bg-board";
 
 export default function BoardIdLayout({
   children,
