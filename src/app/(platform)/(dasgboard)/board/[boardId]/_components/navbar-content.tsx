@@ -1,17 +1,17 @@
 import { CreateBoard, updateBoard } from "@/actions/board";
 import { FormInput } from "@/components/form/form-input";
-import { FormSubmit } from "@/components/form/form-submit";
 import { toast } from "@/components/hooks/use-toast";
 import { Button } from "@/components/ui/button";
 import { BoardNavbarPropsType } from "@/types/board-navbar-props";
 import { dataBoardType } from "@/types/data-board";
 import { useMutation, useQueryClient } from "@tanstack/react-query";
-import { X } from "lucide-react";
 import { useTranslations } from "next-intl";
-import { useState } from "react";
+import { ElementRef, useRef, useState } from "react";
 
 export default function NavbarContent({ data }: BoardNavbarPropsType) {
   const [isEdit, setIsEditing] = useState(false);
+  const formRef = useRef<ElementRef<"form">>(null);
+  const inputRef = useRef<ElementRef<"input">>(null);
   const queryClient = useQueryClient();
   const t = useTranslations();
   const mutation = useMutation({
@@ -55,29 +55,34 @@ export default function NavbarContent({ data }: BoardNavbarPropsType) {
   if (isEdit) {
     return (
       <form
+        ref={formRef}
         className="gap-3 flex items-center w-full"
         onSubmit={handleSubmitEdit}
       >
         <FormInput
+          ref={inputRef}
+          onBlur={() => formRef.current?.requestSubmit()}
+          className="focus-visible:outline-none focus-visible:ring-transparent"
           label={t("board-title")}
           id="title"
           type="text"
           defaultValue={data.title}
         />
-        <FormSubmit>{t("edit")}</FormSubmit>
-        <Button
-          variant="destructive"
-          size="sm"
-          onClick={() => setIsEditing(false)}
-        >
-          <X className="h-4 w-4" />
-        </Button>
       </form>
     );
   }
 
   return (
-    <Button onClick={() => setIsEditing(true)} className="text-lg">
+    <Button
+      onClick={() => {
+        setIsEditing(true);
+        setTimeout(() => {
+          inputRef.current?.focus();
+          inputRef.current?.select();
+        });
+      }}
+      className="text-lg"
+    >
       {data.title}
     </Button>
   );
