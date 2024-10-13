@@ -5,10 +5,10 @@
   "/api/boards/route": "app/api/boards/route.js",
   "/(homePage)/page": "app/(homePage)/page.js",
   "/(platform)/protected/page": "app/(platform)/protected/page.js",
+  "/(platform)/(clerk)/sign-in/[[...sign-in]]/page": "app/(platform)/(clerk)/sign-in/[[...sign-in]]/page.js",
   "/(platform)/(clerk)/select-org/[[...select-org]]/page": "app/(platform)/(clerk)/select-org/[[...select-org]]/page.js",
   "/(platform)/(clerk)/sign-up/[[...sign-up]]/page": "app/(platform)/(clerk)/sign-up/[[...sign-up]]/page.js",
-  "/(platform)/(clerk)/sign-in/[[...sign-in]]/page": "app/(platform)/(clerk)/sign-in/[[...sign-in]]/page.js",
   "/(platform)/(dasgboard)/board/[boardId]/page": "app/(platform)/(dasgboard)/board/[boardId]/page.js",
-  "/(platform)/(dasgboard)/organization/[organizationId]/page": "app/(platform)/(dasgboard)/organization/[organizationId]/page.js",
-  "/(platform)/(dasgboard)/organization/[organizationId]/settings/[[...rest]]/page": "app/(platform)/(dasgboard)/organization/[organizationId]/settings/[[...rest]]/page.js"
+  "/(platform)/(dasgboard)/organization/[organizationId]/settings/[[...rest]]/page": "app/(platform)/(dasgboard)/organization/[organizationId]/settings/[[...rest]]/page.js",
+  "/(platform)/(dasgboard)/organization/[organizationId]/page": "app/(platform)/(dasgboard)/organization/[organizationId]/page.js"
 }
