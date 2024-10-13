@@ -51,3 +51,20 @@ export const postList = async (newPost: FormData): Promise<BoardCardType> => {
 
   return response.json();
 };
+
+// Method PATCH
+export async function updateList(id: string, newPost: Partial<BoardCardType>) {
+  const response = await fetch(`/api/boards/list/${id}`, {
+    method: "PATCH",
+    headers: {
+      "Content-Type": "application/json",
+    },
+    body: JSON.stringify(newPost),
+  });
+  if (!response.ok) {
+    throw new Error("Failed to update board");
+  }
+
+  const data = await response.json();
+  return data;
+}

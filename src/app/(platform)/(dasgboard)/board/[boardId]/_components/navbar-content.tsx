@@ -34,7 +34,7 @@ export function NavbarContent({ data }: BoardNavbarPropsType) {
     },
   });
 
-  const disableEditing = () => {
+  const enableEditing = () => {
     setIsEditing(true);
     setTimeout(() => {
       inputRef.current?.focus();
@@ -84,7 +84,7 @@ export function NavbarContent({ data }: BoardNavbarPropsType) {
   }
 
   return (
-    <Button onClick={disableEditing} className="text-lg">
+    <Button onClick={enableEditing} className="text-lg">
       {data.title}
     </Button>
   );

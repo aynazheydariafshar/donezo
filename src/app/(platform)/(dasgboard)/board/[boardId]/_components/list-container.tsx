@@ -16,11 +16,11 @@ export function ListContainer({ boardId }: { boardId: string }) {
   console.log(data);
   return (
     <ol className="flex gap-x-3 h-full">
-      <ListForm />
       {data?.length > 0 &&
         data?.map((list: BoardCardType, index: number) => (
           <ListItem key={list.id} data={list} index={index} />
         ))}
+      <ListForm />
       <div className="flex-shrink-0 w-1" />
     </ol>
   );

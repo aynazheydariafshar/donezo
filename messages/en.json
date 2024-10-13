@@ -40,5 +40,6 @@
   "add-a-list": "Add a List",
   "list-title": "List Title",
   "add": "Add",
-  "your-list-has-been-created-successfully": "Your List has been Created Successfully"
+  "your-list-has-been-created-successfully": "Your List has been Created Successfully",
+  "your-list-has-been-edited-successfully": "Your List has been Edited Successfully"
 }
