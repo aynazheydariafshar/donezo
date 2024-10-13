@@ -34,6 +34,14 @@ export function NavbarContent({ data }: BoardNavbarPropsType) {
     },
   });
 
+  const disableEditing = () => {
+    setIsEditing(true);
+    setTimeout(() => {
+      inputRef.current?.focus();
+      inputRef.current?.select();
+    });
+  };
+
   const handleSubmitEdit = (e: React.FormEvent) => {
     e.preventDefault();
     const formData = new FormData(e.target as HTMLFormElement);
@@ -49,7 +57,10 @@ export function NavbarContent({ data }: BoardNavbarPropsType) {
       });
       return;
     }
-    mutation.mutate({ title });
+    if (data.title === title.trim()) {
+      setIsEditing(false);
+      return;
+    } else mutation.mutate({ title });
   };
 
   if (isEdit) {
@@ -73,16 +84,7 @@ export function NavbarContent({ data }: BoardNavbarPropsType) {
   }
 
   return (
-    <Button
-      onClick={() => {
-        setIsEditing(true);
-        setTimeout(() => {
-          inputRef.current?.focus();
-          inputRef.current?.select();
-        });
-      }}
-      className="text-lg"
-    >
+    <Button onClick={disableEditing} className="text-lg">
       {data.title}
     </Button>
   );

@@ -1,3 +1,5 @@
+import { BoardCardType } from "./board-card";
+
 export type dataBoardType = {
   id: string;
   title: string;
@@ -7,4 +9,5 @@ export type dataBoardType = {
   imageFullUrl: string;
   imageUserName: string;
   imageLinkHtml: string;
+  list: BoardCardType[];
 };

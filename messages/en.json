@@ -36,5 +36,8 @@
   "close": "Close",
   "confirm-delete": "Confirm Delete",
   "your-board-has-been-deleted-successfully": "Your Board has been Deleted Successfully",
-  "failed-to-delete-board": "Failed to Delete Board"
+  "failed-to-delete-board": "Failed to Delete Board",
+  "add-a-list": "Add a List",
+  "list-title": "List Title",
+  "add": "Add"
 }
