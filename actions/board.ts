@@ -27,25 +27,22 @@ export const postBoards = async (newPost: FormData): Promise<dataBoardType> => {
   const orgId = newPost.get("orgId");
   const id = newPost.get("id");
 
-  const response = await fetch(
-    `${process.env.NEXT_PUBLIC_BASE_URL}/api/boards/`,
-    {
-      method: "POST",
-      body: JSON.stringify({
-        id,
-        title,
-        orgId,
-        imageUserName,
-        imageId,
-        imageThumbUrl,
-        imageFullUrl,
-        imageLinkHtml,
-      }),
-      headers: {
-        "Content-type": "application/json; charset=UTF-8",
-      },
-    }
-  );
+  const response = await fetch(`/api/boards/`, {
+    method: "POST",
+    body: JSON.stringify({
+      id,
+      title,
+      orgId,
+      imageUserName,
+      imageId,
+      imageThumbUrl,
+      imageFullUrl,
+      imageLinkHtml,
+    }),
+    headers: {
+      "Content-type": "application/json; charset=UTF-8",
+    },
+  });
 
   if (!response.ok) {
     throw new Error("Failed to create a new board");
@@ -57,9 +54,7 @@ export const postBoards = async (newPost: FormData): Promise<dataBoardType> => {
 // METHOD GET
 export async function getBoards(orgId: string) {
   if (orgId) {
-    const response = await fetch(
-      `${process.env.NEXT_PUBLIC_BASE_URL}/api/boards/${orgId}`
-    );
+    const response = await fetch(`/api/boards/${orgId}`);
     const posts = await response.json();
     return posts;
   }
@@ -69,9 +64,7 @@ export async function getBoards(orgId: string) {
 // Method Detail Get
 export async function getBoardId(id: string) {
   if (id) {
-    const response = await fetch(
-      `${process.env.NEXT_PUBLIC_BASE_URL}/api/boards/detail/${id}`
-    );
+    const response = await fetch(`/api/boards/detail/${id}`);
     const posts = await response.json();
     return posts;
   }
@@ -83,16 +76,13 @@ export async function updateBoard(
   boardId: string,
   newPost: Partial<dataBoardType>
 ) {
-  const response = await fetch(
-    `${process.env.NEXT_PUBLIC_BASE_URL}/api/boards/detail/${boardId}`,
-    {
-      method: "PATCH",
-      headers: {
-        "Content-Type": "application/json",
-      },
-      body: JSON.stringify(newPost),
-    }
-  );
+  const response = await fetch(`/api/boards/detail/${boardId}`, {
+    method: "PATCH",
+    headers: {
+      "Content-Type": "application/json",
+    },
+    body: JSON.stringify(newPost),
+  });
   if (!response.ok) {
     throw new Error("Failed to update board");
   }
@@ -103,12 +93,9 @@ export async function updateBoard(
 
 // METHOD DELETE
 export async function deleteBoards(id: string) {
-  const response = await fetch(
-    `${process.env.NEXT_PUBLIC_BASE_URL}/api/boards/`,
-    {
-      method: "DELETE",
-      body: JSON.stringify({ id }),
-    }
-  );
+  const response = await fetch(`/api/boards/`, {
+    method: "DELETE",
+    body: JSON.stringify({ id }),
+  });
   return response.json();
 }
