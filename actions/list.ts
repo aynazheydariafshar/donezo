@@ -13,6 +13,16 @@ export const CreateList = z.object({
   boardId: z.string(),
 });
 
+// METHOD GET
+export async function getListId(id: string) {
+  if (id) {
+    const response = await fetch(`/api/boards/list/${id}`);
+    const posts = await response.json();
+    return posts;
+  }
+  return null;
+}
+
 // METHOD POST
 export const postList = async (newPost: FormData): Promise<BoardCardType> => {
   const title = newPost.get("title");

@@ -10,7 +10,7 @@ export default function BoardIdPage({
   if (!orgId) return;
   return (
     <div className="p-11 h-full overflow-auto">
-      <ListContainer boardId={params.boardId} data={[]} />
+      <ListContainer boardId={params.boardId} />
     </div>
   );
 }

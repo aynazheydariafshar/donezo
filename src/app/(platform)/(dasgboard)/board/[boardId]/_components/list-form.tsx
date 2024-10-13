@@ -11,7 +11,7 @@ import { useTranslations } from "next-intl";
 import { useParams } from "next/navigation";
 import React, { ElementRef, useRef, useState } from "react";
 
-const ListWrapper = ({ children }: { children: React.ReactNode }) => (
+export const ListWrapper = ({ children }: { children: React.ReactNode }) => (
   <li className="shrink-0 h-full w-[272px] select-none bg-white dark:bg-black bg-opacity-75 dark:bg-opacity-75 p-4 rounded-md">
     {children}
   </li>
@@ -30,7 +30,7 @@ export function ListForm() {
     mutationFn: (newPost: FormData) => postList(newPost),
     onSuccess: (res) => {
       queryClient.invalidateQueries({
-        queryKey: ["boards"],
+        queryKey: ["list"],
       });
       setIsEdit(false);
       toast({
