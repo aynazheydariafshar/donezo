@@ -6,14 +6,12 @@ import { uuid4 } from "@/utils/uuid4";
 import fs from "fs";
 import { NextResponse } from "next/server";
 
-const BOARDS_DIRECTORY = getDirectoryPath("list.json");
+const LIST_DIRECTORY = getDirectoryPath("list.json");
 
 const POST = async (request: Request) => {
   const body: BoardCardType = await request.json();
-  const list = await parseJsonFile<IdWrapper<BoardCardType>[]>(
-    BOARDS_DIRECTORY
-  );
-  const newBoard = {
+  const list = await parseJsonFile<IdWrapper<BoardCardType>[]>(LIST_DIRECTORY);
+  const newList = {
     ...body,
     id: uuid4(),
     boardId: body.boardId,
@@ -22,9 +20,25 @@ const POST = async (request: Request) => {
     listId: body.listId,
     order: body.order,
   };
-  const modifiedBoards = [...list, newBoard];
-  await fs.writeFileSync(BOARDS_DIRECTORY, JSON.stringify(modifiedBoards));
-  return NextResponse.json(newBoard);
+  const modifiedLists = [...list, newList];
+  await fs.writeFileSync(LIST_DIRECTORY, JSON.stringify(modifiedLists));
+  return NextResponse.json(newList);
 };
 
-export { POST };
+const DELETE = async (request: Request) => {
+  const { id } = await request.json();
+  if (!id)
+    return NextResponse.json({ error: "ID is required" }, { status: 400 });
+
+  const lists = await parseJsonFile<IdWrapper<BoardCardType>[]>(LIST_DIRECTORY);
+  const filteredLists = lists.filter((list) => list.id !== id);
+
+  if (filteredLists.length === lists.length) {
+    return NextResponse.json({ error: "Board not found" }, { status: 404 });
+  }
+
+  await fs.writeFileSync(LIST_DIRECTORY, JSON.stringify(filteredLists));
+  return NextResponse.json({ message: "Board deleted successfully", id });
+};
+
+export { POST, DELETE };

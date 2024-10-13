@@ -43,5 +43,7 @@
   "your-list-has-been-created-successfully": "لیست شما با موفقیت ساخته شد",
   "your-list-has-been-edited-successfully": "لیست شما با موفقیت ویرایش شد",
   "add-card": "افزودن کارت",
-  "delete-card": "حذف کارت"
+  "delete-card": "حذف کارت",
+  "failed-to-delete-list": "لیست حذف نشد",
+  "your-list-has-been-deleted-successfully": "لیست شما با موفقیت حذف شد"
 }

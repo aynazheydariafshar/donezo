@@ -43,5 +43,7 @@
   "your-list-has-been-created-successfully": "Your List has been Created Successfully",
   "your-list-has-been-edited-successfully": "Your List has been Edited Successfully",
   "add-card": "Add Card",
-  "delete-card": "Delete Card"
+  "delete-card": "Delete Card",
+  "your-list-has-been-deleted-successfully": "Your List has been Deleted Successfully",
+  "failed-to-delete-list": "Failed to Delete List"
 }

@@ -68,3 +68,12 @@ export async function updateList(id: string, newPost: Partial<BoardCardType>) {
   const data = await response.json();
   return data;
 }
+
+// METHOD DELETE
+export async function deleteList(id: string) {
+  const response = await fetch(`/api/boards/list`, {
+    method: "DELETE",
+    body: JSON.stringify({ id }),
+  });
+  return response.json();
+}
