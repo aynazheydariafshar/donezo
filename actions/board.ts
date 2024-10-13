@@ -28,7 +28,7 @@ export const postBoards = async (newPost: FormData): Promise<dataBoardType> => {
   const id = newPost.get("id");
 
   const response = await fetch(
-    `${process.env.NEXT_PUBLIC_BASE_URL}/api/boards/`,
+    `/api/boards/`,
     {
       method: "POST",
       body: JSON.stringify({
@@ -58,7 +58,7 @@ export const postBoards = async (newPost: FormData): Promise<dataBoardType> => {
 export async function getBoards(orgId: string) {
   if (orgId) {
     const response = await fetch(
-      `${process.env.NEXT_PUBLIC_BASE_URL}/api/boards/${orgId}`
+      `/api/boards/${orgId}`
     );
     const posts = await response.json();
     return posts;
@@ -70,7 +70,7 @@ export async function getBoards(orgId: string) {
 export async function getBoardId(id: string) {
   if (id) {
     const response = await fetch(
-      `${process.env.NEXT_PUBLIC_BASE_URL}/api/boards/detail/${id}`
+      `/api/boards/detail/${id}`
     );
     const posts = await response.json();
     return posts;
@@ -84,7 +84,7 @@ export async function updateBoard(
   newPost: Partial<dataBoardType>
 ) {
   const response = await fetch(
-    `${process.env.NEXT_PUBLIC_BASE_URL}/api/boards/detail/${boardId}`,
+    `/api/boards/detail/${boardId}`,
     {
       method: "PATCH",
       headers: {
@@ -104,7 +104,7 @@ export async function updateBoard(
 // METHOD DELETE
 export async function deleteBoards(id: string) {
   const response = await fetch(
-    `${process.env.NEXT_PUBLIC_BASE_URL}/api/boards/`,
+    `/api/boards/`,
     {
       method: "DELETE",
       body: JSON.stringify({ id }),
