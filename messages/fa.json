@@ -39,5 +39,6 @@
   "failed-to-delete-board": "برد حذف نشد",
   "add-a-list": "افزودن لیست",
   "list-title": "عنوان لیست",
-  "add": "افزودن"
+  "add": "افزودن",
+  "your-list-has-been-created-successfully": "لیست شما با موفقیت ساخته شد"
 }

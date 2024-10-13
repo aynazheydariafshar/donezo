@@ -9,7 +9,13 @@ import { useMutation, useQueryClient } from "@tanstack/react-query";
 import { Plus, X } from "lucide-react";
 import { useTranslations } from "next-intl";
 import { useParams } from "next/navigation";
-import { ElementRef, useRef, useState } from "react";
+import React, { ElementRef, useRef, useState } from "react";
+
+const ListWrapper = ({ children }: { children: React.ReactNode }) => (
+  <li className="shrink-0 h-full w-[272px] select-none bg-white dark:bg-black bg-opacity-75 dark:bg-opacity-75 p-4 rounded-md">
+    {children}
+  </li>
+);
 
 export function ListForm() {
   const params = useParams();
@@ -58,9 +64,9 @@ export function ListForm() {
     mutation.mutate(formData);
   };
 
-  return (
-    <li className="shrink-0 h-full w-[272px] select-none bg-white dark:bg-black bg-opacity-75 dark:bg-opacity-75 p-4 rounded-md">
-      {isEdit ? (
+  if (isEdit) {
+    return (
+      <ListWrapper>
         <form ref={formRef} className="w-full" onSubmit={handleSubmitEdit}>
           <FormInput
             ref={inputRef}
@@ -81,21 +87,25 @@ export function ListForm() {
             </Button>
           </div>
         </form>
-      ) : (
-        <Button
-          onClick={() => {
-            setIsEdit(true);
-            setTimeout(() => {
-              inputRef.current?.focus();
-              inputRef.current?.select();
-            });
-          }}
-          className="w-full"
-        >
-          {t("add-a-list")}
-          <Plus className="mx-2 h-5 w-5" />
-        </Button>
-      )}
-    </li>
+      </ListWrapper>
+    );
+  }
+
+  return (
+    <ListWrapper>
+      <Button
+        onClick={() => {
+          setIsEdit(true);
+          setTimeout(() => {
+            inputRef.current?.focus();
+            inputRef.current?.select();
+          });
+        }}
+        className="w-full"
+      >
+        {t("add-a-list")}
+        <Plus className="mx-2 h-5 w-5" />
+      </Button>
+    </ListWrapper>
   );
 }

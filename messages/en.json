@@ -39,5 +39,6 @@
   "failed-to-delete-board": "Failed to Delete Board",
   "add-a-list": "Add a List",
   "list-title": "List Title",
-  "add": "Add"
+  "add": "Add",
+  "your-list-has-been-created-successfully": "Your List has been Created Successfully"
 }
