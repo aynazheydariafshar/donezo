@@ -41,5 +41,7 @@
   "list-title": "عنوان لیست",
   "add": "افزودن",
   "your-list-has-been-created-successfully": "لیست شما با موفقیت ساخته شد",
-  "your-list-has-been-edited-successfully": "لیست شما با موفقیت ویرایش شد"
+  "your-list-has-been-edited-successfully": "لیست شما با موفقیت ویرایش شد",
+  "add-card": "افزودن کارت",
+  "delete-card": "حذف کارت"
 }

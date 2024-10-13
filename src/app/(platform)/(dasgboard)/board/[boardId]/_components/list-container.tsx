@@ -13,7 +13,6 @@ export function ListContainer({ boardId }: { boardId: string }) {
     enabled: !!boardId,
   });
   const { data, error, isLoading } = query;
-  console.log(data);
   return (
     <ol className="flex gap-x-3 h-full">
       {data?.length > 0 &&

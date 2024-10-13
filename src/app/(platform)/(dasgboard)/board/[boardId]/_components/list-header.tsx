@@ -6,6 +6,7 @@ import { BoardCardType } from "@/types/board-card";
 import { useMutation, useQueryClient } from "@tanstack/react-query";
 import { useTranslations } from "next-intl";
 import { ElementRef, useRef, useState } from "react";
+import { ListOptions } from "./list-options";
 
 export function ListHeader({ data }: { data: BoardCardType }) {
   const [isEdit, setIsEditing] = useState(false);
@@ -73,7 +74,7 @@ export function ListHeader({ data }: { data: BoardCardType }) {
           ref={inputRef}
           onBlur={() => formRef.current?.requestSubmit()}
           className="focus-visible:outline-none focus-visible:ring-transparent"
-          label={t("board-title")}
+          label={t("list-title")}
           id="title"
           type="text"
           defaultValue={data.title}
@@ -83,10 +84,11 @@ export function ListHeader({ data }: { data: BoardCardType }) {
   }
 
   return (
-    <div className="px-2 text-sm flex justify-between items-start gap-x-2">
-      <Button onClick={enableEditing} className="w-full text-sm">
+    <div className="px-2 text-sm flex justify-between items-center gap-x-2">
+      <Button onClick={enableEditing} size="sm">
         {data.title}
       </Button>
+      <ListOptions data={data} onAddCard={() => console.log("add card")} />
     </div>
   );
 }
