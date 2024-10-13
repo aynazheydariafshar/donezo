@@ -35,5 +35,6 @@
   "delete-board": "Delete Board",
   "close": "Close",
   "confirm-delete": "Confirm Delete",
-  "your-board-has-been-deleted-successfully": "Your Board has been Deleted Successfully"
+  "your-board-has-been-deleted-successfully": "Your Board has been Deleted Successfully",
+  "failed-to-delete-board": "Failed to Delete Board"
 }

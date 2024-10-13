@@ -35,5 +35,6 @@
   "delete-board": "حذف برد",
   "close": "انصراف",
   "confirm-delete": "تایید حذف",
-  "your-board-has-been-deleted-successfully" : "برد شما با موفقیت حذف شد"
+  "your-board-has-been-deleted-successfully" : "برد شما با موفقیت حذف شد",
+  "failed-to-delete-board" : "برد حذف نشد"
 }
