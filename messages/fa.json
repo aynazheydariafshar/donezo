@@ -35,5 +35,15 @@
   "delete-board": "حذف برد",
   "close": "انصراف",
   "confirm-delete": "تایید حذف",
-  "your-board-has-been-deleted-successfully" : "برد شما با موفقیت حذف شد"
+  "your-board-has-been-deleted-successfully": "برد شما با موفقیت حذف شد",
+  "failed-to-delete-board": "برد حذف نشد",
+  "add-a-list": "افزودن لیست",
+  "list-title": "عنوان لیست",
+  "add": "افزودن",
+  "your-list-has-been-created-successfully": "لیست شما با موفقیت ساخته شد",
+  "your-list-has-been-edited-successfully": "لیست شما با موفقیت ویرایش شد",
+  "add-card": "افزودن کارت",
+  "delete-list": "حذف لیست",
+  "failed-to-delete-list": "لیست حذف نشد",
+  "your-list-has-been-deleted-successfully": "لیست شما با موفقیت حذف شد"
 }

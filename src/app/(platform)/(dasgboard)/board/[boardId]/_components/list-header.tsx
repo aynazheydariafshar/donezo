@@ -1,29 +1,29 @@
-import { CreateBoard, updateBoard } from "@/actions/board";
+import { CreateList, updateList } from "@/actions/list";
 import { FormInput } from "@/components/form/form-input";
 import { toast } from "@/components/hooks/use-toast";
 import { Button } from "@/components/ui/button";
-import { BoardNavbarPropsType } from "@/types/board-navbar-props";
-import { dataBoardType } from "@/types/data-board";
+import { BoardCardType } from "@/types/board-card";
 import { useMutation, useQueryClient } from "@tanstack/react-query";
 import { useTranslations } from "next-intl";
 import { ElementRef, useRef, useState } from "react";
+import { ListOptions } from "./list-options";
 
-export function NavbarContent({ data }: BoardNavbarPropsType) {
+export function ListHeader({ data }: { data: BoardCardType }) {
   const [isEdit, setIsEditing] = useState(false);
   const formRef = useRef<ElementRef<"form">>(null);
   const inputRef = useRef<ElementRef<"input">>(null);
   const queryClient = useQueryClient();
   const t = useTranslations();
   const mutation = useMutation({
-    mutationFn: (newPost: Partial<dataBoardType>) =>
-      updateBoard(data.id, newPost),
+    mutationFn: (newPost: Partial<BoardCardType>) =>
+      updateList(data.id, newPost),
     onSuccess: (res) => {
       queryClient.invalidateQueries({
-        queryKey: ["boards"],
+        queryKey: ["list"],
       });
       setIsEditing(false);
       toast({
-        description: t("your-board-has-been-edited-successfully"),
+        description: t("your-list-has-been-edited-successfully"),
       });
     },
     onError: () => {
@@ -46,7 +46,7 @@ export function NavbarContent({ data }: BoardNavbarPropsType) {
     e.preventDefault();
     const formData = new FormData(e.target as HTMLFormElement);
     const title = formData.get("title") as string;
-    const TitleOnlySchema = CreateBoard.pick({ title: true });
+    const TitleOnlySchema = CreateList.pick({ title: true });
     const validateField = TitleOnlySchema.safeParse({
       title,
     });
@@ -74,7 +74,7 @@ export function NavbarContent({ data }: BoardNavbarPropsType) {
           ref={inputRef}
           onBlur={() => formRef.current?.requestSubmit()}
           className="focus-visible:outline-none focus-visible:ring-transparent"
-          label={t("board-title")}
+          label={t("list-title")}
           id="title"
           type="text"
           defaultValue={data.title}
@@ -84,8 +84,11 @@ export function NavbarContent({ data }: BoardNavbarPropsType) {
   }
 
   return (
-    <Button onClick={enableEditing} className="text-lg">
-      {data.title}
-    </Button>
+    <div className="px-2 text-sm flex justify-between items-center gap-x-2">
+      <Button onClick={enableEditing} size="sm">
+        {data.title}
+      </Button>
+      <ListOptions data={data} onAddCard={() => console.log("add card")} />
+    </div>
   );
 }

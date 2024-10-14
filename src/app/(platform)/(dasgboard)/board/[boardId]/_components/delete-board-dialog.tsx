@@ -40,6 +40,12 @@ export function DeleteBoardDialog({ data }: { data: dataBoardType }) {
       });
       router.push(`/organization/${data.orgId}`);
     },
+    onError: (error) => {
+      toast({
+        description: t("failed-to-delete-board"),
+        variant: "destructive",
+      });
+    },
   });
 
   return (

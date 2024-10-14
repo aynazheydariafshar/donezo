@@ -1,11 +1,8 @@
 "use client";
 
 import { getBoardId } from "@/actions/board";
-import { toast } from "@/components/hooks/use-toast";
-import { useAuth } from "@clerk/nextjs";
 import { useQuery } from "@tanstack/react-query";
 import { Loader } from "lucide-react";
-import { useTranslations } from "next-intl";
 import { BoardNavbar } from "./board-navbar";
 
 export function LayoutBgBoard({
@@ -15,22 +12,12 @@ export function LayoutBgBoard({
   children: React.ReactNode;
   boardIdParams: string;
 }) {
-  const { userId } = useAuth();
-  const t = useTranslations();
-
   const query = useQuery({
     queryKey: ["boards", boardIdParams],
     queryFn: () => getBoardId(boardIdParams),
     enabled: !!boardIdParams,
   });
   const { data, error, isLoading } = query;
-
-  if (!userId) {
-    toast({
-      description: t("unauthorized"),
-    });
-    return;
-  }
 
   if (isLoading) {
     return (

@@ -35,5 +35,15 @@
   "delete-board": "Delete Board",
   "close": "Close",
   "confirm-delete": "Confirm Delete",
-  "your-board-has-been-deleted-successfully": "Your Board has been Deleted Successfully"
+  "your-board-has-been-deleted-successfully": "Your Board has been Deleted Successfully",
+  "failed-to-delete-board": "Failed to Delete Board",
+  "add-a-list": "Add a List",
+  "list-title": "List Title",
+  "add": "Add",
+  "your-list-has-been-created-successfully": "Your List has been Created Successfully",
+  "your-list-has-been-edited-successfully": "Your List has been Edited Successfully",
+  "add-card": "Add Card",
+  "delete-list": "Delete List",
+  "your-list-has-been-deleted-successfully": "Your List has been Deleted Successfully",
+  "failed-to-delete-list": "Failed to Delete List"
 }

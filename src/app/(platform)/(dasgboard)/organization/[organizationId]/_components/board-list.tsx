@@ -3,7 +3,7 @@
 import { useQuery } from "@tanstack/react-query";
 import { useTranslations } from "next-intl";
 import { getCookie } from "@/utils/get-cookies";
-import { useAuth, useOrganization } from "@clerk/nextjs";
+import { useOrganization } from "@clerk/nextjs";
 import Link from "next/link";
 
 //icon
@@ -15,11 +15,9 @@ import { getBoards } from "@/actions/board";
 // components ui
 import FormPopover from "@/components/form/form-popover";
 import { Skeleton } from "@/components/ui/skeleton";
-import { toast } from "@/components/hooks/use-toast";
 
 export function BoardList() {
   const t = useTranslations();
-  const { userId } = useAuth();
   const { organization } = useOrganization();
   const query = useQuery({
     queryKey: ["boards", organization?.id],
@@ -30,12 +28,6 @@ export function BoardList() {
   const { data, error, isLoading } = query;
 
   const locale = getCookie("language") || "en";
-  if (!userId) {
-    toast({
-      description: t("unauthorized"),
-    });
-    return;
-  }
 
   if (isLoading) return <BoardList.Skeleton />;
 
