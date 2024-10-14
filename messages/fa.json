@@ -45,5 +45,6 @@
   "add-card": "افزودن کارت",
   "delete-list": "حذف لیست",
   "failed-to-delete-list": "لیست حذف نشد",
-  "your-list-has-been-deleted-successfully": "لیست شما با موفقیت حذف شد"
+  "your-list-has-been-deleted-successfully": "لیست شما با موفقیت حذف شد",
+  "enter-a-title-for-this-card": "عنوان کارت را وارد کنید"
 }

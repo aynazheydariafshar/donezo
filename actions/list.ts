@@ -1,4 +1,4 @@
-import { BoardCardType } from "@/types/board-card";
+import { BoardCardType } from "@/types/board-card-props";
 import { z } from "zod";
 
 export const CreateList = z.object({

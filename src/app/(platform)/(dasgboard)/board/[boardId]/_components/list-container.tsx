@@ -1,6 +1,6 @@
 "use client";
 
-import { BoardCardType } from "@/types/board-card";
+import { BoardCardType } from "@/types/board-card-props";
 import { ListForm } from "./list-form";
 import { ListItem } from "./list-item";
 import { useQuery } from "@tanstack/react-query";

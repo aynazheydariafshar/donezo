@@ -1,4 +1,4 @@
-import { BoardCardType } from "./board-card";
+import { BoardCardType } from "./board-card-props";
 
 export type dataBoardType = {
   id: string;

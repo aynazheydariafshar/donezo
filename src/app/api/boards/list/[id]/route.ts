@@ -1,4 +1,4 @@
-import { BoardCardType } from "@/types/board-card";
+import { BoardCardType } from "@/types/board-card-props";
 import { IdWrapper } from "@/types/id-wrapper";
 import { getDirectoryPath } from "@/utils/get-directory-path";
 import { parseJsonFile } from "@/utils/parse-json-file";
