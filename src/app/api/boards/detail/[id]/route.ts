@@ -22,7 +22,7 @@ const GET = async (request: Request, context: { params: Params }) => {
   return NextResponse.json({ error: "Not found" }, { status: 404 });
 };
 
-const PATCH = async (request: Request, context: { params: { id: string } }) => {
+const PATCH = async (request: Request, context: { params: Params }) => {
   const body = await request.json();
   const { id } = context.params;
 
@@ -55,4 +55,21 @@ const PATCH = async (request: Request, context: { params: { id: string } }) => {
   return NextResponse.json(updatedBoard);
 };
 
-export { GET, PATCH };
+const DELETE = async (request: Request, context: { params: Params }) => {
+  const { id } = context.params;
+  if (!id) return NextResponse.json({ error: "Not found" }, { status: 404 });
+
+  const boards = await parseJsonFile<IdWrapper<CreateBoardType>[]>(
+    BOARDS_DIRECTORY
+  );
+  const filteredBoards = boards.filter((board) => board.id !== id);
+
+  if (filteredBoards.length === boards.length) {
+    return NextResponse.json({ error: "Board not found" }, { status: 404 });
+  }
+
+  await fs.writeFileSync(BOARDS_DIRECTORY, JSON.stringify(filteredBoards));
+  return NextResponse.json({ message: "Board deleted successfully", id });
+};
+
+export { GET, PATCH, DELETE };

@@ -26,7 +26,7 @@ export async function getListId(id: string) {
     return response.data;
   } catch (error) {
     toast({
-      description: "Failed to get boards",
+      description: "Failed to get lists",
       variant: "destructive",
     });
   }
@@ -48,7 +48,7 @@ export const postList = async (newPost: FormData): Promise<CreateListType> => {
     return response.data;
   } catch (error) {
     toast({
-      description: "Failed to create a new board",
+      description: "Failed to create a new list",
       variant: "destructive",
     });
     throw new Error("Failed");
@@ -65,7 +65,7 @@ export async function updateList(id: string, newPost: Partial<CreateListType>) {
     return response.data;
   } catch (error) {
     toast({
-      description: "Failed to edit a board",
+      description: "Failed to edit a list",
       variant: "destructive",
     });
   }
@@ -78,7 +78,7 @@ export async function deleteList(id: string) {
     return response.data;
   } catch (error) {
     toast({
-      description: "Failed to delete a board",
+      description: "Failed to delete a list",
       variant: "destructive",
     });
   }
