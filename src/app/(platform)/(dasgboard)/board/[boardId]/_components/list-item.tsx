@@ -1,14 +1,14 @@
-import { BoardCardType } from "@/types/board-card-props";
 import { ListHeader } from "./list-header";
 import { ListWrapper } from "./list-form";
 import { ElementRef, useRef, useState } from "react";
 import { CardForm } from "./card-form";
+import { CreateListType } from "@/actions/list";
 
 export function ListItem({
   data,
   index,
 }: {
-  data: BoardCardType;
+  data: CreateListType;
   index: number;
 }) {
   const [isEditing, setIsEditing] = useState(false);

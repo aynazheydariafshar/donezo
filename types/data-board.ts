@@ -1,4 +1,4 @@
-import { BoardCardType } from "./board-card-props";
+import { CreateListType } from "@/actions/list";
 
 export type dataBoardType = {
   id: string;
@@ -9,5 +9,5 @@ export type dataBoardType = {
   imageFullUrl: string;
   imageUserName: string;
   imageLinkHtml: string;
-  list: BoardCardType[];
+  list: CreateListType[];
 };

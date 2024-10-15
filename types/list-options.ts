@@ -1,6 +1,6 @@
-import { BoardCardType } from "./board-card-props";
+import { CreateListType } from "@/actions/list";
 
 export interface ListOptionsType {
-  data: BoardCardType;
+  data: CreateListType;
   onAddCard: () => void;
 }

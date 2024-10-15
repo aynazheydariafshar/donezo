@@ -3,9 +3,9 @@ import { getDirectoryPath } from "@/utils/get-directory-path";
 import { parseJsonFile } from "@/utils/parse-json-file";
 import { NextResponse } from "next/server";
 import fs from "fs";
-import { CreateListType } from "@/actions/list";
+import { CreateCardType } from "@/actions/card";
 
-const LIST_DIRECTORY = getDirectoryPath("list.json");
+const CARD_DIRECTORY = getDirectoryPath("card.json");
 
 type Params = {
   id: string;
@@ -14,11 +14,9 @@ type Params = {
 const GET = async (request: Request, context: { params: Params }) => {
   const { id } = context.params;
   if (!id) return NextResponse.json({ error: "Not found" }, { status: 404 });
-  const lists = await parseJsonFile<IdWrapper<CreateListType>[]>(
-    LIST_DIRECTORY
-  );
-  const list = lists.filter((list) => id === list.boardId);
-  if (list) return NextResponse.json(list);
+  const cards = await parseJsonFile<IdWrapper<CreateCardType>[]>(CARD_DIRECTORY);
+  const card = cards.filter((board) => id === board.listId);
+  if (card) return NextResponse.json(card);
   return NextResponse.json({ error: "Not found" }, { status: 404 });
 };
 
@@ -33,26 +31,24 @@ const PATCH = async (request: Request, context: { params: { id: string } }) => {
     );
   }
 
-  const lists = await parseJsonFile<IdWrapper<CreateListType>[]>(
-    LIST_DIRECTORY
-  );
-  const listToUpdate = lists.find((list: any) => list.id === id);
+  const cards = await parseJsonFile<IdWrapper<CreateCardType>[]>(CARD_DIRECTORY);
+  const cardToUpdate = cards.find((board: any) => board.id === id);
 
-  if (!listToUpdate) {
+  if (!cardToUpdate) {
     return NextResponse.json({ error: "Board not found" }, { status: 404 });
   }
 
-  const updatedBoard = {
-    ...listToUpdate,
+  const updatedCard = {
+    ...cardToUpdate,
     ...body,
   };
 
-  const updatedLists = lists.map((board: any) =>
-    board.id === id ? updatedBoard : board
+  const updatedCards = cards.map((board: any) =>
+    board.id === id ? updatedCard : board
   );
 
-  await fs.writeFileSync(LIST_DIRECTORY, JSON.stringify(updatedLists));
-  return NextResponse.json(updatedBoard);
+  await fs.writeFileSync(CARD_DIRECTORY, JSON.stringify(updatedCards));
+  return NextResponse.json(updatedCard);
 };
 
 export { GET, PATCH };

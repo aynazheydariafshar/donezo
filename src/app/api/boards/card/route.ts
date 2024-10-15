@@ -1,4 +1,4 @@
-import { CreateListType } from "@/actions/list";
+import { CreateCardType } from "@/actions/card";
 import { IdWrapper } from "@/types/id-wrapper";
 import { getDirectoryPath } from "@/utils/get-directory-path";
 import { parseJsonFile } from "@/utils/parse-json-file";
@@ -6,22 +6,21 @@ import { uuid4 } from "@/utils/uuid4";
 import fs from "fs";
 import { NextResponse } from "next/server";
 
-const LIST_DIRECTORY = getDirectoryPath("list.json");
+const CARD_DIRECTORY = getDirectoryPath("card.json");
 
 const POST = async (request: Request) => {
-  const body: CreateListType = await request.json();
-  const list = await parseJsonFile<IdWrapper<CreateListType>[]>(LIST_DIRECTORY);
-  const newList = {
+  const body: CreateCardType = await request.json();
+  const card = await parseJsonFile<IdWrapper<CreateCardType>[]>(CARD_DIRECTORY);
+  const newCard = {
     ...body,
     id: uuid4(),
     boardId: body.boardId,
     title: body.title,
-    description: body.description,
-    order: body.order,
+    listId: body.listId,
   };
-  const modifiedLists = [...list, newList];
-  await fs.writeFileSync(LIST_DIRECTORY, JSON.stringify(modifiedLists));
-  return NextResponse.json(newList);
+  const modifiedCards = [...card, newCard];
+  await fs.writeFileSync(CARD_DIRECTORY, JSON.stringify(modifiedCards));
+  return NextResponse.json(newCard);
 };
 
 const DELETE = async (request: Request) => {
@@ -29,16 +28,16 @@ const DELETE = async (request: Request) => {
   if (!id)
     return NextResponse.json({ error: "ID is required" }, { status: 400 });
 
-  const lists = await parseJsonFile<IdWrapper<CreateListType>[]>(
-    LIST_DIRECTORY
+  const cards = await parseJsonFile<IdWrapper<CreateCardType>[]>(
+    CARD_DIRECTORY
   );
-  const filteredLists = lists.filter((list) => list.id !== id);
+  const filteredCard = cards.filter((card) => card.id !== id);
 
-  if (filteredLists.length === lists.length) {
+  if (filteredCard.length === cards.length) {
     return NextResponse.json({ error: "Board not found" }, { status: 404 });
   }
 
-  await fs.writeFileSync(LIST_DIRECTORY, JSON.stringify(filteredLists));
+  await fs.writeFileSync(CARD_DIRECTORY, JSON.stringify(filteredCard));
   return NextResponse.json({ message: "Board deleted successfully", id });
 };
 

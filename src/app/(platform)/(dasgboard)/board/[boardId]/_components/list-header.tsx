@@ -1,21 +1,20 @@
-import { CreateList, updateList } from "@/actions/list";
+import { CreateList, CreateListType, updateList } from "@/actions/list";
 import { FormInput } from "@/components/form/form-input";
 import { toast } from "@/components/hooks/use-toast";
 import { Button } from "@/components/ui/button";
-import { BoardCardType } from "@/types/board-card-props";
 import { useMutation, useQueryClient } from "@tanstack/react-query";
 import { useTranslations } from "next-intl";
 import { ElementRef, useRef, useState } from "react";
 import { ListOptions } from "./list-options";
 
-export function ListHeader({ data }: { data: BoardCardType }) {
+export function ListHeader({ data }: { data: CreateListType }) {
   const [isEdit, setIsEditing] = useState(false);
   const formRef = useRef<ElementRef<"form">>(null);
   const inputRef = useRef<ElementRef<"input">>(null);
   const queryClient = useQueryClient();
   const t = useTranslations();
   const mutation = useMutation({
-    mutationFn: (newPost: Partial<BoardCardType>) =>
+    mutationFn: (newPost: Partial<CreateListType>) =>
       updateList(data.id, newPost),
     onSuccess: (res) => {
       queryClient.invalidateQueries({

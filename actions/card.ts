@@ -1,6 +1,6 @@
 import { z } from "zod";
 
-export const CreateList = z.object({
+export const CreateCard = z.object({
   title: z
     .string({
       required_error: "title-is-required",
@@ -9,13 +9,12 @@ export const CreateList = z.object({
     .min(3, {
       message: "minimum-length-3-letters",
     }),
+  listId: z.string(),
   boardId: z.string(),
   id: z.string(),
-  description: z.string().optional(),
-  order: z.number(),
 });
 
-export type CreateListType = z.infer<typeof CreateList>;
+export type CreateCardType = z.infer<typeof CreateCard>;
 
 // METHOD GET
 export async function getListId(id: string) {
@@ -28,7 +27,7 @@ export async function getListId(id: string) {
 }
 
 // METHOD POST
-export const postList = async (newPost: FormData): Promise<CreateListType> => {
+export const postList = async (newPost: FormData): Promise<CreateCardType> => {
   const title = newPost.get("title");
   const description = newPost.get("description");
   const listId = newPost.get("listId");
@@ -57,7 +56,7 @@ export const postList = async (newPost: FormData): Promise<CreateListType> => {
 };
 
 // Method PATCH
-export async function updateList(id: string, newPost: Partial<CreateListType>) {
+export async function updateList(id: string, newPost: Partial<CreateCardType>) {
   const response = await fetch(`/api/boards/list/${id}`, {
     method: "PATCH",
     headers: {

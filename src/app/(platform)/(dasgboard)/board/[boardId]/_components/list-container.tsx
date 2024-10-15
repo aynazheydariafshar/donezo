@@ -1,10 +1,9 @@
 "use client";
 
-import { BoardCardType } from "@/types/board-card-props";
 import { ListForm } from "./list-form";
 import { ListItem } from "./list-item";
 import { useQuery } from "@tanstack/react-query";
-import { getListId } from "@/actions/list";
+import { CreateListType, getListId } from "@/actions/list";
 
 export function ListContainer({ boardId }: { boardId: string }) {
   const query = useQuery({
@@ -16,7 +15,7 @@ export function ListContainer({ boardId }: { boardId: string }) {
   return (
     <ol className="flex gap-x-3">
       {data?.length > 0 &&
-        data?.map((list: BoardCardType, index: number) => (
+        data?.map((list: CreateListType, index: number) => (
           <ListItem key={list.id} data={list} index={index} />
         ))}
       <ListForm />
