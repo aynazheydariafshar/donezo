@@ -62,7 +62,7 @@ export function DeleteBoardDialog({ data }: { data: CreateBoardType }) {
             )}
           </DialogDescription>
         </DialogHeader>
-        <DialogFooter className="sm:justify-start flex gap-1">
+        <DialogFooter className="sm:justify-start flex gap-2">
           <DialogClose asChild>
             <Button type="button" variant="secondary">
               {t("close")}
@@ -71,7 +71,6 @@ export function DeleteBoardDialog({ data }: { data: CreateBoardType }) {
           <Button
             type="button"
             variant="destructive"
-            className="mx-2"
             onClick={() => mutation.mutate(data.id)}
           >
             {t("confirm-delete")}

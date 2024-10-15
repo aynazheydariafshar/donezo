@@ -16,7 +16,7 @@ export function ListContainer({ boardId }: { boardId: string }) {
     <ol className="flex gap-x-3">
       {data?.length > 0 &&
         data?.map((list: CreateListType, index: number) => (
-          <ListItem key={list.id} data={list} index={index} />
+          <ListItem key={list.id} list={list} index={index} />
         ))}
       <ListForm />
       <div className="flex-shrink-0 w-1" />

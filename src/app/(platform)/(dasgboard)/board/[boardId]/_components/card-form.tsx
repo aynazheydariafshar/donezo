@@ -24,7 +24,7 @@ export const CardForm = forwardRef<HTMLTextAreaElement, CardFormPropsType>(
     const initialState = { message: null, errors: { title: [] } };
     const queryClient = useQueryClient();
     const [formErrors, setFormErrors] = useState<StateBoardType>(initialState);
-    const refClose = useRef<ElementRef<"button">>(null);
+    const refClose = useRef<ElementRef<"form">>(null);
     const params = useParams();
     const mutation = useMutation({
       mutationFn: postCard,
@@ -33,9 +33,11 @@ export const CardForm = forwardRef<HTMLTextAreaElement, CardFormPropsType>(
           queryKey: ["card"],
         });
         toast({
-          description: t("a-new-board-has-been-created-successfully"),
+          description: t("a-new-card-has-been-created-successfully"),
         });
-        refClose.current?.click();
+        setFormErrors(initialState);
+        disableEditing();
+        refClose.current?.reset();
       },
       onError: () => {
         toast({
@@ -78,15 +80,13 @@ export const CardForm = forwardRef<HTMLTextAreaElement, CardFormPropsType>(
       }
 
       mutation.mutate(formData);
-      disableEditing();
     };
 
     if (isEditing) {
       return (
-        <form onSubmit={handleSubmit} className="m-3 space-y-4 px-1">
-          <div className="space-y-2 w-full">
-            <div className="space-y-1 w-full">
-              <Label htmlFor="title" className="text-xs"></Label>
+        <form onSubmit={handleSubmit} className="m-3 px-1">
+          <div className="w-full">
+            <div className="flex gap-1 flex-col">
               <Textarea
                 placeholder={t("enter-a-title-for-this-card")}
                 id="title"
@@ -94,10 +94,13 @@ export const CardForm = forwardRef<HTMLTextAreaElement, CardFormPropsType>(
                 ref={ref}
               />
               <FormError id="title" errors={formErrors?.errors?.title} />
-              <div className="flex p-1 items-center space-x-2">
-                <FormSubmit>Add card</FormSubmit>
+              <div className="flex items-center gap-2">
+                <FormSubmit>{t("add-card")}</FormSubmit>
                 <Button
-                  onClick={disableEditing}
+                  onClick={() => {
+                    disableEditing();
+                    setFormErrors(initialState);
+                  }}
                   size="sm"
                   variant="destructive"
                 >

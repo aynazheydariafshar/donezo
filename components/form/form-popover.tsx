@@ -130,7 +130,11 @@ export default function FormPopover({
         <div className="text-sm text-center text-black dark:text-white pb-4">
           {t("create-board")}
         </div>
-        <PopoverClose ref={refClose} asChild>
+        <PopoverClose
+          onClick={() => setFormErrors(initialState)}
+          ref={refClose}
+          asChild
+        >
           <Button
             variant="outline"
             size="icon"
