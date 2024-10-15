@@ -14,7 +14,7 @@ export function ListContainer({ boardId }: { boardId: string }) {
   });
   const { data, error, isLoading } = query;
   return (
-    <ol className="flex gap-x-3 h-full">
+    <ol className="flex gap-x-3">
       {data?.length > 0 &&
         data?.map((list: BoardCardType, index: number) => (
           <ListItem key={list.id} data={list} index={index} />

@@ -1,9 +1,9 @@
-import { FormError } from "@/components/form/form-error";
+import { FormSubmit } from "@/components/form/form-submit";
 import { Button } from "@/components/ui/button";
 import { Label } from "@/components/ui/label";
 import { Textarea } from "@/components/ui/textarea";
 import { CardFormPropsType } from "@/types/card-form-props";
-import { Plus } from "lucide-react";
+import { Plus, X } from "lucide-react";
 import { useTranslations } from "next-intl";
 import { forwardRef } from "react";
 
@@ -16,12 +16,26 @@ export const CardForm = forwardRef<HTMLTextAreaElement, CardFormPropsType>(
 
     if (isEditing) {
       return (
-        <form className="m-1 space-y-4 px-1">
+        <form className="m-3 space-y-4 px-1">
           <div className="space-y-2 w-full">
             <div className="space-y-1 w-full">
               <Label htmlFor="title" className="text-xs"></Label>
-              <Textarea placeholder={t("enter-a-title-for-this-card")} id='title' ref={ref} />
-              <FormError id="title" errors={[]} />
+              <Textarea
+                placeholder={t("enter-a-title-for-this-card")}
+                id="title"
+                ref={ref}
+              />
+              <input hidden id="listId" name="listId" value={listId} />
+              <div className="flex p-1 items-center space-x-2">
+                <FormSubmit>Add card</FormSubmit>
+                <Button
+                  onClick={disableEditing}
+                  size="sm"
+                  variant="destructive"
+                >
+                  <X className="w-4 h-4" />
+                </Button>
+              </div>
             </div>
           </div>
         </form>
