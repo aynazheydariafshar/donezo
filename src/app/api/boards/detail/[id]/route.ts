@@ -1,9 +1,9 @@
-import { dataBoardType } from "@/types/data-board";
 import { IdWrapper } from "@/types/id-wrapper";
 import { getDirectoryPath } from "@/utils/get-directory-path";
 import { parseJsonFile } from "@/utils/parse-json-file";
 import { NextResponse } from "next/server";
 import fs from "fs";
+import { CreateBoardType } from "@/actions/board";
 
 const BOARDS_DIRECTORY = getDirectoryPath("board.json");
 
@@ -14,7 +14,7 @@ type Params = {
 const GET = async (request: Request, context: { params: Params }) => {
   const { id } = context.params;
   if (!id) return NextResponse.json({ error: "Not found" }, { status: 404 });
-  const boards = await parseJsonFile<IdWrapper<dataBoardType>[]>(
+  const boards = await parseJsonFile<IdWrapper<CreateBoardType>[]>(
     BOARDS_DIRECTORY
   );
   const board = boards.find((board) => id === board.id);
@@ -33,7 +33,7 @@ const PATCH = async (request: Request, context: { params: { id: string } }) => {
     );
   }
 
-  const boards = await parseJsonFile<IdWrapper<dataBoardType>[]>(
+  const boards = await parseJsonFile<IdWrapper<CreateBoardType>[]>(
     BOARDS_DIRECTORY
   );
   const boardToUpdate = boards.find((board: any) => board.id === id);

@@ -1,5 +1,5 @@
-import { dataBoardType } from "./data-board";
+import { CreateBoardType } from "@/actions/board";
 
 export interface BoardNavbarPropsType {
-  data: dataBoardType;
+  data: CreateBoardType;
 }

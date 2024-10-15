@@ -3,7 +3,7 @@ import { useRouter } from "next/navigation";
 import { useMutation, useQueryClient } from "@tanstack/react-query";
 
 // actions api
-import { deleteBoards } from "@/actions/board";
+import { CreateBoardType, deleteBoards } from "@/actions/board";
 
 //components ui
 import { toast } from "@/components/hooks/use-toast";
@@ -19,13 +19,10 @@ import {
   DialogTrigger,
 } from "@/components/ui/dialog";
 
-// types
-import { dataBoardType } from "@/types/data-board";
-
 // icons
 import { Trash2 } from "lucide-react";
 
-export function DeleteBoardDialog({ data }: { data: dataBoardType }) {
+export function DeleteBoardDialog({ data }: { data: CreateBoardType }) {
   const t = useTranslations();
   const queryClient = useQueryClient();
   const router = useRouter();

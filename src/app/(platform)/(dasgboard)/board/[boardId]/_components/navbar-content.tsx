@@ -1,9 +1,8 @@
-import { CreateBoard, updateBoard } from "@/actions/board";
+import { CreateBoard, CreateBoardType, updateBoard } from "@/actions/board";
 import { FormInput } from "@/components/form/form-input";
 import { toast } from "@/components/hooks/use-toast";
 import { Button } from "@/components/ui/button";
 import { BoardNavbarPropsType } from "@/types/board-navbar-props";
-import { dataBoardType } from "@/types/data-board";
 import { useMutation, useQueryClient } from "@tanstack/react-query";
 import { useTranslations } from "next-intl";
 import { ElementRef, useRef, useState } from "react";
@@ -15,7 +14,7 @@ export function NavbarContent({ data }: BoardNavbarPropsType) {
   const queryClient = useQueryClient();
   const t = useTranslations();
   const mutation = useMutation({
-    mutationFn: (newPost: Partial<dataBoardType>) =>
+    mutationFn: (newPost: Partial<CreateBoardType>) =>
       updateBoard(data.id, newPost),
     onSuccess: (res) => {
       queryClient.invalidateQueries({
