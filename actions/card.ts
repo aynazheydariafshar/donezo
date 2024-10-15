@@ -1,3 +1,5 @@
+import { toast } from "@/components/hooks/use-toast";
+import axiosServices from "@/utils/axios";
 import { z } from "zod";
 
 export const CreateCard = z.object({
@@ -18,12 +20,15 @@ export type CreateCardType = z.infer<typeof CreateCard>;
 
 // METHOD GET
 export async function getCardId(id: string) {
-  if (id) {
-    const response = await fetch(`/api/boards/card/${id}`);
-    const posts = await response.json();
-    return posts;
+  try {
+    const response = await axiosServices.get(`/api/boards/card/${id}`);
+    return response.data;
+  } catch (error) {
+    toast({
+      description: "Failed to get cards",
+      variant: "destructive",
+    });
   }
-  return null;
 }
 
 // METHOD POST
@@ -31,48 +36,47 @@ export const postCard = async (newPost: FormData): Promise<CreateCardType> => {
   const title = newPost.get("title");
   const listId = newPost.get("listId");
   const boardId = newPost.get("boardId");
-
-  const response = await fetch(`/api/boards/card`, {
-    method: "POST",
-    body: JSON.stringify({
+  try {
+    const response = await axiosServices.post(`/api/boards/card`, {
       title,
       listId,
       boardId,
-    }),
-    headers: {
-      "Content-type": "application/json; charset=UTF-8",
-    },
-  });
-
-  if (!response.ok) {
-    throw new Error("Failed to create a new board");
+    });
+    return response.data;
+  } catch (error) {
+    toast({
+      description: "Failed to create a new card",
+      variant: "destructive",
+    });
+    throw new Error("Failed");
   }
-
-  return response.json();
 };
 
 // Method PATCH
 export async function updateCard(id: string, newPost: Partial<CreateCardType>) {
-  const response = await fetch(`/api/boards/card/${id}`, {
-    method: "PATCH",
-    headers: {
-      "Content-Type": "application/json",
-    },
-    body: JSON.stringify(newPost),
-  });
-  if (!response.ok) {
-    throw new Error("Failed to update board");
+  try {
+    const response = await axiosServices.patch(
+      `/api/boards/card/${id}`,
+      newPost
+    );
+    return response.data;
+  } catch (error) {
+    toast({
+      description: "Failed to edit a card",
+      variant: "destructive",
+    });
   }
-
-  const data = await response.json();
-  return data;
 }
 
 // METHOD DELETE
 export async function deleteCard(id: string) {
-  const response = await fetch(`/api/boards/card`, {
-    method: "DELETE",
-    body: JSON.stringify({ id }),
-  });
-  return response.json();
+  try {
+    const response = await axiosServices.delete(`/api/boards/card/${id}`);
+    return response.data;
+  } catch (error) {
+    toast({
+      description: "Failed to delete a card",
+      variant: "destructive",
+    });
+  }
 }

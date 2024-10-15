@@ -14,13 +14,15 @@ type Params = {
 const GET = async (request: Request, context: { params: Params }) => {
   const { id } = context.params;
   if (!id) return NextResponse.json({ error: "Not found" }, { status: 404 });
-  const cards = await parseJsonFile<IdWrapper<CreateCardType>[]>(CARD_DIRECTORY);
+  const cards = await parseJsonFile<IdWrapper<CreateCardType>[]>(
+    CARD_DIRECTORY
+  );
   const card = cards.filter((board) => id === board.listId);
   if (card) return NextResponse.json(card);
   return NextResponse.json({ error: "Not found" }, { status: 404 });
 };
 
-const PATCH = async (request: Request, context: { params: { id: string } }) => {
+const PATCH = async (request: Request, context: { params: Params }) => {
   const body = await request.json();
   const { id } = context.params;
 
@@ -31,7 +33,9 @@ const PATCH = async (request: Request, context: { params: { id: string } }) => {
     );
   }
 
-  const cards = await parseJsonFile<IdWrapper<CreateCardType>[]>(CARD_DIRECTORY);
+  const cards = await parseJsonFile<IdWrapper<CreateCardType>[]>(
+    CARD_DIRECTORY
+  );
   const cardToUpdate = cards.find((board: any) => board.id === id);
 
   if (!cardToUpdate) {
@@ -51,4 +55,21 @@ const PATCH = async (request: Request, context: { params: { id: string } }) => {
   return NextResponse.json(updatedCard);
 };
 
-export { GET, PATCH };
+const DELETE = async (request: Request, context: { params: Params }) => {
+  const { id } = context.params;
+  if (!id) return NextResponse.json({ error: "Not found" }, { status: 404 });
+
+  const cards = await parseJsonFile<IdWrapper<CreateCardType>[]>(
+    CARD_DIRECTORY
+  );
+  const filteredCard = cards.filter((card) => card.id !== id);
+
+  if (filteredCard.length === cards.length) {
+    return NextResponse.json({ error: "Card not found" }, { status: 404 });
+  }
+
+  await fs.writeFileSync(CARD_DIRECTORY, JSON.stringify(filteredCard));
+  return NextResponse.json({ message: "Card deleted successfully", id });
+};
+
+export { GET, PATCH, DELETE };

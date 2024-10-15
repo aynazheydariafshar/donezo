@@ -39,7 +39,7 @@ const PATCH = async (request: Request, context: { params: { id: string } }) => {
   const listToUpdate = lists.find((list: any) => list.id === id);
 
   if (!listToUpdate) {
-    return NextResponse.json({ error: "Board not found" }, { status: 404 });
+    return NextResponse.json({ error: "List not found" }, { status: 404 });
   }
 
   const updatedBoard = {
@@ -47,8 +47,8 @@ const PATCH = async (request: Request, context: { params: { id: string } }) => {
     ...body,
   };
 
-  const updatedLists = lists.map((board: any) =>
-    board.id === id ? updatedBoard : board
+  const updatedLists = lists.map((list: any) =>
+    list.id === id ? updatedBoard : list
   );
 
   await fs.writeFileSync(LIST_DIRECTORY, JSON.stringify(updatedLists));
@@ -65,11 +65,11 @@ const DELETE = async (request: Request, context: { params: Params }) => {
   const filteredLists = lists.filter((list) => list.id !== id);
 
   if (filteredLists.length === lists.length) {
-    return NextResponse.json({ error: "Board not found" }, { status: 404 });
+    return NextResponse.json({ error: "List not found" }, { status: 404 });
   }
 
   await fs.writeFileSync(LIST_DIRECTORY, JSON.stringify(filteredLists));
-  return NextResponse.json({ message: "Board deleted successfully", id });
+  return NextResponse.json({ message: "List deleted successfully", id });
 };
 
 export { GET, PATCH, DELETE };
