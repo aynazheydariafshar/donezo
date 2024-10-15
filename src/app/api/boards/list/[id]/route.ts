@@ -55,4 +55,21 @@ const PATCH = async (request: Request, context: { params: { id: string } }) => {
   return NextResponse.json(updatedBoard);
 };
 
-export { GET, PATCH };
+const DELETE = async (request: Request, context: { params: Params }) => {
+  const { id } = context.params;
+  if (!id) return NextResponse.json({ error: "Not found" }, { status: 404 });
+
+  const lists = await parseJsonFile<IdWrapper<CreateListType>[]>(
+    LIST_DIRECTORY
+  );
+  const filteredLists = lists.filter((list) => list.id !== id);
+
+  if (filteredLists.length === lists.length) {
+    return NextResponse.json({ error: "Board not found" }, { status: 404 });
+  }
+
+  await fs.writeFileSync(LIST_DIRECTORY, JSON.stringify(filteredLists));
+  return NextResponse.json({ message: "Board deleted successfully", id });
+};
+
+export { GET, PATCH, DELETE };

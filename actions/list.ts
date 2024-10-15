@@ -1,3 +1,5 @@
+import { toast } from "@/components/hooks/use-toast";
+import axiosServices from "@/utils/axios";
 import { z } from "zod";
 
 export const CreateList = z.object({
@@ -19,12 +21,15 @@ export type CreateListType = z.infer<typeof CreateList>;
 
 // METHOD GET
 export async function getListId(id: string) {
-  if (id) {
-    const response = await fetch(`/api/boards/list/${id}`);
-    const posts = await response.json();
-    return posts;
+  try {
+    const response = await axiosServices.get(`/api/boards/list/${id}`);
+    return response.data;
+  } catch (error) {
+    toast({
+      description: "Failed to get boards",
+      variant: "destructive",
+    });
   }
-  return null;
 }
 
 // METHOD POST
@@ -33,49 +38,48 @@ export const postList = async (newPost: FormData): Promise<CreateListType> => {
   const description = newPost.get("description");
   const order = newPost.get("order");
   const boardId = newPost.get("boardId");
-
-  const response = await fetch(`/api/boards/list`, {
-    method: "POST",
-    body: JSON.stringify({
+  try {
+    const response = await axiosServices.post(`/api/boards/list`, {
       title,
       description,
       order,
       boardId,
-    }),
-    headers: {
-      "Content-type": "application/json; charset=UTF-8",
-    },
-  });
-
-  if (!response.ok) {
-    throw new Error("Failed to create a new board");
+    });
+    return response.data;
+  } catch (error) {
+    toast({
+      description: "Failed to create a new board",
+      variant: "destructive",
+    });
+    throw new Error("Failed");
   }
-
-  return response.json();
 };
 
 // Method PATCH
 export async function updateList(id: string, newPost: Partial<CreateListType>) {
-  const response = await fetch(`/api/boards/list/${id}`, {
-    method: "PATCH",
-    headers: {
-      "Content-Type": "application/json",
-    },
-    body: JSON.stringify(newPost),
-  });
-  if (!response.ok) {
-    throw new Error("Failed to update board");
+  try {
+    const response = await axiosServices.patch(
+      `/api/boards/list/${id}`,
+      newPost
+    );
+    return response.data;
+  } catch (error) {
+    toast({
+      description: "Failed to edit a board",
+      variant: "destructive",
+    });
   }
-
-  const data = await response.json();
-  return data;
 }
 
 // METHOD DELETE
 export async function deleteList(id: string) {
-  const response = await fetch(`/api/boards/list`, {
-    method: "DELETE",
-    body: JSON.stringify({ id }),
-  });
-  return response.json();
+  try {
+    const response = await axiosServices.delete(`/api/boards/list/${id}`);
+    return response.data;
+  } catch (error) {
+    toast({
+      description: "Failed to delete a board",
+      variant: "destructive",
+    });
+  }
 }

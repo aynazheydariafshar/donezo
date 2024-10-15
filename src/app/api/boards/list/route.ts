@@ -24,22 +24,4 @@ const POST = async (request: Request) => {
   return NextResponse.json(newList);
 };
 
-const DELETE = async (request: Request) => {
-  const { id } = await request.json();
-  if (!id)
-    return NextResponse.json({ error: "ID is required" }, { status: 400 });
-
-  const lists = await parseJsonFile<IdWrapper<CreateListType>[]>(
-    LIST_DIRECTORY
-  );
-  const filteredLists = lists.filter((list) => list.id !== id);
-
-  if (filteredLists.length === lists.length) {
-    return NextResponse.json({ error: "Board not found" }, { status: 404 });
-  }
-
-  await fs.writeFileSync(LIST_DIRECTORY, JSON.stringify(filteredLists));
-  return NextResponse.json({ message: "Board deleted successfully", id });
-};
-
-export { POST, DELETE };
+export { POST };
