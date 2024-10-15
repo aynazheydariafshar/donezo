@@ -17,9 +17,9 @@ export const CreateCard = z.object({
 export type CreateCardType = z.infer<typeof CreateCard>;
 
 // METHOD GET
-export async function getListId(id: string) {
+export async function getCardId(id: string) {
   if (id) {
-    const response = await fetch(`/api/boards/list/${id}`);
+    const response = await fetch(`/api/boards/card/${id}`);
     const posts = await response.json();
     return posts;
   }
@@ -27,20 +27,16 @@ export async function getListId(id: string) {
 }
 
 // METHOD POST
-export const postList = async (newPost: FormData): Promise<CreateCardType> => {
+export const postCard = async (newPost: FormData): Promise<CreateCardType> => {
   const title = newPost.get("title");
-  const description = newPost.get("description");
   const listId = newPost.get("listId");
-  const order = newPost.get("order");
   const boardId = newPost.get("boardId");
 
-  const response = await fetch(`/api/boards/list`, {
+  const response = await fetch(`/api/boards/card`, {
     method: "POST",
     body: JSON.stringify({
       title,
-      description,
       listId,
-      order,
       boardId,
     }),
     headers: {
@@ -56,8 +52,8 @@ export const postList = async (newPost: FormData): Promise<CreateCardType> => {
 };
 
 // Method PATCH
-export async function updateList(id: string, newPost: Partial<CreateCardType>) {
-  const response = await fetch(`/api/boards/list/${id}`, {
+export async function updateCard(id: string, newPost: Partial<CreateCardType>) {
+  const response = await fetch(`/api/boards/card/${id}`, {
     method: "PATCH",
     headers: {
       "Content-Type": "application/json",
@@ -73,8 +69,8 @@ export async function updateList(id: string, newPost: Partial<CreateCardType>) {
 }
 
 // METHOD DELETE
-export async function deleteList(id: string) {
-  const response = await fetch(`/api/boards/list`, {
+export async function deleteCard(id: string) {
+  const response = await fetch(`/api/boards/card`, {
     method: "DELETE",
     body: JSON.stringify({ id }),
   });

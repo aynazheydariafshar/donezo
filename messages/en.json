@@ -46,5 +46,6 @@
   "delete-list": "Delete List",
   "your-list-has-been-deleted-successfully": "Your List has been Deleted Successfully",
   "failed-to-delete-list": "Failed to Delete List",
-  "enter-a-title-for-this-card": "Enter a title for this card"
+  "enter-a-title-for-this-card": "Enter a title for this card",
+  "delete-card": "Delete Card"
 }

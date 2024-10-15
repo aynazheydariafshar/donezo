@@ -68,26 +68,37 @@ export default function FormPopover({
   const handleSubmit = (e: React.FormEvent) => {
     e.preventDefault();
     const formData = new FormData(e.target as HTMLFormElement);
-    const validateField = CreateBoard.safeParse({
-      title: formData.get("title") as string,
-      image: formData.get("image") as string,
-    });
     const image = (formData.get("image") as string) || "";
     const [imageId, imageThumbUrl, imageFullUrl, imageLinkHtml, imageUserName] =
       image?.split("|");
-    if (
-      !imageId ||
-      !imageThumbUrl ||
-      !imageFullUrl ||
-      !imageLinkHtml ||
-      !imageUserName
-    ) {
-      toast({
-        description: t("missing-fields-failed-to-create-board"),
-        variant: "destructive",
-      });
-      return;
+    formData.append("imageId", imageId);
+    formData.append("imageThumbUrl", imageThumbUrl);
+    formData.append("imageFullUrl", imageFullUrl);
+    formData.append("imageLinkHtml", imageLinkHtml);
+    formData.append("imageUserName", imageUserName);
+    if (organization?.id) {
+      formData.append("orgId", organization.id);
     }
+    const TitleOnlySchema = CreateBoard.pick({
+      title: true,
+      orgId: true,
+      imageUserName: true,
+      imageId: true,
+      imageThumbUrl: true,
+      imageFullUrl: true,
+      imageLinkHtml: true,
+    });
+
+    const validateField = TitleOnlySchema.safeParse({
+      title: formData.get("title"),
+      orgId: formData.get("orgId"),
+      imageUserName: formData.get("imageUserName"),
+      imageId: formData.get("imageId"),
+      imageThumbUrl: formData.get("imageThumbUrl"),
+      imageFullUrl: formData.get("imageFullUrl"),
+      imageLinkHtml: formData.get("imageLinkHtml"),
+    });
+
     if (!isSignedIn) {
       toast({
         description: t("unauthorized"),
@@ -103,17 +114,8 @@ export default function FormPopover({
       });
       return;
     }
-    if (organization?.id) {
-      formData.append("imageId", imageId);
-      formData.append("imageThumbUrl", imageThumbUrl);
-      formData.append("imageFullUrl", imageFullUrl);
-      formData.append("imageLinkHtml", imageLinkHtml);
-      formData.append("imageUserName", imageUserName);
-      formData.append("orgId", organization.id);
-      formData.delete("image");
-
-      mutation.mutate(formData);
-    }
+    formData.delete("image");
+    mutation.mutate(formData);
   };
 
   return (

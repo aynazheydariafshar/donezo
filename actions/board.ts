@@ -1,33 +1,30 @@
 import { z } from "zod";
 import { CreateList } from "./list";
 
-export const CreateBoard = z
-  .object({
-    title: z
-      .string({
-        required_error: "title-is-required",
-        invalid_type_error: "title-is-invalid-type",
-      })
-      .min(3, {
-        message: "minimum-length-3-letters",
-      }),
-    image: z.string({
-      required_error: "image-is-required",
-      invalid_type_error: "image-is-required",
+export const CreateBoard = z.object({
+  title: z
+    .string({
+      required_error: "title-is-required",
+      invalid_type_error: "title-is-invalid-type",
+    })
+    .min(3, {
+      message: "minimum-length-3-letters",
     }),
-    orgId: z.string(),
-    imageUserName: z.string(),
-    imageId: z.string(),
-    imageThumbUrl: z.string({
-      required_error: "image-is-required",
-      invalid_type_error: "image-is-required",
-    }),
-    imageFullUrl: z.string(),
-    imageLinkHtml: z.string(),
-    list: z.array(CreateList),
-    id: z.string(),
-  })
-  .omit({ image: true });
+  image: z.string({
+    required_error: "image-is-required",
+    invalid_type_error: "image-is-required",
+  }),
+  orgId: z.string(),
+  imageUserName: z.string(),
+  imageId: z.string(),
+  imageThumbUrl: z.string({
+    required_error: "image-is-required",
+    invalid_type_error: "image-is-required",
+  }),
+  imageFullUrl: z.string(),
+  imageLinkHtml: z.string(),
+  id: z.string(),
+});
 
 export type CreateBoardType = z.infer<typeof CreateBoard>;
 

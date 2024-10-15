@@ -31,7 +31,6 @@ export async function getListId(id: string) {
 export const postList = async (newPost: FormData): Promise<CreateListType> => {
   const title = newPost.get("title");
   const description = newPost.get("description");
-  const listId = newPost.get("listId");
   const order = newPost.get("order");
   const boardId = newPost.get("boardId");
 
@@ -40,7 +39,6 @@ export const postList = async (newPost: FormData): Promise<CreateListType> => {
     body: JSON.stringify({
       title,
       description,
-      listId,
       order,
       boardId,
     }),

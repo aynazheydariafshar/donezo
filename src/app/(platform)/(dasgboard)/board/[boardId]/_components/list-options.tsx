@@ -59,7 +59,7 @@ export function ListOptions({ data, onAddCard }: ListOptionsType) {
             size="sm"
             variant="ghost"
           >
-            {t("delete-card")}{" "}
+            {t("delete-card")}
           </Button>
         </DropdownMenuLabel>
       </DropdownMenuContent>
