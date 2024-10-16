@@ -9,7 +9,6 @@ import {
   DropdownMenu,
   DropdownMenuContent,
   DropdownMenuLabel,
-  DropdownMenuSeparator,
   DropdownMenuTrigger,
 } from "@/components/ui/dropdown-menu";
 import { useMutation, useQueryClient } from "@tanstack/react-query";
@@ -46,12 +45,6 @@ export function ListOptions({ data, onAddCard }: ListOptionsType) {
         </Button>
       </DropdownMenuTrigger>
       <DropdownMenuContent className="w-46">
-        <DropdownMenuLabel>
-          <Button className="w-full" size="sm" variant="ghost">
-            {t("add-card")}
-          </Button>
-        </DropdownMenuLabel>
-        <DropdownMenuSeparator />
         <DropdownMenuLabel>
           <Button
             onClick={() => mutation.mutate(data.id)}

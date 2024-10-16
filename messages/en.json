@@ -48,5 +48,6 @@
   "failed-to-delete-list": "Failed to Delete List",
   "enter-a-title-for-this-card": "Enter a title for this card",
   "delete-card": "Delete Card",
-  "a-new-card-has-been-created-successfully": "A New Card has been Created Successfully"
+  "a-new-card-has-been-created-successfully": "A New Card has been Created Successfully",
+  "your-card-has-been-edited-successfully": "Your Card has been Edited Successfully"
 }
