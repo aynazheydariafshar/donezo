@@ -21,7 +21,20 @@ export type CreateCardType = z.infer<typeof CreateCard>;
 // METHOD GET
 export async function getCardId(id: string) {
   try {
-    const response = await axiosServices.get(`/api/boards/card/${id}`);
+    const response = await axiosServices.get(`/api/card/${id}`);
+    return response.data;
+  } catch (error) {
+    toast({
+      description: "Failed to get cards",
+      variant: "destructive",
+    });
+  }
+}
+
+// METHOD GET ALL CARD IN BOARD
+export async function getCardBoardId(boardId: string) {
+  try {
+    const response = await axiosServices.get(`/api/card/board/${boardId}`);
     return response.data;
   } catch (error) {
     toast({
@@ -37,7 +50,7 @@ export const postCard = async (newPost: FormData): Promise<CreateCardType> => {
   const listId = newPost.get("listId");
   const boardId = newPost.get("boardId");
   try {
-    const response = await axiosServices.post(`/api/boards/card`, {
+    const response = await axiosServices.post(`/api/card`, {
       title,
       listId,
       boardId,
@@ -55,10 +68,7 @@ export const postCard = async (newPost: FormData): Promise<CreateCardType> => {
 // Method PATCH
 export async function updateCard(id: string, newPost: Partial<CreateCardType>) {
   try {
-    const response = await axiosServices.patch(
-      `/api/boards/card/${id}`,
-      newPost
-    );
+    const response = await axiosServices.patch(`/api/card/${id}`, newPost);
     return response.data;
   } catch (error) {
     toast({
@@ -71,7 +81,7 @@ export async function updateCard(id: string, newPost: Partial<CreateCardType>) {
 // METHOD DELETE
 export async function deleteCard(id: string) {
   try {
-    const response = await axiosServices.delete(`/api/boards/card/${id}`);
+    const response = await axiosServices.delete(`/api/card/${id}`);
     return response.data;
   } catch (error) {
     toast({

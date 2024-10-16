@@ -17,7 +17,7 @@ const GET = async (request: Request, context: { params: Params }) => {
   const cards = await parseJsonFile<IdWrapper<CreateCardType>[]>(
     CARD_DIRECTORY
   );
-  const card = cards.filter((board) => id === board.listId);
+  const card = cards.filter((card) => id === card.listId);
   if (card) return NextResponse.json(card);
   return NextResponse.json({ error: "Not found" }, { status: 404 });
 };

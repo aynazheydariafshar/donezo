@@ -1,4 +1,4 @@
-import { CreateCard, postCard } from "@/actions/card";
+import { CreateCard, getCardId, postCard } from "@/actions/card";
 import { FormError } from "@/components/form/form-error";
 import { FormSubmit } from "@/components/form/form-submit";
 import { toast } from "@/components/hooks/use-toast";
@@ -30,7 +30,7 @@ export const CardForm = forwardRef<HTMLTextAreaElement, CardFormPropsType>(
       mutationFn: postCard,
       onSuccess: (res) => {
         queryClient.invalidateQueries({
-          queryKey: ["card"],
+          queryKey: ["card", listId],
         });
         toast({
           description: t("a-new-card-has-been-created-successfully"),

@@ -22,7 +22,7 @@ export type CreateListType = z.infer<typeof CreateList>;
 // METHOD GET
 export async function getListId(id: string) {
   try {
-    const response = await axiosServices.get(`/api/boards/list/${id}`);
+    const response = await axiosServices.get(`/api/list/${id}`);
     return response.data;
   } catch (error) {
     toast({
@@ -39,7 +39,7 @@ export const postList = async (newPost: FormData): Promise<CreateListType> => {
   const order = newPost.get("order");
   const boardId = newPost.get("boardId");
   try {
-    const response = await axiosServices.post(`/api/boards/list`, {
+    const response = await axiosServices.post(`/api/list`, {
       title,
       description,
       order,
@@ -59,7 +59,7 @@ export const postList = async (newPost: FormData): Promise<CreateListType> => {
 export async function updateList(id: string, newPost: Partial<CreateListType>) {
   try {
     const response = await axiosServices.patch(
-      `/api/boards/list/${id}`,
+      `/api/list/${id}`,
       newPost
     );
     return response.data;
@@ -74,7 +74,7 @@ export async function updateList(id: string, newPost: Partial<CreateListType>) {
 // METHOD DELETE
 export async function deleteList(id: string) {
   try {
-    const response = await axiosServices.delete(`/api/boards/list/${id}`);
+    const response = await axiosServices.delete(`/api/list/${id}`);
     return response.data;
   } catch (error) {
     toast({

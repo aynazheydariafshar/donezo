@@ -7,6 +7,7 @@ import { cn } from "@/utils/utils";
 import { useQuery } from "@tanstack/react-query";
 import { CreateCardType, getCardId } from "@/actions/card";
 import CardItem from "./card-item";
+import { Loader } from "lucide-react";
 
 export function ListItem({
   list,
@@ -21,7 +22,6 @@ export function ListItem({
     enabled: !!list.id,
   });
   const { data, error, isLoading } = query;
-  console.log(data);
   const [isEditing, setIsEditing] = useState(false);
   const textareaRef = useRef<ElementRef<"textarea">>(null);
   const enableEditing = () => {
@@ -43,17 +43,23 @@ export function ListItem({
           data?.length > 0 ? "mt-2" : "mt-0")
         }
       >
-        {data?.map((card: CreateCardType) => (
+        {data?.map((card: CreateCardType, index: number) => (
           <CardItem key={card.id} card={card} index={index} />
         ))}
       </ol>
-      <CardForm
-        ref={textareaRef}
-        listId={list.id}
-        enableEditing={enableEditing}
-        disableEditing={disableEditing}
-        isEditing={isEditing}
-      />
+      {isLoading ? (
+        <div className="flex items-center justify-center">
+          <Loader className="w-5 h-5 text-secondary-400 animate-spin" />
+        </div>
+      ) : (
+        <CardForm
+          ref={textareaRef}
+          listId={list.id}
+          enableEditing={enableEditing}
+          disableEditing={disableEditing}
+          isEditing={isEditing}
+        />
+      )}
     </ListWrapper>
   );
 }
