@@ -5,7 +5,7 @@ import { Button } from "@/components/ui/button";
 import { useMutation, useQueryClient } from "@tanstack/react-query";
 import { useTranslations } from "next-intl";
 import { ElementRef, useRef, useState } from "react";
-import { ListOptions } from "./list-options";
+import { ListDelete } from "./list-delete";
 
 export function ListHeader({ data }: { data: CreateListType }) {
   const [isEdit, setIsEditing] = useState(false);
@@ -84,11 +84,15 @@ export function ListHeader({ data }: { data: CreateListType }) {
   }
 
   return (
-    <div className="px-2 text-sm flex justify-between items-center gap-x-2">
-      <Button onClick={enableEditing} size="sm">
-        {data.title}
-      </Button>
-      <ListOptions data={data} onAddCard={() => console.log("add card")} />
+    <div className="text-sm flex justify-between items-center w-full">
+      <div>
+        <Button onClick={enableEditing} size="sm">
+          {data?.title}
+        </Button>
+      </div>
+      <div>
+        <ListDelete data={data} />
+      </div>
     </div>
   );
 }

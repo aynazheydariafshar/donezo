@@ -1,6 +1,7 @@
 import { BoardNavbarPropsType } from "@/types/board-navbar-props";
 import { NavbarContent } from "./navbar-content";
 import { DeleteBoardDialog } from "./delete-board-dialog";
+import { DeleteDialog } from "@/components/delete-dialog";
 
 export function BoardNavbar({ data }: BoardNavbarPropsType) {
   return (

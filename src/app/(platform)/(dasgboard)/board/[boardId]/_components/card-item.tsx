@@ -1,7 +1,15 @@
-import { CreateCard, CreateCardType, updateCard } from "@/actions/card";
+import {
+  CreateCard,
+  CreateCardType,
+  deleteCard,
+  updateCard,
+} from "@/actions/card";
+import { DeleteDialog } from "@/components/delete-dialog";
 import { FormInput } from "@/components/form/form-input";
 import { toast } from "@/components/hooks/use-toast";
+import { Button } from "@/components/ui/button";
 import { useMutation, useQueryClient } from "@tanstack/react-query";
+import { X } from "lucide-react";
 import { useTranslations } from "next-intl";
 import { ElementRef, useRef, useState } from "react";
 
@@ -21,6 +29,25 @@ export default function CardItem({ card }: { card: CreateCardType }) {
       setIsEditing(false);
       toast({
         description: t("your-card-has-been-edited-successfully"),
+      });
+    },
+    onError: () => {
+      toast({
+        description: t("database-error"),
+        variant: "destructive",
+      });
+    },
+  });
+
+  const mutationDelete = useMutation({
+    mutationFn: deleteCard,
+    onSuccess: (res) => {
+      queryClient.invalidateQueries({
+        queryKey: ["card", card.listId],
+      });
+      setIsEditing(false);
+      toast({
+        description: t("your-card-has-been-deleted-successfully"),
       });
     },
     onError: () => {
@@ -83,10 +110,26 @@ export default function CardItem({ card }: { card: CreateCardType }) {
   return (
     <div
       role="button"
-      onClick={enableEditing}
-      className="truncate my-1 bg-white bg-opacity-75 dark:bg-black dark:bg-opacity-95 border-2 border-transparent hover:border-black dark:hover:border-white py-2 px-3 text-sm rounded-md shadow-sm"
+      onClick={(e) => {
+        e.stopPropagation();
+        enableEditing();
+      }}
+      className="truncate flex justify-between items-center my-1 bg-white bg-opacity-75 dark:bg-black dark:bg-opacity-95 border-2 border-transparent hover:border-black dark:hover:border-white py-1 px-3 text-sm rounded-md shadow-sm"
     >
-      {card.title}
+      <p>{card.title}</p>
+      <DeleteDialog
+        name="card"
+        data={card}
+        deleteClickFunc={() => mutationDelete.mutate(card.id)}
+      >
+        <Button
+          onClick={(e) => e.stopPropagation()}
+          className="hover:text-error-500 hover:bg-transparent"
+          variant="ghost"
+        >
+          <X className="w-4 h-4" />
+        </Button>
+      </DeleteDialog>
     </div>
   );
 }

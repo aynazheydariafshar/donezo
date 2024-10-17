@@ -49,5 +49,9 @@
   "enter-a-title-for-this-card": "Enter a title for this card",
   "delete-card": "Delete Card",
   "a-new-card-has-been-created-successfully": "A New Card has been Created Successfully",
-  "your-card-has-been-edited-successfully": "Your Card has been Edited Successfully"
+  "your-card-has-been-edited-successfully": "Your Card has been Edited Successfully",
+  "card-title": "Card Title",
+  "your-card-has-been-deleted-successfully": "Your Card has been Deleted Successfully",
+  "are-you-sure-you-want-delete-this-card-action-cannot-be-undone": "Are you sure you want to delete this card? This action cannot be undone.",
+  "are-you-sure-you-want-delete-this-list-action-cannot-be-undone": "Are you sure you want to delete this list? This action cannot be undone."
 }

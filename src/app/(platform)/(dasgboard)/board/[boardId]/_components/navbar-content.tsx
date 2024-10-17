@@ -86,7 +86,7 @@ export function NavbarContent({ data }: BoardNavbarPropsType) {
 
   return (
     <Button onClick={enableEditing} className="text-lg">
-      {data.title}
+      {data?.title}
     </Button>
   );
 }
