@@ -15,11 +15,11 @@ function NavbarHomePage({ showBtn = false }) {
       {showBtn && (
         <div>
           {userId ? (
-            <Button className="mx-2" variant="secondary" size="sm" asChild>
+            <Button className="mx-2" size="sm" asChild>
               <Link href="/select-org">{t("go-to-your-boards")}</Link>
             </Button>
           ) : (
-            <Button size="sm" asChild>
+            <Button className="mx-2" size="sm" asChild>
               <Link href={`/sign-in`}>{t("login")}</Link>
             </Button>
           )}

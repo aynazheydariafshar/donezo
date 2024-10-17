@@ -1,4 +1,4 @@
-import { ClerkProvider } from "@clerk/nextjs";
+import { ClerkLoaded, ClerkLoading, ClerkProvider } from "@clerk/nextjs";
 import { enUS } from "@clerk/localizations";
 import { dark, experimental__simple } from "@clerk/themes";
 
@@ -9,6 +9,7 @@ import { getLocale } from "next-intl/server";
 import "../../../styles/clerk.css";
 import { cookies } from "next/headers";
 import ReactQueryProvider from "@/provider/react-query-provider";
+import { Loader } from "lucide-react";
 
 export default async function PlatformLayout({
   children,
@@ -27,7 +28,14 @@ export default async function PlatformLayout({
       }}
       localization={localization}
     >
-      <ReactQueryProvider>{children}</ReactQueryProvider>
+      <ClerkLoading>
+        <div className="bg-minimal-gradient dark:bg-minimal-gradient-dark h-screen flex justify-center items-center w-full">
+          <Loader className="animate-spin h-20 w-20 text-secondary-400" />
+        </div>
+      </ClerkLoading>
+      <ClerkLoaded>
+        <ReactQueryProvider>{children}</ReactQueryProvider>
+      </ClerkLoaded>
     </ClerkProvider>
   );
 }
