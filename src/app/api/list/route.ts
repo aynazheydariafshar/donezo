@@ -17,7 +17,6 @@ const POST = async (request: Request) => {
     boardId: body.boardId,
     title: body.title,
     description: body.description,
-    order: body.order,
   };
   const modifiedLists = [...list, newList];
   await fs.writeFileSync(LIST_DIRECTORY, JSON.stringify(modifiedLists));
