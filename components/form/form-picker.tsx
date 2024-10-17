@@ -22,29 +22,29 @@ export default function FormPicker({ id, errors }: FormPickerPropsType) {
     setSelectedImageId(event.target.value);
   };
 
-  // useEffect(() => {
-  //   const fetchImages = async () => {
-  //     setIsLoading(true);
-  //     try {
-  //       const result = await unsplash.photos.getRandom({
-  //         collectionIds: ["317099"],
-  //         count: 9,
-  //       });
-  //       if (result && result.response) {
-  //         const newImages = result.response as Array<Record<string, any>>;
-  //         setImages(newImages);
-  //       } else {
-  //         console.error("No images found");
-  //       }
-  //     } catch (error) {
-  //       console.log(error);
-  //       setImages([]);
-  //     } finally {
-  //       setIsLoading(false);
-  //     }
-  //   };
-  //   fetchImages();
-  // }, []);
+  useEffect(() => {
+    const fetchImages = async () => {
+      setIsLoading(true);
+      try {
+        const result = await unsplash.photos.getRandom({
+          collectionIds: ["317099"],
+          count: 9,
+        });
+        if (result && result.response) {
+          const newImages = result.response as Array<Record<string, any>>;
+          setImages(newImages);
+        } else {
+          console.error("No images found");
+        }
+      } catch (error) {
+        console.log(error);
+        setImages([]);
+      } finally {
+        setIsLoading(false);
+      }
+    };
+    fetchImages();
+  }, []);
 
   if (isLoading) {
     return (
