@@ -13,12 +13,14 @@ export function NavbarContent({ data }: BoardNavbarPropsType) {
   const inputRef = useRef<ElementRef<"input">>(null);
   const queryClient = useQueryClient();
   const t = useTranslations();
+
   const mutation = useMutation({
     mutationFn: (newPost: Partial<CreateBoardType>) =>
       updateBoard(data.id, newPost),
     onSuccess: (res) => {
       queryClient.invalidateQueries({
-        queryKey: ["boards"],
+        queryKey: ["boards-detail", data?.id],
+        exact: true,
       });
       setIsEditing(false);
       toast({

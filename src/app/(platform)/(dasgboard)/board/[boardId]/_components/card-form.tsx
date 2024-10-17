@@ -1,4 +1,4 @@
-import { CreateCard, getCardId, postCard } from "@/actions/card";
+import { CreateCard, postCard } from "@/actions/card";
 import { FormError } from "@/components/form/form-error";
 import { FormSubmit } from "@/components/form/form-submit";
 import { toast } from "@/components/hooks/use-toast";
@@ -30,7 +30,8 @@ export const CardForm = forwardRef<HTMLTextAreaElement, CardFormPropsType>(
       mutationFn: postCard,
       onSuccess: (res) => {
         queryClient.invalidateQueries({
-          queryKey: ["card", listId],
+          queryKey: ["card", res.listId],
+          exact: true,
         });
         toast({
           description: t("a-new-card-has-been-created-successfully"),
@@ -124,15 +125,6 @@ export const CardForm = forwardRef<HTMLTextAreaElement, CardFormPropsType>(
           <Plus className="w-4 h-4 mx-1" />
           {t("add-card")}
         </Button>
-
-        {/* <textarea
-          ref={ref}
-          className="w-full rounded-md border-2 border-gray-300 p-2 focus:outline-none focus:ring-transparent"
-          placeholder="Add a card"
-          onBlur={() => disableEditing()}
-          onFocus={() => enableEditing()}
-          disabled={!isEditing}
-        /> */}
       </div>
     );
   }

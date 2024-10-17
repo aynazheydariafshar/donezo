@@ -13,11 +13,12 @@ type Params = {
 
 const GET = async (request: Request, context: { params: Params }) => {
   const { id } = context.params;
+  alert(id);
   if (!id) return NextResponse.json({ error: "Not found" }, { status: 404 });
   const lists = await parseJsonFile<IdWrapper<CreateListType>[]>(
     LIST_DIRECTORY
   );
-  const list = lists.filter((list) => id === list.boardId);
+  const list = lists.filter((list) => id === list.id);
   if (list) return NextResponse.json(list);
   return NextResponse.json({ error: "Not found" }, { status: 404 });
 };
@@ -55,6 +56,28 @@ const PATCH = async (request: Request, context: { params: { id: string } }) => {
   return NextResponse.json(updatedBoard);
 };
 
+const PUT = async (request: Request, context: { params: { id: string } }) => {
+  const body = await request.json();
+  const { id } = context.params;
+
+  if (!id) {
+    return NextResponse.json(
+      { error: "Board ID not provided" },
+      { status: 400 }
+    );
+  }
+
+  const lists = await parseJsonFile<IdWrapper<CreateListType>[]>(
+    LIST_DIRECTORY
+  );
+  const listToUpdate = lists.filter((list: any) => list.boardId !== id);
+
+  const updatedLists = [...listToUpdate, ...body];
+
+  await fs.writeFileSync(LIST_DIRECTORY, JSON.stringify(updatedLists));
+  return NextResponse.json(body);
+};
+
 const DELETE = async (request: Request, context: { params: Params }) => {
   const { id } = context.params;
   if (!id) return NextResponse.json({ error: "Not found" }, { status: 404 });
@@ -72,4 +95,4 @@ const DELETE = async (request: Request, context: { params: Params }) => {
   return NextResponse.json({ message: "List deleted successfully", id });
 };
 
-export { GET, PATCH, DELETE };
+export { GET, PATCH, DELETE, PUT };

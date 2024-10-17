@@ -18,8 +18,7 @@ const GET = async (request: Request, context: { params: Params }) => {
     CARD_DIRECTORY
   );
   const card = cards.filter((card) => id === card.listId);
-  if (card) return NextResponse.json(card);
-  return NextResponse.json({ error: "Not found" }, { status: 404 });
+  return NextResponse.json(card.length > 0 ? card : []);
 };
 
 const PATCH = async (request: Request, context: { params: Params }) => {

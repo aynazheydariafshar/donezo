@@ -13,6 +13,7 @@ export function ListHeader({ data }: { data: CreateListType }) {
   const inputRef = useRef<ElementRef<"input">>(null);
   const queryClient = useQueryClient();
   const t = useTranslations();
+
   const mutation = useMutation({
     mutationFn: (newPost: Partial<CreateListType>) =>
       updateList(data.id, newPost),

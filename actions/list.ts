@@ -22,7 +22,7 @@ export type CreateListType = z.infer<typeof CreateList>;
 // METHOD GET
 export async function getListId(id: string) {
   try {
-    const response = await axiosServices.get(`/api/list/${id}`);
+    const response = await axiosServices.get(`/api/list/board/${id}`);
     return response.data;
   } catch (error) {
     toast({
@@ -58,10 +58,20 @@ export const postList = async (newPost: FormData): Promise<CreateListType> => {
 // Method PATCH
 export async function updateList(id: string, newPost: Partial<CreateListType>) {
   try {
-    const response = await axiosServices.patch(
-      `/api/list/${id}`,
-      newPost
-    );
+    const response = await axiosServices.patch(`/api/list/${id}`, newPost);
+    return response.data;
+  } catch (error) {
+    toast({
+      description: "Failed to edit a list",
+      variant: "destructive",
+    });
+  }
+}
+
+// Method PUT
+export async function updateOrderList(id: string, newPost: CreateListType[]) {
+  try {
+    const response = await axiosServices.put(`/api/list/${id}`, newPost);
     return response.data;
   } catch (error) {
     toast({

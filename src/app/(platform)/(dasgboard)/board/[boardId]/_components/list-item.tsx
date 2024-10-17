@@ -8,6 +8,7 @@ import { useQuery } from "@tanstack/react-query";
 import { CreateCardType, getCardId } from "@/actions/card";
 import CardItem from "./card-item";
 import { Loader } from "lucide-react";
+import { DragDropContext, Draggable, Droppable } from "@hello-pangea/dnd";
 
 export function ListItem({
   list,
@@ -35,31 +36,48 @@ export function ListItem({
     setIsEditing(false);
   };
   return (
-    <ListWrapper>
-      <ListHeader data={list} />
-      <ol
-        className={
-          (cn("mx-1 px-1 flex flex-col gap-y-2"),
-          data?.length > 0 ? "mt-2" : "mt-0")
-        }
-      >
-        {data?.map((card: CreateCardType, index: number) => (
-          <CardItem key={card.id} card={card} index={index} />
-        ))}
-      </ol>
-      {isLoading ? (
-        <div className="flex items-center justify-center">
-          <Loader className="w-5 h-5 text-secondary-400 animate-spin" />
+    <Draggable draggableId={list.id} index={index}>
+      {(provided) => (
+        <div ref={provided.innerRef} {...provided.draggableProps}>
+          <ListWrapper>
+            <div {...provided.dragHandleProps}>
+              <ListHeader data={list} />
+              <DragDropContext onDragEnd={() => {}}>
+                <Droppable droppableId="card" type="card">
+                  {(provided) => (
+                    <ol
+                      ref={provided.innerRef}
+                      {...provided.droppableProps}
+                      className={
+                        (cn("mx-1 px-1 flex flex-col gap-y-2"),
+                        data?.length > 0 ? "mt-2" : "mt-0")
+                      }
+                    >
+                      {data?.map((card: CreateCardType, index: number) => (
+                        <CardItem key={card.id} card={card} index={index} />
+                      ))}
+                      {provided.placeholder}
+                    </ol>
+                  )}
+                </Droppable>
+              </DragDropContext>
+              {isLoading ? (
+                <div className="flex items-center justify-center">
+                  <Loader className="w-5 h-5 text-secondary-400 animate-spin" />
+                </div>
+              ) : (
+                <CardForm
+                  ref={textareaRef}
+                  listId={list.id}
+                  enableEditing={enableEditing}
+                  disableEditing={disableEditing}
+                  isEditing={isEditing}
+                />
+              )}
+            </div>
+          </ListWrapper>
         </div>
-      ) : (
-        <CardForm
-          ref={textareaRef}
-          listId={list.id}
-          enableEditing={enableEditing}
-          disableEditing={disableEditing}
-          isEditing={isEditing}
-        />
       )}
-    </ListWrapper>
+    </Draggable>
   );
 }
