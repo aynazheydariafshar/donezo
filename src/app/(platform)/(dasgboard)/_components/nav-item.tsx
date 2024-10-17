@@ -13,7 +13,7 @@ import { Skeleton } from "@/components/ui/skeleton";
 // types
 import { NavItemPropsType } from "@/types/nav-item-props";
 // icons
-import { Settings, SquareActivity, SquareKanban } from "lucide-react";
+import { Settings, SquareKanban } from "lucide-react";
 
 export default function NavItem({
   onExpand,
@@ -31,11 +31,6 @@ export default function NavItem({
       label: "boards",
       icon: <SquareKanban className="h-4 w-4 mr-2" />,
       href: `/organization/${organization.id}`,
-    },
-    {
-      label: "activity",
-      icon: <SquareActivity className="h-4 w-4 mr-2" />,
-      href: `/organization/${organization.id}/activity`,
     },
     {
       label: "settings",
