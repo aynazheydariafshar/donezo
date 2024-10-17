@@ -52,5 +52,6 @@
   "card-title": "Card Title",
   "your-card-has-been-deleted-successfully": "Your Card has been Deleted Successfully",
   "are-you-sure-you-want-delete-this-card-action-cannot-be-undone": "Are you sure you want to delete this card? This action cannot be undone.",
-  "are-you-sure-you-want-delete-this-list-action-cannot-be-undone": "Are you sure you want to delete this list? This action cannot be undone."
+  "are-you-sure-you-want-delete-this-list-action-cannot-be-undone": "Are you sure you want to delete this list? This action cannot be undone.",
+  "back-to-boards": "Back to Boards"
 }

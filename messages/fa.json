@@ -52,5 +52,6 @@
   "card-title": "عنوان کارت",
   "your-card-has-been-deleted-successfully": "کارت شما با موفقیت حذف شد",
   "are-you-sure-you-want-delete-this-card-action-cannot-be-undone": "آیا از حذف این کارت مطمئن هستید؟ این عمل غیرقابل برگشت است.",
-  "are-you-sure-you-want-delete-this-list-action-cannot-be-undone": "آیا از حذف این لیست مطمئن هستید؟ این عمل غیرقابل برگشت است."
+  "are-you-sure-you-want-delete-this-list-action-cannot-be-undone": "آیا از حذف این لیست مطمئن هستید؟ این عمل غیرقابل برگشت است.",
+  "back-to-boards": "بازگشت به بردها"
 }

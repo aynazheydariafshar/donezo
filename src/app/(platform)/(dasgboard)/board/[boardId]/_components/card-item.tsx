@@ -24,7 +24,7 @@ export default function CardItem({ card }: { card: CreateCardType }) {
       updateCard(card.id, newPost),
     onSuccess: (res) => {
       queryClient.invalidateQueries({
-        queryKey: ["card", card.listId],
+        queryKey: ["card", res.listId],
       });
       setIsEditing(false);
       toast({

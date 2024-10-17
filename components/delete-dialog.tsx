@@ -12,6 +12,7 @@ import {
   DialogTitle,
   DialogTrigger,
 } from "@/components/ui/dialog";
+import { ElementRef, useRef } from "react";
 
 export function DeleteDialog<T>({
   data,
@@ -25,6 +26,14 @@ export function DeleteDialog<T>({
   deleteClickFunc: () => void;
 }) {
   const t = useTranslations();
+  const refClose = useRef<ElementRef<"button">>(null);
+
+  const handleConfirm = () => {
+    deleteClickFunc();
+    if (refClose.current) {
+      refClose.current.click();
+    }
+  };
 
   return (
     <Dialog>
@@ -39,12 +48,12 @@ export function DeleteDialog<T>({
           </DialogDescription>
         </DialogHeader>
         <DialogFooter className="sm:justify-start flex gap-2">
-          <DialogClose asChild>
+          <DialogClose ref={refClose} asChild>
             <Button type="button" variant="secondary">
               {t("close")}
             </Button>
           </DialogClose>
-          <Button type="button" variant="destructive" onClick={deleteClickFunc}>
+          <Button type="button" variant="destructive" onClick={handleConfirm}>
             {t("confirm-delete")}
           </Button>
         </DialogFooter>
