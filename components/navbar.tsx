@@ -18,10 +18,12 @@ function Navbar({
           <Logo />
         </div>
       </div>
-      <div className="flex items-center space-x-4">
+      <div className="items-center flex gap-6 space-x-2">
         {children}
-        <SwitchTheme />
-        <SwitchLanguage />
+        <div className="xl:flex items-center gap-2 space-x-2 hidden">
+          <SwitchTheme />
+          <SwitchLanguage />
+        </div>
       </div>
     </nav>
   );
