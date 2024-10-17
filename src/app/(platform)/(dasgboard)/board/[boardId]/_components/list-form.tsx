@@ -12,7 +12,7 @@ import { useParams } from "next/navigation";
 import React, { ElementRef, useRef, useState } from "react";
 
 export const ListWrapper = ({ children }: { children: React.ReactNode }) => (
-  <li className="shrink-0 h-full w-[272px] select-none bg-white dark:bg-black bg-opacity-35 dark:bg-opacity-75 p-4 rounded-md">
+  <li className="shrink-0 max-h-[70vh] overflow-auto w-[272px] select-none bg-white dark:bg-black bg-opacity-35 dark:bg-opacity-75 p-4 rounded-md">
     {children}
   </li>
 );
@@ -70,7 +70,6 @@ export function ListForm() {
         <form ref={formRef} className="w-full" onSubmit={handleSubmitEdit}>
           <FormInput
             ref={inputRef}
-            // onBlur={() => formRef.current?.requestSubmit()}
             className="focus-visible:outline-none focus-visible:ring-transparent"
             placeholder={t("list-title")}
             id="title"

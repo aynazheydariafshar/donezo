@@ -13,7 +13,7 @@ export function LayoutBgBoard({
   boardIdParams: string;
 }) {
   const query = useQuery({
-    queryKey: ["boards", boardIdParams],
+    queryKey: ["boards-detail", boardIdParams],
     queryFn: () => getBoardId(boardIdParams),
     enabled: !!boardIdParams,
   });

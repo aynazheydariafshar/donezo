@@ -1,4 +1,4 @@
-import { dataBoardType } from "@/types/data-board";
+import { CreateBoardType } from "@/actions/board";
 import { IdWrapper } from "@/types/id-wrapper";
 import { getDirectoryPath } from "@/utils/get-directory-path";
 import { parseJsonFile } from "@/utils/parse-json-file";
@@ -13,7 +13,7 @@ type Params = {
 const GET = async (request: Request, context: { params: Params }) => {
   const { orgId } = context.params;
   if (!orgId) return NextResponse.json({ error: "Not found" }, { status: 404 });
-  const boards = await parseJsonFile<IdWrapper<dataBoardType>[]>(
+  const boards = await parseJsonFile<IdWrapper<CreateBoardType>[]>(
     BOARDS_DIRECTORY
   );
   const board = boards.filter((board) => board.orgId === orgId);

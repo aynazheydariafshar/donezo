@@ -1,21 +1,21 @@
-import { CreateList, updateList } from "@/actions/list";
+import { CreateList, CreateListType, updateList } from "@/actions/list";
 import { FormInput } from "@/components/form/form-input";
 import { toast } from "@/components/hooks/use-toast";
 import { Button } from "@/components/ui/button";
-import { BoardCardType } from "@/types/board-card";
 import { useMutation, useQueryClient } from "@tanstack/react-query";
 import { useTranslations } from "next-intl";
 import { ElementRef, useRef, useState } from "react";
-import { ListOptions } from "./list-options";
+import { ListDelete } from "./list-delete";
 
-export function ListHeader({ data }: { data: BoardCardType }) {
+export function ListHeader({ data }: { data: CreateListType }) {
   const [isEdit, setIsEditing] = useState(false);
   const formRef = useRef<ElementRef<"form">>(null);
   const inputRef = useRef<ElementRef<"input">>(null);
   const queryClient = useQueryClient();
   const t = useTranslations();
+
   const mutation = useMutation({
-    mutationFn: (newPost: Partial<BoardCardType>) =>
+    mutationFn: (newPost: Partial<CreateListType>) =>
       updateList(data.id, newPost),
     onSuccess: (res) => {
       queryClient.invalidateQueries({
@@ -84,11 +84,15 @@ export function ListHeader({ data }: { data: BoardCardType }) {
   }
 
   return (
-    <div className="px-2 text-sm flex justify-between items-center gap-x-2">
-      <Button onClick={enableEditing} size="sm">
-        {data.title}
-      </Button>
-      <ListOptions data={data} onAddCard={() => console.log("add card")} />
+    <div className="text-sm flex justify-between items-center w-full">
+      <div>
+        <Button onClick={enableEditing} size="sm">
+          {data?.title}
+        </Button>
+      </div>
+      <div>
+        <ListDelete data={data} />
+      </div>
     </div>
   );
 }
