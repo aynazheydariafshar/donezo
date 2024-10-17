@@ -53,7 +53,10 @@ export function MobileSidebar() {
             <SidebarDashboard storageKey="t-sidebar-mobile-state" />
           </SheetHeader>
           <SheetFooter>
-            <div className="flex justify-center items-baseline absolute bottom-5 w-60 mt-5 flex-col gap-1">
+            <div
+              style={{ direction: "ltr" }}
+              className="flex items-baseline absolute bottom-5 w-60 mt-5 flex-col gap-1"
+            >
               <div>
                 <UserButton />
               </div>

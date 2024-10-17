@@ -78,7 +78,7 @@ export function SidebarDashboard({
   return (
     <div
       className={cn(
-        "font-medium text-xs flex w-60 flex-col mb-1 fixed top-30",
+        "font-medium text-xs overflow-auto max-h-[80vh] flex w-60 flex-col mb-1 fixed top-30",
         cookieLocale === "en" ? "left-30" : "right-30"
       )}
     >
