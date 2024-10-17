@@ -5,7 +5,7 @@ import { useTranslations } from "next-intl";
 function FooterHomePage() {
   const t = useTranslations();
   return (
-    <div className="fixed bottom-0 px-11 py-1 w-full z-50 bg-black black:bg-white bg-opacity-35">
+    <div className="fixed bottom-0 px-11 backdrop-blur-xl w-full z-50 bg-black black:bg-white bg-opacity-35">
       <div className="flex justify-between items-center">
         <div>
           <Logo />
