@@ -14,7 +14,6 @@ export const CreateList = z.object({
   boardId: z.string(),
   id: z.string(),
   description: z.string().optional(),
-  order: z.number(),
 });
 
 export type CreateListType = z.infer<typeof CreateList>;

@@ -8,7 +8,7 @@ import { useQuery } from "@tanstack/react-query";
 import { CreateCardType, getCardId } from "@/actions/card";
 import CardItem from "./card-item";
 import { Loader } from "lucide-react";
-import { DragDropContext, Draggable, Droppable } from "@hello-pangea/dnd";
+import { Draggable } from "@hello-pangea/dnd";
 
 export function ListItem({
   list,
@@ -42,25 +42,16 @@ export function ListItem({
           <ListWrapper>
             <div {...provided.dragHandleProps}>
               <ListHeader data={list} />
-              <DragDropContext onDragEnd={() => {}}>
-                <Droppable droppableId="card" type="card">
-                  {(provided) => (
-                    <ol
-                      ref={provided.innerRef}
-                      {...provided.droppableProps}
-                      className={
-                        (cn("mx-1 px-1 flex flex-col gap-y-2"),
-                        data?.length > 0 ? "mt-2" : "mt-0")
-                      }
-                    >
-                      {data?.map((card: CreateCardType, index: number) => (
-                        <CardItem key={card.id} card={card} index={index} />
-                      ))}
-                      {provided.placeholder}
-                    </ol>
-                  )}
-                </Droppable>
-              </DragDropContext>
+              <ol
+                className={
+                  (cn("mx-1 px-1 flex flex-col gap-y-2"),
+                  data?.length > 0 ? "mt-2" : "mt-0")
+                }
+              >
+                {data?.map((card: CreateCardType, index: number) => (
+                  <CardItem key={card.id} card={card} />
+                ))}
+              </ol>
               {isLoading ? (
                 <div className="flex items-center justify-center">
                   <Loader className="w-5 h-5 text-secondary-400 animate-spin" />

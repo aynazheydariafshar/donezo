@@ -7,7 +7,7 @@ import { CreateListType, getListId, updateOrderList } from "@/actions/list";
 import { DragDropContext, Droppable, Draggable } from "@hello-pangea/dnd";
 import { toast } from "@/components/hooks/use-toast";
 import { useTranslations } from "next-intl";
-import { CreateCardType } from "@/actions/card";
+import { reorder } from "@/utils/reorder";
 
 export function ListContainer({ boardId }: { boardId: string }) {
   const t = useTranslations();
@@ -36,32 +36,8 @@ export function ListContainer({ boardId }: { boardId: string }) {
     },
   });
 
-  //put method for card
-  // const mutationCard = useMutation({
-  //   mutationFn: (newPost: CreateCardType[]) =>
-  //     updateOrderList(boardId, newPost),
-  //   onSuccess: (res) => {
-  //     queryClient.invalidateQueries({
-  //       queryKey: ["card"],
-  //     });
-  //   },
-  //   onError: () => {
-  //     toast({
-  //       description: t("database-error"),
-  //       variant: "destructive",
-  //     });
-  //   },
-  // });
-
-  function reorder<T>(list: T[], startIndex: number, endIndex: number) {
-    const res = Array.from(data);
-    const [removed] = res.splice(startIndex, 1);
-    res.splice(endIndex, 0, removed);
-    return res;
-  }
-
   const onDragEnd = (result: any) => {
-    const { destination, source, type } = result;
+    const { destination, source } = result;
     if (!destination) {
       return;
     }
@@ -72,14 +48,12 @@ export function ListContainer({ boardId }: { boardId: string }) {
     ) {
       return;
     }
-    if (type === "list") {
-      const res = reorder(
-        data,
-        source.index,
-        destination.index
-      ) as CreateListType[];
-      mutationList.mutate(res);
-    }
+    const res = reorder(
+      data,
+      source.index,
+      destination.index
+    ) as CreateListType[];
+    mutationList.mutate(res);
   };
   return (
     <DragDropContext onDragEnd={onDragEnd}>

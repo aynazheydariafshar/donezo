@@ -1,23 +1,11 @@
-import { CreateBoard } from "@/actions/board";
 import { CreateCard, CreateCardType, updateCard } from "@/actions/card";
 import { FormInput } from "@/components/form/form-input";
 import { toast } from "@/components/hooks/use-toast";
-import { Draggable } from "@hello-pangea/dnd";
-import {
-  dataTagSymbol,
-  useMutation,
-  useQueryClient,
-} from "@tanstack/react-query";
+import { useMutation, useQueryClient } from "@tanstack/react-query";
 import { useTranslations } from "next-intl";
 import { ElementRef, useRef, useState } from "react";
 
-export default function CardItem({
-  card,
-  index,
-}: {
-  card: CreateCardType;
-  index: number;
-}) {
+export default function CardItem({ card }: { card: CreateCardType }) {
   const [isEdit, setIsEditing] = useState(false);
   const formRef = useRef<ElementRef<"form">>(null);
   const inputRef = useRef<ElementRef<"input">>(null);
@@ -93,19 +81,12 @@ export default function CardItem({
   }
 
   return (
-    <Draggable draggableId={card.id} index={index}>
-      {(provided) => (
-        <div
-          {...provided.draggableProps}
-          ref={provided.innerRef}
-          {...provided.dragHandleProps}
-          role="button"
-          onClick={enableEditing}
-          className="truncate my-1 bg-white bg-opacity-75 dark:bg-black dark:bg-opacity-95 border-2 border-transparent hover:border-black dark:hover:border-white py-2 px-3 text-sm rounded-md shadow-sm"
-        >
-          {card.title}
-        </div>
-      )}
-    </Draggable>
+    <div
+      role="button"
+      onClick={enableEditing}
+      className="truncate my-1 bg-white bg-opacity-75 dark:bg-black dark:bg-opacity-95 border-2 border-transparent hover:border-black dark:hover:border-white py-2 px-3 text-sm rounded-md shadow-sm"
+    >
+      {card.title}
+    </div>
   );
 }
