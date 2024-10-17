@@ -12,9 +12,14 @@ import {
 
 import { setCookie } from "@/utils/set-cookie";
 import { getCookie } from "@/utils/get-cookies";
+import { useEffect } from "react";
 
 function SwitchLanguage() {
   const cookieLocale = getCookie("language") || "en";
+
+  useEffect(() => {
+    setCookie(cookieLocale, "language");
+  }, []);
 
   return (
     <Select
