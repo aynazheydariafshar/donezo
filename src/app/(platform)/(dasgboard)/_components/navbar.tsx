@@ -19,14 +19,15 @@ export default function NavbarDashboard() {
           <Plus />
         </Button>
       </FormPopover>
-
-      <OrganizationSwitcher
-        hidePersonal
-        afterLeaveOrganizationUrl="/select-org"
-        afterSelectOrganizationUrl="/organization/:id"
-        afterCreateOrganizationUrl="/organization/:id"
-      />
-      <UserButton />
+      <div className="items-center gap-1 space-x-2 xl:flex hidden">
+        <OrganizationSwitcher
+          hidePersonal
+          afterLeaveOrganizationUrl="/select-org"
+          afterSelectOrganizationUrl="/organization/:id"
+          afterCreateOrganizationUrl="/organization/:id"
+        />
+        <UserButton />
+      </div>
     </Navbar>
   );
 }

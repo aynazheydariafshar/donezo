@@ -37,6 +37,7 @@
     "passkey_pa_not_supported": "ثبت نام به یک احراز هویت‌کننده پلتفرم نیاز دارد اما دستگاه این را پشتیبانی نمی‌کند.",
     "passkey_registration_cancelled": "ثبت نام کلید عبور لغو یا منقضی شد.",
     "passkey_retrieval_cancelled": "تأیید کلید عبور لغو یا منقضی شد.",
+    "formButtonPrimary__finish" : "تمام",
     "passwordComplexity": {
       "maximumLength": "کمتر از {{length}} کاراکتر",
       "minimumLength": "{{length}} یا بیشتر کاراکتر",
@@ -522,7 +523,7 @@
       "action__invite": "دعوت",
       "activeMembersTab": {
         "menuAction__remove": "حذف عضو",
-        "tableHeader__actions": "undefined",
+        "tableHeader__actions": "",
         "tableHeader__joined": "پیوسته",
         "tableHeader__role": "نقش",
         "tableHeader__user": "کاربر"

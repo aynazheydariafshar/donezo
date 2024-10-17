@@ -2,6 +2,7 @@ import { MobileSidebar } from "@/src/app/(platform)/(dasgboard)/_components/mobi
 import { Logo } from "./logo";
 import { SwitchLanguage } from "./switch-language";
 import { SwitchTheme } from "./switch-theme";
+import { cn } from "@/utils/utils";
 
 function Navbar({
   children,
@@ -18,10 +19,17 @@ function Navbar({
           <Logo />
         </div>
       </div>
-      <div className="flex items-center space-x-4">
+      <div className="items-center flex gap-6 space-x-2">
         {children}
-        <SwitchTheme />
-        <SwitchLanguage />
+        <div
+          className={cn(
+            "items-center gap-2 space-x-2",
+            sideBarIcon ? "xl:flex hidden" : "flex"
+          )}
+        >
+          <SwitchTheme />
+          <SwitchLanguage />
+        </div>
       </div>
     </nav>
   );

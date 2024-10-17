@@ -26,6 +26,7 @@ function SwitchTheme() {
     <div className="flex justify-center">
       <Button
         variant="ghost"
+        className="p-0 hover:bg-transparent hover:text-secondary-400"
         onClick={() => {
           const themeValue = theme === "dark" ? "light" : "dark";
           setCookie(themeValue, "theme");

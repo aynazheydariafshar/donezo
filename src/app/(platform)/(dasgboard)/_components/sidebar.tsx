@@ -78,7 +78,7 @@ export function SidebarDashboard({
   return (
     <div
       className={cn(
-        "font-medium w-full text-xs xl:w-60 flex flex-col mb-1 fixed top-30",
+        "font-medium text-xs overflow-auto max-h-[80vh] flex w-60 flex-col mb-1 fixed top-30",
         cookieLocale === "en" ? "left-30" : "right-30"
       )}
     >
@@ -91,7 +91,7 @@ export function SidebarDashboard({
             asChild
             size="icon"
             variant="ghost"
-            className="ml-auto"
+            className="ml-auto hover:bg-transparent hover:text-secondary-500"
             type="button"
           >
             <Link href="/select-org">

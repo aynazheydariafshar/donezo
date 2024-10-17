@@ -3,8 +3,11 @@ import { FormInput } from "@/components/form/form-input";
 import { toast } from "@/components/hooks/use-toast";
 import { Button } from "@/components/ui/button";
 import { BoardNavbarPropsType } from "@/types/board-navbar-props";
+import { useOrganization } from "@clerk/nextjs";
 import { useMutation, useQueryClient } from "@tanstack/react-query";
+import { ArrowLeft, StepBack } from "lucide-react";
 import { useTranslations } from "next-intl";
+import Link from "next/link";
 import { ElementRef, useRef, useState } from "react";
 
 export function NavbarContent({ data }: BoardNavbarPropsType) {
@@ -13,6 +16,7 @@ export function NavbarContent({ data }: BoardNavbarPropsType) {
   const inputRef = useRef<ElementRef<"input">>(null);
   const queryClient = useQueryClient();
   const t = useTranslations();
+  const { organization } = useOrganization();
 
   const mutation = useMutation({
     mutationFn: (newPost: Partial<CreateBoardType>) =>
@@ -85,8 +89,16 @@ export function NavbarContent({ data }: BoardNavbarPropsType) {
   }
 
   return (
-    <Button onClick={enableEditing} className="text-lg">
-      {data?.title}
-    </Button>
+    <div className="flex items-center gap-2 space-x-3">
+      <Button size="sm">
+        <ArrowLeft className="h-4 w-4 mx-1" />
+        <Link href={`/organization/${organization?.id}`}>
+          {t("back-to-boards")}
+        </Link>
+      </Button>
+      <Button size="sm" onClick={enableEditing} className="text-sm">
+        {data?.title}
+      </Button>
+    </div>
   );
 }
